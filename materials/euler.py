@@ -73,6 +73,7 @@ plot_rotation(90, 90, 45, intrinsic=False)
 # %% Statement 1
 # A sequence of intrinsic rotations produces the same total rotations
 # as the sequence of extrinsic rotations with the same angles but in reverse order.
+# Proof: https://math.stackexchange.com/questions/1137745/proof-of-the-extrinsic-to-intrinsic-rotation-transform/3314025
 rpy = euler_deg
 R_int = Rotation.from_euler('xyz', rpy, degrees=True) # extrinsic
 ypr = [euler_deg[2], euler_deg[1], euler_deg[0]]
