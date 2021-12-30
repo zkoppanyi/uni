@@ -34,7 +34,7 @@ def plot_fustrum(ax, X, R, f=1, scale=1, img_limits=[1, 1], w=1, h=1, c='r'):
     cam_dir = -scale * R @ np.array([[0, 0, f]]).T
     cam_dir_line = np.array([[X[0], X[0]+cam_dir[0, 0]], [X[1], X[1]+cam_dir[1, 0]], [X[2], X[2]+cam_dir[2, 0]]]).T
 
-    ax.plot3D(X[0], X[1], X[2], c=c, marker='o')
+    ax.plot3D([X[0]], [X[1]], [X[2]], c=c, marker='o')
     ax.plot3D(cam_dir_line[:, 0], cam_dir_line[:, 1], cam_dir_line[:, 2], 'gray')
 
     w = img_limits[0]
