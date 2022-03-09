@@ -1,11 +1,12 @@
 # %% Imports
+import os
 import sys
 import numpy as np
 from scipy.spatial.transform import Rotation
 import matplotlib.pyplot as plt
 
-sys.path.append("../")
-from viz.viz import plot_fustrum, plot_crs, set_3d_axes_equal
+sys.path.append(os.path.dirname(os.path.realpath(__file__)) + "/../")
+from utils.viz.viz import plot_fustrum, plot_crs, set_3d_axes_equal
 
 # %% Test angles
 euler_deg = [45, 15, -25]
@@ -110,5 +111,41 @@ print(R.as_euler('xyz', degrees=True))
 R = Rotation.from_euler('xyz', [10, -90, 10], degrees=True)
 print(R.as_matrix())
 print(R.as_euler('xyz', degrees=True))
+
+# %%
+import math
+from math import sin, cos
+
+def getR(pitch, roll, yaw):
+    R1 = [cos(yaw)*cos(roll)+sin(yaw)*sin(pitch)*sin(roll), -sin(yaw)*cos(roll)+cos(yaw)*sin(pitch)*sin(roll), -cos(pitch)*sin(roll)]
+    R2 = [cos(yaw)*sin(roll)-sin(yaw)*sin(pitch)*cos(roll), -sin(yaw)*sin(roll)-cos(yaw)*sin(pitch)*cos(roll), cos(pitch)*cos(roll)]
+    R3 = [-sin(yaw)*cos(pitch), -cos(yaw)*cos(pitch), -sin(pitch)]
+    return np.vstack([R1, R2, R3])
+
+
+yaw = 35/180*math.pi
+pitch = -45/180*math.pi
+roll = -185/180*math.pi
+
+R_fn = getR(pitch, roll, yaw)
+R = Rotation.from_euler('zxz', [yaw, pitch, roll], degrees=False).as_matrix()
+
+print(np.linalg.norm(R_fn-R))
+np.set_printoptions(suppress=True)
+print(R_fn)
+print(' ')
+print(R)
+
+# %%
+
+
+# %%
+print(Rotation.from_euler('XYZ', [90, 45, 0], degrees=True).as_matrix())
+# %%
+print(np.linalg.det(R1))
+print(R1.T - np.linalg.inv(R1))
+
+# %%
+R1.T - np.linalg.inv(R1)
 
 # %%

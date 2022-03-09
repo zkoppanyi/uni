@@ -76,5 +76,3 @@ p_agt_etrs89_llh = np.array([47.4809437, 19.0565298, 180.8083100])
 print('Difference AGT-EHT [cm]: ', geodesic(p_agt_etrs89_llh[0:2], p_eht_etrs89_llh[0:2]).m * 100)
 print('Difference AGT-Ours [cm]: ', geodesic(p_agt_etrs89_llh[0:2], p_etrs89_llh[0:2]).m * 100)
 #print(geodesic(p_etrs89_llh, p_agt_etrs89_llh))
-
-# %%
