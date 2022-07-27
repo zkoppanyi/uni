@@ -22,7 +22,8 @@ def skew(x):
 def draw_epilines(img1, img2, epilines, pts, color=None):
     """img1 - image on witch we draw the epilines for the points in img2
        lines - corresponding epilines"""
-    r, c = img1.shape
+    r = img1.shape[0]
+    c = img1.shape[1]
     img1 = cv.cvtColor(img1, cv.COLOR_GRAY2BGR)
     img2 = cv.cvtColor(img2, cv.COLOR_GRAY2BGR)
     for r, pt in zip(epilines,pts):
@@ -35,21 +36,20 @@ def draw_epilines(img1, img2, epilines, pts, color=None):
         x0,y0 = map(int, [0, -r[2]/r[1] ])
         x1,y1 = map(int, [c, -(r[2]+r[0]*c)/r[1] ])
         #print(x0, y0, x1, y1)
-        img1 = cv.line(img1, (x0,y0), (x1,y1), color_fn,50)
+        img2 = cv.line(img2, (x0,y0), (x1,y1), color_fn,50)
         #img1 = cv.circle(img1, (pt[0], pt[1]),50,color_fn,50)
-        img2 = cv.circle(img2, (pt[0], pt[1]),50,color_fn,50)
+        img1 = cv.circle(img1, (pt[0], pt[1]),50,color_fn,50)
     return img1, img2
 
 # %%
 if __name__ == "__main__":
 
-    #base_folder = "/media/ext/test/b9d2eca6-c65d-4d15-9ad0-5e67c3b6c66b"
-    #img1_path = base_folder + "/cluster_0/input_images/100_0031_0002.JPG"
-    #img2_path = base_folder + "/cluster_0/input_images/100_0031_0003.JPG"
-
     base_folder = "/media/ext/test/61deef7e-dc28-4f60-a061-172870ba040c"
     img1_path = base_folder + "/cluster_0/input_images/DJI_0065.JPG"
     img2_path = base_folder + "/cluster_0/input_images/DJI_0069.JPG"
+
+    img1_path = base_folder + "/cluster_0/input_images/DJI_0058.JPG"
+    img2_path = base_folder + "/cluster_0/input_images/DJI_0063.JPG"
 
     img1_name = img1_path.split('/')[-1]
     img2_name = img2_path.split('/')[-1]
@@ -102,7 +102,7 @@ if __name__ == "__main__":
         [-2.06201901e-07,  5.05771082e-09,  1.72317600e-03],
         [-1.63734635e-03, -1.77939716e-03,  1.00000000e+00]])
 
-# %% Compute F
+# %% Compute F from known poses
     if True:
         bundle_out_file = base_folder + "/bundle_8b16700f-c433-4172-8665-fbce4c56d099.out"
         cam, R, tran, [x,y,z], [x_mean, y_mean, z_mean], cam_view_pt, n_view_pt = read_bundle_out(bundle_out_file)
@@ -132,7 +132,7 @@ if __name__ == "__main__":
         R1 = R90 @ R1
         R2 = R90 @ R2
 
-# %% Visualize stereo pair
+# %% Visualize stereo pair in 3d space
     if False:
         fig = plt.figure(figsize=(12,10))
         ax = plt.axes(projection='3d')
@@ -148,19 +148,22 @@ if __name__ == "__main__":
 # %% Derivation
     # Following this: https://www.cs.cmu.edu/~16385/s17/Slides/12.2_Essential_Matrix.pdf
 
+    dR = R2 @ R1.transpose()
+    #dt = t2 - dR @ t1
+    dt = R1 @ np.array(X2 - X1) # = t1 - dR.transpose() @ t2
+
     P = [40, -30, 20]
     p1 = R1 @ (P - X1)
     p2 = R2 @ (P - X2)
-    t = R1 @ np.array(X2 - X1)
-    coplan_const = (p1-t).transpose() @ np.cross(t, p1)
+    coplan_const = (p1-dt).transpose() @ np.cross(dt, p1)
     print("Point is coplanar: ", coplan_const)
 
-    dR = R2 @ R1.transpose()
-    p2_chk = dR @ (p1 - t)
+    #dR = R2 @ R1.transpose()
+    p2_chk = dR @ (p1 - dt)
     print(p2_chk - p2)
-    print("Should be 0: ", (p2.transpose() @ dR) @ np.cross(t, p1))
-    print("Should be 0: ", (p2.transpose() @ dR) @ skew(t) @ p1)
-    E = (dR @ skew(t))
+    print("Should be 0: ", (p2.transpose() @ dR) @ np.cross(dt, p1))
+    print("Should be 0: ", (p2.transpose() @ dR) @ skew(dt) @ p1)
+    E = (dR @ skew(dt))
     print("Should be 0: ", p2.transpose() @ E @ p1)
     print("E: ", E)
 
@@ -172,8 +175,8 @@ if __name__ == "__main__":
 # %% Compose F matrix from E
     def getK(idx):
         f = cam.f[idx]
-        xo = float(cam.size_y[idx]) / 2.0 + cam.xo[idx]
-        yo = float(cam.size_x[idx]) / 2.0 + cam.yo[idx]
+        xo = float(cam.size_x[idx]) / 2.0 + cam.xo[idx]
+        yo = float(cam.size_y[idx]) / 2.0 + cam.yo[idx]
         return np.array([[f, 0, xo], [0, f, yo], [0, 0, 1]])
     K1 = getK(img1_idx)
     K2 = getK(img2_idx)
@@ -188,9 +191,9 @@ if __name__ == "__main__":
 # %% Visualization
 
     def update_view(pts):
-        epilines = cv.computeCorrespondEpilines(pts.reshape(-1, 1, 2), 2, F)
+        epilines = cv.computeCorrespondEpilines(pts.reshape(-1, 1, 2), 1, F)
         epilines = epilines.reshape(-1, 3)
-        # epilines = (F.transpose() @ pts.transpose()).transpose()
+        # epilines = (F @ pts.transpose()).transpose()
         # epilines /= np.linalg.norm(epilines[:, :2], axis=1).reshape(-1, 1) # optional normalization of A, B
         # # line: A*x + B*Y + C = 0, where lines = [A, B, C]
         img_1_epi, img_2_epi = draw_epilines(img1, img2, epilines, pts, color=[255, 0, 0])
@@ -208,8 +211,8 @@ if __name__ == "__main__":
         # Interactive point picker
         fig, (ax1, ax2) = plt.subplots(1, 2)
         ax1.imshow(img1, picker=True)
+        ax1.title.set_text("Pick a point on this image!")
         ax2.imshow(img2)
-        ax2.title.set_text("Pick a point on this image!")
         def onpick(event):
             print('%s click: button=%d, x=%d, y=%d, xdata=%f, ydata=%f' %
                 ('double' if event.dblclick else 'single', event.button,

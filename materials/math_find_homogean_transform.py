@@ -67,7 +67,7 @@ ax.scatter3D(pts_model_cog[:,0], pts_model_cog[:,1], pts_model_cog[:,2], c='r', 
 ax.scatter3D(pts_target_cog[:,0], pts_target_cog[:,1], pts_target_cog[:,2], c='b', s=50)
 set_3d_axes_equal(ax)
 
-# %% Compute coveriances
+# %% Compute covariances
 C = pts_model_cog.T @ pts_target_cog
 
 # %% Check C matrix
@@ -96,7 +96,8 @@ C_chk = U @ np.diag(S) @ V.T
 print('Check decomposition: ', np.linalg.norm(C_chk - C))
 
 # %%
-R = V.T @ U
+#R = V.T @ U
+R = V @ U.T
 t = cog_target - R @ cog_model
 
 # %%

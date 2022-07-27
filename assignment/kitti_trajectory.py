@@ -33,18 +33,3 @@ plt.axis('equal')
 plt.scatter(xyz[:, 0], xyz[:, 1], c='r', s=0.1)
 plt.axis('equal')
 
-# %%
-second_pose = dataset.poses[1]
-#first_gray = next(iter(dataset.gray))
-#first_cam1 = next(iter(dataset.cam1))
-#first_rgb = dataset.get_rgb(0)
-#first_cam2 = dataset.get_cam2(0)
-third_velo = dataset.get_velo(2)
-
-# %%
-dataset.calib.T_cam1_velo
-
-
-
-
-# %%
