@@ -112,7 +112,7 @@ R = Rotation.from_euler('xyz', [10, -90, 10], degrees=True)
 print(R.as_matrix())
 print(R.as_euler('xyz', degrees=True))
 
-# %%
+# %% Formulas
 import math
 from math import sin, cos
 
@@ -135,17 +135,5 @@ np.set_printoptions(suppress=True)
 print(R_fn)
 print(' ')
 print(R)
-
-# %%
-
-
-# %%
-print(Rotation.from_euler('XYZ', [90, 45, 0], degrees=True).as_matrix())
-# %%
-print(np.linalg.det(R1))
-print(R1.T - np.linalg.inv(R1))
-
-# %%
-R1.T - np.linalg.inv(R1)
 
 # %%
