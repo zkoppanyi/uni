@@ -8,7 +8,7 @@
 
 - [Camera models and distortions](materials/photo_camera_models.ipynb)
 - [Backprojection](materials/photo_backprojection.ipynb)
-- [Essential matrix](materials/photo_essential_matrix.ipynb.py)
+- [Essential matrix](materials/photo_essential_matrix.ipynb)
 - [Essential matrix from views](materials/photo_fundamental_mx.py)
 - [Camera footprint computation](materials/photo_camera_footprint.ipynb)
 
