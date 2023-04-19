@@ -65,7 +65,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = '1_Introduction_to_Python';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Bevezetés a numpy könyvtárba" href="2_Introduction_to_NumPy_and_Matplotlib.html" />
+    <link rel="next" title="Bevezetés a numpy könyvtárba" href="2_Introduction_to_NumPy.html" />
     <link rel="prev" title="Előszó" href="intro.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -153,9 +153,8 @@ const thebe_selector_output = ".output, .cell_output"
         </ul>
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Bevezetés a Python nyelvbe</a></li>
-
-<li class="toctree-l1"><a class="reference internal" href="2_Introduction_to_NumPy_and_Matplotlib.html">Bevezetés a <code class="docutils literal notranslate"><span class="pre">numpy</span></code> könyvtárba</a></li>
-
+<li class="toctree-l1"><a class="reference internal" href="2_Introduction_to_NumPy.html">Bevezetés a <code class="docutils literal notranslate"><span class="pre">numpy</span></code> könyvtárba</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3_Introduction_to_Matplotlib.html">Bevezetés a <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code> könyvtárba</a></li>
 </ul>
 
     </div>
@@ -349,7 +348,6 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Bevezetés a Python nyelvbe</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#colab-kornyezet">Colab környezet</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hello-world">Hello world!</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#valtozok">Változók</a></li>
@@ -358,7 +356,8 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tipus-konverziok">Típus konverziók</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fuggvenyek">Függvények</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#valtozok-lathatosaga-es-hatokorok-scope">Változók láthatósága és hatókörök (scope)</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hivasi-verem-es-rekurzio">Hívási verem és rekurzió</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hivasi-verem">Hívási verem</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rekurzios-fuggvenyek">Rekurziós függvények</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fuggveny-konytarak-es-import">Függvény könytárak és <code class="docutils literal notranslate"><span class="pre">import</span></code></a></li>
@@ -405,10 +404,6 @@ document.write(`
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#iteratorok-es-generatorok">Iterátorok és generátorok</a></li>
 </ul>
-</li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#tic-tac-toe">Tic tac toe</a></li>
-</ul>
-
             </nav>
         </div>
     </div>
@@ -421,13 +416,6 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="bevezetes-a-python-nyelvbe">
 <h1>Bevezetés a Python nyelvbe<a class="headerlink" href="#bevezetes-a-python-nyelvbe" title="Permalink to this heading">#</a></h1>
-<p><strong>Jelmagyarázat</strong>:</p>
-<ul class="simple">
-<li><p>⭐ (star): Feladat, együtt gondolkodás.</p></li>
-<li><p>❗ (exclamation): Fontos tudnivaló.</p></li>
-<li><p>✅ (check-mark): Tipp a megértéshez.</p></li>
-<li><p>🈺 (application): Kiegészítő információ.</p></li>
-</ul>
 <p>Órán elmondani:</p>
 <ol class="arabic simple">
 <li><p>Motiváció</p></li>
@@ -485,7 +473,6 @@ Törekedjünk értelemes változó nevek megadására, így könnyebben olvashat
 <p>Jó ökölszabály arra gondolni, hogy olyan változónevet válasszunk, amelyet felhasználónévként is megadhatnánk egy weboldal regisztrációja során.</p>
 </div>
 <p>A következő példa mutatja, hogyan rendelhetünk értéket egy változóhoz. Az Exceles analógiával élve, ezt úgy képzelhetjük el, hogy a művelet megfelel az Excel cellába történő valamilyen érték megadásának.</p>
-<p>⭐ <em>Értelmezzük az értékadás elemeit!</em></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pi</span> <span class="o">=</span> <span class="mf">3.21</span>
@@ -495,27 +482,25 @@ Törekedjünk értelemes változó nevek megadására, így könnyebben olvashat
 </div>
 </div>
 </div>
-<p>🈺 <em>Mivel spacet nem használhatunk változó nevekben, ezért a gyakorlatban az öszetett szavakból álló változó nevekhez különböző gyakorlatok terjedtek el.</em></p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Pascal case variable naming convetion:</span>
+<div class="note admonition">
+<p class="admonition-title">Kiegészítő anyag</p>
+<p>Mivel spacet nem használhatunk változó nevekben, ezért a gyakorlatban az öszetett szavakból álló változó nevekhez különböző gyakorlatok terjedtek el.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Pascal case konvenció:</span>
 <span class="n">PascalCaseVariable</span><span class="o">=</span><span class="mi">1</span>
 
-<span class="c1"># Camel case variable naming convetion:</span>
+<span class="c1"># Camel case konvenció:</span>
 <span class="n">camelCaseVariable</span> <span class="o">=</span> <span class="mi">1</span>
 
-<span class="c1"># Snake case variable naming convetion:</span>
+<span class="c1"># Snake case konvenció:</span>
 <span class="n">snake_case_variable</span> <span class="o">=</span> <span class="mi">1</span>
 </pre></div>
-</div>
 </div>
 </div>
 </section>
 <section id="egyszeru-tipusok">
 <h2>Egyszerű típusok<a class="headerlink" href="#egyszeru-tipusok" title="Permalink to this heading">#</a></h2>
-<p><strong>Egyszerű típus</strong>: Az egyszerű típusok, olyan típusok, amelyeket a programozási nyelv alapértelmezetten definiál. Pythonban egyszerű típusok például az egész, lebegőpontos szám, a szöveg, vagy a logikai érték (boolean).</p>
-<p>Ahogy az Excelben a celláknak, úgy a változóknak is van típusa, pl. dátum, szöveg, szám.</p>
-<p>Szám / egész szám definiálása:</p>
+<p>Az egyszerű típusok, olyan típusok, amelyeket a programozási nyelv alapértelmezetten definiál. Pythonban egyszerű típusok például az egész, lebegőpontos szám, a szöveg, vagy a logikai érték (boolean). Ahogy az Excelben a celláknak, úgy a változóknak is van típusa, pl. dátum, szöveg, szám.</p>
+<p>Példa egész szám definiálása:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">test_int</span> <span class="o">=</span> <span class="mi">1</span>
@@ -547,7 +532,10 @@ Törekedjünk értelemes változó nevek megadására, így könnyebben olvashat
 </div>
 </div>
 </div>
-<p>❗A tizedes jel a programozási nyelvek világában a pont <code class="docutils literal notranslate"><span class="pre">.</span></code> nem pedig a vessző <code class="docutils literal notranslate"><span class="pre">,</span></code>. Ez egy fontos különbség az Excelhez képest, ahol a lokalizációs beállításoktól függően, lehetőségünk van tizedes vessző használatára. A pont használatának oka, hogy a programozási nyelveket elsődlegesen az angolszász világ terjesztette el, és a angol nyelv a tizedes pontot használja. Ugyancsak vegyük észre, hogy nem áll módunkban az ezresek jelőlése sem ponttal, sem pedig vesszővel.</p>
+<div class="warning admonition">
+<p class="admonition-title">Figyelem</p>
+<p>A tizedes jel a programozási nyelvek világában a pont <code class="docutils literal notranslate"><span class="pre">.</span></code> nem pedig a vessző <code class="docutils literal notranslate"><span class="pre">,</span></code>. Ez egy fontos különbség az Excelhez képest, ahol a lokalizációs beállításoktól függően, lehetőségünk van tizedes vessző használatára. A pont használatának oka, hogy a programozási nyelveket elsődlegesen az angolszász világ terjesztette el, és a angol nyelv a tizedes pontot használja. Ugyancsak vegyük észre, hogy nem áll módunkban az ezresek jelőlése sem ponttal, sem pedig vesszővel.</p>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">test_result</span> <span class="o">=</span> <span class="n">test_float</span> <span class="o">+</span> <span class="n">test_int</span>
@@ -559,18 +547,6 @@ Törekedjünk értelemes változó nevek megadására, így könnyebben olvashat
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.13242
 &lt;class &#39;float&#39;&gt;
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">3</span> <span class="o">+</span> <span class="mi">1</span><span class="o">/</span><span class="mi">3</span> <span class="o">+</span> <span class="mi">1</span><span class="o">/</span><span class="mi">3</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.0
 </pre></div>
 </div>
 </div>
@@ -595,7 +571,7 @@ False
 </div>
 </div>
 </div>
-<p>⭐ <em>Értelmezzük a következő kifejezést! Értsük meg az értékadás és összehasonlítás közötti különbséget!</em></p>
+<p>Értelmezzük a következő kifejezést! Értsük meg az értékadás és összehasonlítás közötti különbséget!</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">test_logical</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">==</span> <span class="mi">2</span><span class="p">)</span>
@@ -700,7 +676,7 @@ hello
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">  File</span><span class="nn"> &quot;/tmp/ipykernel_98388/2461417154.py&quot;</span><span class="gt">, line </span><span class="mi">1</span>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">  File</span><span class="nn"> &quot;/tmp/ipykernel_216938/2461417154.py&quot;</span><span class="gt">, line </span><span class="mi">1</span>
     <span class="n">variable</span> <span class="o">=</span> <span class="s1">&#39;hello&quot; # Error</span>
                               <span class="o">^</span>
 <span class="ne">SyntaxError</span>: EOL while scanning string literal
@@ -917,9 +893,8 @@ hello
 </section>
 <section id="fuggvenyek">
 <h2>Függvények<a class="headerlink" href="#fuggvenyek" title="Permalink to this heading">#</a></h2>
+<p>Szintaktika alatt a programozási nyelvet leíró “nyelvtant”, szabályrendszert értjük, például milyen elnevezése lehet egy változónak, vagy hogy hogyan definiálunk értékadást, függvényeket. Ezzel szemben a szemantika alatt a program “értelmét” értjük, vagyis azt hogy mit csinál. Ha a kód szintaktikailag nem helyes, akkor mindenképpen hibaüzenetet kapunk. Ezzel szemben, egy szemantikailag helytelen program nem feltétlenül végződik hibában, mert a program kimenetet ad, csak nem azt amit elvárnánk.</p>
 <p>Függvények szintaktikája a következő:</p>
-<p>🈺 <em>Szintaktika alatt a programozási nyelvet leíró “nyelvtant”, szabályrendszert értjük, például milyen elnevezése lehet egy változónak, vagy hogy hogyan definiálunk értékadást, függvényeket. Ezzel szemben a szemantika alatt a program “értelmét” értjük, vagyis azt hogy mit csinál. Ha a kód szintaktikailag nem helyes, akkor mindenképpen hibaüzenetet kapunk. Ezzel szemben, egy szemantikailag helytelen program nem feltétlenül végződik hibában, mert a program kimenetet ad, csak nem azt amit elvárnánk.</em></p>
-<p>❗<em>Vegyük észre az alábbi kód részletben a függvény törzsének definiciója be van húzva spaceszel vagy tabbal (ezeket közös néven whitespace karaktereknek hívjuk). Ezeket a whitespaceket hívjuk rossz magyarsággal indentálásnak. Pythonban a sor eleji whitespace karakterek fontos jelentőséggel bírnak, hogy megkülönböztessünk függvény törzs, illetve más vezérlési szerkezetek belső részét. Mindig figyelj oda, hogy a sor eleji whitespacek megfelelőek legyene, máskülönben hibát fogsz kapni.</em></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">hello</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
@@ -929,6 +904,7 @@ hello
 </div>
 </div>
 </div>
+<p>Vegyük észre az alábbi kód részletben a függvény törzsének definiciója be van húzva spaceszel vagy tabbal (ezeket közös néven <em>whitespace</em> karaktereknek hívjuk). Ezeket a whitespaceket hívjuk rossz magyarsággal indentálásnak. Pythonban a sor eleji whitespace karakterek fontos jelentőséggel bírnak, hogy megkülönböztessünk függvény törzs, illetve más vezérlési szerkezetek belső részét. Mindig figyelj oda, hogy a sor eleji whitespacek megfelelőek legyene, máskülönben hibát fogsz kapni.</p>
 <p>Az így definiált függvényt más cellákban is meg tudjuk hívni.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -944,7 +920,7 @@ Hello Jane!
 </div>
 </div>
 </div>
-<p>⭐ <em>Elemezzük milyen részekből áll egy függvény, és milyen szinaktikája van. (függvény neve, függvény argumentumai vagy bemeneti változói, függvény törzse)</em></p>
+<p>Elemezzük milyen részekből áll egy függvény, és milyen szinaktikája van: függvény neve, függvény argumentumai vagy bemeneti változói, függvény törzse.</p>
 <p>A függvényeknek lehet visszatérési értéke:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1108,7 +1084,7 @@ Hello Béla!
 </div>
 </div>
 </div>
-<p>⭐ Ezek után találjuk ki mit ír ki a következő kód.</p>
+<p>Ezek után találjuk ki mit ír ki a következő kód.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;Anna&#39;</span>                      <span class="c1"># </span>
@@ -1157,19 +1133,17 @@ name: Anna
 </div>
 </div>
 </div>
-<section id="hivasi-verem-es-rekurzio">
-<h3>Hívási verem és rekurzió<a class="headerlink" href="#hivasi-verem-es-rekurzio" title="Permalink to this heading">#</a></h3>
+<section id="hivasi-verem">
+<h3>Hívási verem<a class="headerlink" href="#hivasi-verem" title="Permalink to this heading">#</a></h3>
+<div class="note admonition">
+<p class="admonition-title">Kiegészítő anyag</p>
+<p>Ez a rész kiegészítő anyag és csak a függvényhívások mélyebb megértését segíti.</p>
+</div>
 <p>Hívási veremről további info: <a class="reference external" href="https://towardsdatascience.com/python-stack-frames-and-tail-call-optimization-4d0ea55b0542">https://towardsdatascience.com/python-stack-frames-and-tail-call-optimization-4d0ea55b0542</a></p>
-<p>⭐ Vizsgáljuk meg a hívási vermet (call stack) az alábbi példában.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">inspect</span>
-
-<span class="n">a</span> <span class="o">=</span> <span class="s1">&#39;global&#39;</span>
-<span class="n">b</span> <span class="o">=</span> <span class="s1">&#39;global&#39;</span>
-<span class="n">c</span> <span class="o">=</span> <span class="s1">&#39;global&#39;</span>
 <span class="n">main_scope_stack_length</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">inspect</span><span class="o">.</span><span class="n">stack</span><span class="p">(</span><span class="n">context</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
-
 <span class="k">def</span> <span class="nf">print_stack</span><span class="p">():</span>
   <span class="n">valid_stack_depth</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">inspect</span><span class="o">.</span><span class="n">stack</span><span class="p">(</span><span class="n">context</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span> <span class="o">-</span> <span class="n">main_scope_stack_length</span>
   <span class="n">frame_str</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
@@ -1184,6 +1158,19 @@ name: Anna
       <span class="n">frame_str</span> <span class="o">+=</span> <span class="n">var</span> <span class="o">+</span> <span class="s2">&quot;=&quot;</span> <span class="o">+</span> <span class="n">frameinfo</span><span class="o">.</span><span class="n">frame</span><span class="o">.</span><span class="n">f_locals</span><span class="p">[</span><span class="n">var</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;, &quot;</span>
     <span class="n">frame_str</span> <span class="o">+=</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span>
   <span class="nb">print</span><span class="p">(</span><span class="n">frame_str</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="important admonition">
+<p class="admonition-title">Feladat</p>
+<p>Vizsgáljuk meg a hívási vermet (<em>call stack</em>) az alábbi példában.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="s1">&#39;global&#39;</span>
+<span class="n">b</span> <span class="o">=</span> <span class="s1">&#39;global&#39;</span>
+<span class="n">c</span> <span class="o">=</span> <span class="s1">&#39;global&#39;</span>
 
 <span class="k">def</span> <span class="nf">my_func</span><span class="p">(</span><span class="n">a</span><span class="p">):</span>  
   <span class="n">print_stack</span><span class="p">()</span>  
@@ -1271,6 +1258,9 @@ global my_func_3 global
 </div>
 </div>
 </div>
+</section>
+<section id="rekurzios-fuggvenyek">
+<h3>Rekurziós függvények<a class="headerlink" href="#rekurzios-fuggvenyek" title="Permalink to this heading">#</a></h3>
 <p>Klasszikus rekurziós példa a Fibonaci sorozat:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1408,6 +1398,13 @@ global my_func_3 global
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2023/04/13 08:21:24
 </pre></div>
 </div>
+</div>
+</div>
+<div class="hint admonition">
+<p class="admonition-title">Tipp</p>
+<p>A <code class="docutils literal notranslate"><span class="pre">help</span></code> függvény segítségével kaphatunk információt egy függvényről, például:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">help</span><span class="p">(</span><span class="n">strftime</span><span class="p">)</span>
+</pre></div>
 </div>
 </div>
 <div class="cell docutils container">
@@ -1583,7 +1580,7 @@ strftime(...)
 </div>
 </div>
 </div>
-<p>Írjunk egy függvényt, amely kiírja 1-9 a számokat egy mátrixba rendezve.</p>
+<p>Írjunk egy függvényt, amely kiírja 1-9-ig a számokat egy mátrixba rendezve.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">matrix_str</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
@@ -1629,7 +1626,10 @@ strftime(...)
 </div>
 </div>
 </div>
+<div class="important admonition">
+<p class="admonition-title">Feladat</p>
 <p>Adjuk össze a számokat 1-től 10-ig! (Összegzés tétele)</p>
+</div>
 </section>
 <section id="a-while-vezerlesi-szerkezet">
 <h3>A <code class="docutils literal notranslate"><span class="pre">while</span></code> vezérlési szerkezet<a class="headerlink" href="#a-while-vezerlesi-szerkezet" title="Permalink to this heading">#</a></h3>
@@ -1762,7 +1762,6 @@ Column: q
 </div>
 </div>
 </div>
-<p>⭐ Írjunk függvényt, hogy eldöntsük azt, hogy egy szám prím szám! (Eldöntés tétele)</p>
 </section>
 </section>
 <section id="oszetett-adattipusok">
@@ -1962,7 +1961,7 @@ fun
 </div>
 </div>
 </div>
-<p>❗Vigyázzunk arra, hogy ne keverjük az <code class="docutils literal notranslate"><span class="pre">append</span></code> és <code class="docutils literal notranslate"><span class="pre">extend</span></code> parancsokat:</p>
+<p>Vigyázzunk arra, hogy ne keverjük az <code class="docutils literal notranslate"><span class="pre">append</span></code> és <code class="docutils literal notranslate"><span class="pre">extend</span></code> parancsokat:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fruits</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;apple&quot;</span><span class="p">,</span> <span class="s2">&quot;banana&quot;</span><span class="p">,</span> <span class="s2">&quot;cherry&quot;</span><span class="p">]</span>
@@ -2124,7 +2123,7 @@ cherry
 </div>
 </div>
 </div>
-<p>⭐ Írjuk meg az eldöntés tételét <code class="docutils literal notranslate"><span class="pre">while</span></code> ciklussal.</p>
+<p>Írjuk meg az eldöntés tételét <code class="docutils literal notranslate"><span class="pre">while</span></code> ciklussal.</p>
 <p>Ez Pythonban leegyszerűsödik erre a kifejezésre:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2189,7 +2188,7 @@ cherry
 </div>
 </div>
 </div>
-<p>⭐ Írjuk meg a keresés tételét <code class="docutils literal notranslate"><span class="pre">while</span></code> ciklussal.</p>
+<p>Írjuk meg a keresés tételét <code class="docutils literal notranslate"><span class="pre">while</span></code> ciklussal.</p>
 <p>Egyszerűbben használva a Python beépített függvényét:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -3042,406 +3041,31 @@ It is true, so they are married!
 </section>
 <section id="fuggveny-valtozok">
 <h2>Függvény változók<a class="headerlink" href="#fuggveny-valtozok" title="Permalink to this heading">#</a></h2>
-<p>TODO</p>
+<div class="warning admonition">
+<p class="admonition-title">Figyelem</p>
+<p>Ez a rész még hiányos!</p>
+</div>
 <section id="nevtelen-vagy-lambda-fuggvenyek">
 <h3>Névtelen vagy <code class="docutils literal notranslate"><span class="pre">lambda</span></code> függvények<a class="headerlink" href="#nevtelen-vagy-lambda-fuggvenyek" title="Permalink to this heading">#</a></h3>
-<p>TODO</p>
+<div class="warning admonition">
+<p class="admonition-title">Figyelem</p>
+<p>Ez a rész még hiányos!</p>
+</div>
 </section>
 </section>
 <section id="iteratorok-es-generatorok">
 <h2>Iterátorok és generátorok<a class="headerlink" href="#iteratorok-es-generatorok" title="Permalink to this heading">#</a></h2>
+<div class="warning admonition">
+<p class="admonition-title">Figyelem</p>
+<p>Ez a rész még hiányos!</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://www.geeksforgeeks.org/difference-between-iterator-vs-generator/">https://www.geeksforgeeks.org/difference-between-iterator-vs-generator/</a></p></li>
 <li><p><a class="reference external" href="https://medium.com/analytics-vidhya/python-iterators-vs-iterables-vs-generators-e15b9403292e">https://medium.com/analytics-vidhya/python-iterators-vs-iterables-vs-generators-e15b9403292e</a></p></li>
 <li><p>zip is an iterator: <a class="reference external" href="https://www.w3schools.com/python/ref_func_zip.asp">https://www.w3schools.com/python/ref_func_zip.asp</a></p></li>
 <li><p>what is range?: <a class="reference external" href="https://www.geeksforgeeks.org/python-range-does-not-return-an-iterator/">https://www.geeksforgeeks.org/python-range-does-not-return-an-iterator/</a></p></li>
 </ul>
+</div>
 </section>
-</section>
-<section class="tex2jax_ignore mathjax_ignore" id="tic-tac-toe">
-<h1>Tic tac toe<a class="headerlink" href="#tic-tac-toe" title="Permalink to this heading">#</a></h1>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">create_board</span><span class="p">():</span>
-  <span class="k">return</span> <span class="p">[[</span><span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="s1">&#39; &#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="s1">&#39; &#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="s1">&#39; &#39;</span><span class="p">]]</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">display_board</span><span class="p">(</span><span class="n">board</span><span class="p">):</span>
-  <span class="n">board_str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
-  <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">):</span>
-    <span class="n">board_str</span> <span class="o">+=</span> <span class="s1">&#39; &#39;</span>
-    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">):</span>
-      <span class="n">board_str</span> <span class="o">+=</span> <span class="nb">str</span><span class="p">(</span><span class="n">board</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">])</span>
-      <span class="k">if</span> <span class="n">j</span> <span class="o">!=</span> <span class="mi">2</span><span class="p">:</span>
-        <span class="n">board_str</span> <span class="o">+=</span> <span class="s2">&quot; | &quot;</span>      
-    <span class="n">board_str</span> <span class="o">+=</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span>
-    <span class="k">if</span> <span class="n">i</span> <span class="o">!=</span> <span class="mi">2</span> <span class="p">:</span>    
-      <span class="n">board_str</span> <span class="o">+=</span> <span class="s2">&quot;-----------</span><span class="se">\n</span><span class="s2">&quot;</span>    
-  <span class="nb">print</span><span class="p">(</span><span class="n">board_str</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">evaluate_board</span><span class="p">(</span><span class="n">board</span><span class="p">):</span> 
-
-    <span class="n">has_empty_cell</span> <span class="o">=</span> <span class="kc">False</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">):</span>
-      <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">):</span>
-        <span class="k">if</span> <span class="n">board</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">==</span>  <span class="s1">&#39; &#39;</span><span class="p">:</span>
-          <span class="n">has_empty_cell</span> <span class="o">=</span> <span class="kc">True</span>
-          <span class="k">break</span>
-
-    <span class="k">if</span> <span class="ow">not</span> <span class="n">has_empty_cell</span><span class="p">:</span>
-      <span class="k">return</span> <span class="s1">&#39;Draw&#39;</span>
-
-    <span class="n">players</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;X&#39;</span><span class="p">,</span> <span class="s1">&#39;O&#39;</span><span class="p">]</span>
-    <span class="k">for</span> <span class="n">player</span> <span class="ow">in</span> <span class="n">players</span><span class="p">:</span>
-
-      <span class="c1"># winning row wise</span>
-      <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">):</span>
-        <span class="n">is_winning</span> <span class="o">=</span> <span class="kc">True</span>
-        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">):</span>
-          <span class="n">is_winning</span> <span class="o">=</span> <span class="n">is_winning</span> <span class="ow">and</span> <span class="n">board</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">==</span> <span class="n">player</span>
-        <span class="k">if</span> <span class="n">is_winning</span><span class="p">:</span>
-          <span class="k">return</span> <span class="n">player</span>
-
-      <span class="c1"># winning column wise</span>
-      <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">):</span>
-        <span class="n">is_winning</span> <span class="o">=</span> <span class="kc">True</span>
-        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">):</span>
-          <span class="n">is_winning</span> <span class="o">=</span> <span class="n">is_winning</span> <span class="ow">and</span> <span class="n">board</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">==</span> <span class="n">player</span>
-        <span class="k">if</span> <span class="n">is_winning</span><span class="p">:</span>
-          <span class="k">return</span> <span class="n">player</span>
-
-      <span class="c1"># winning cross</span>
-      <span class="k">if</span> <span class="n">board</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">player</span> <span class="ow">and</span> <span class="n">board</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="n">player</span> <span class="ow">and</span> <span class="n">board</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span> <span class="o">==</span> <span class="n">player</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">player</span>
-
-      <span class="k">if</span> <span class="n">board</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span> <span class="o">==</span> <span class="n">player</span> <span class="ow">and</span> <span class="n">board</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="n">player</span> <span class="ow">and</span> <span class="n">board</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">player</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">player</span>
-
-    <span class="k">return</span> <span class="kc">None</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">tictactoe</span><span class="p">(</span><span class="n">strategy</span><span class="p">):</span>
-  <span class="n">board</span> <span class="o">=</span> <span class="n">create_board</span><span class="p">()</span>
-
-  <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
-
-    <span class="n">display_board</span><span class="p">(</span><span class="n">board</span><span class="p">)</span>
-
-    <span class="n">row</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Row: &quot;</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">row</span> <span class="o">==</span> <span class="s1">&#39;q&#39;</span><span class="p">:</span>
-      <span class="k">break</span>
-
-    <span class="n">col</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Column: &quot;</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">col</span> <span class="o">==</span> <span class="s1">&#39;q&#39;</span><span class="p">:</span>
-      <span class="k">break</span>
-
-    <span class="n">row</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">row</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span>
-    <span class="n">col</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">col</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span>
-
-    <span class="k">if</span> <span class="n">board</span><span class="p">[</span><span class="n">row</span><span class="p">][</span><span class="n">col</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39; &#39;</span><span class="p">:</span>
-      <span class="n">board</span><span class="p">[</span><span class="n">row</span><span class="p">][</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;X&#39;</span>
-      <span class="c1">#display_board(board)</span>
-
-      <span class="n">result</span> <span class="o">=</span> <span class="n">evaluate_board</span><span class="p">(</span><span class="n">board</span><span class="p">)</span>
-      <span class="k">if</span> <span class="n">result</span><span class="p">:</span>
-        <span class="n">display_board</span><span class="p">(</span><span class="n">board</span><span class="p">)</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Winner: &#39;</span><span class="p">,</span> <span class="n">result</span><span class="p">)</span>
-        <span class="k">break</span>
-
-      <span class="c1"># the machines turn...</span>
-      <span class="n">best_row</span><span class="p">,</span> <span class="n">best_col</span><span class="p">,</span> <span class="n">best_score</span> <span class="o">=</span> <span class="n">strategy</span><span class="p">(</span><span class="n">board</span><span class="p">)</span>
-      <span class="n">board</span><span class="p">[</span><span class="n">best_row</span><span class="p">][</span><span class="n">best_col</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;O&#39;</span>
-
-      <span class="n">result</span> <span class="o">=</span> <span class="n">evaluate_board</span><span class="p">(</span><span class="n">board</span><span class="p">)</span>
-      <span class="k">if</span> <span class="n">result</span><span class="p">:</span>
-        <span class="n">display_board</span><span class="p">(</span><span class="n">board</span><span class="p">)</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Winner: &#39;</span><span class="p">,</span> <span class="n">result</span><span class="p">)</span>
-        <span class="k">break</span>    
-
-    <span class="k">else</span><span class="p">:</span>
-      <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Cell is already taken! Try again...&#39;</span><span class="p">)</span>      
-
-  <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Exited.&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">copy_board</span><span class="p">(</span><span class="n">board</span><span class="p">):</span>
-  <span class="k">return</span> <span class="p">[</span><span class="n">board</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">(),</span> <span class="n">board</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">(),</span> <span class="n">board</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()]</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">strategy_greedy</span><span class="p">(</span><span class="n">board</span><span class="p">):</span> 
-  <span class="n">best_i</span> <span class="o">=</span> <span class="kc">None</span>
-  <span class="n">best_j</span> <span class="o">=</span> <span class="kc">None</span>
-  <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">):</span>
-    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">):</span>
-      <span class="k">if</span> <span class="n">board</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39; &#39;</span><span class="p">:</span>
-        <span class="n">best_i</span> <span class="o">=</span> <span class="n">i</span>
-        <span class="n">best_j</span> <span class="o">=</span> <span class="n">j</span>
-
-        <span class="n">board_o</span> <span class="o">=</span> <span class="n">copy_board</span><span class="p">(</span><span class="n">board</span><span class="p">)</span>              
-        <span class="n">board_o</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;O&#39;</span>  
-        
-        <span class="n">result</span> <span class="o">=</span> <span class="n">evaluate_board</span><span class="p">(</span><span class="n">board_o</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">result</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">result</span> <span class="o">==</span> <span class="s1">&#39;O&#39;</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="kc">None</span>
-  <span class="k">return</span> <span class="n">best_i</span><span class="p">,</span> <span class="n">best_j</span><span class="p">,</span> <span class="kc">None</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#@title</span>
-<span class="n">tictactoe</span><span class="p">(</span><span class="n">strategy_greedy</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   |   |  
------------
-   |   |  
------------
-   |   |  
-
-Row: 1
-Column: 2
-   | X |  
------------
-   |   |  
------------
-   |   | O
-
-Row: q
-Exited.
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">strategy_one_move</span><span class="p">(</span><span class="n">board</span><span class="p">):</span> 
-  <span class="n">best_i</span> <span class="o">=</span> <span class="kc">None</span>
-  <span class="n">best_j</span> <span class="o">=</span> <span class="kc">None</span>
-  <span class="n">best_score</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="s1">&#39;-inf&#39;</span><span class="p">)</span>
-  <span class="c1"># play all possible computation with O and find the most favorable position</span>
-  <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">):</span>
-    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">):</span>
-      <span class="k">if</span> <span class="n">board</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39; &#39;</span><span class="p">:</span>
-        <span class="n">board_o</span> <span class="o">=</span> <span class="n">copy_board</span><span class="p">(</span><span class="n">board</span><span class="p">)</span>              
-        <span class="n">board_o</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;O&#39;</span>  
-        
-        <span class="n">result</span> <span class="o">=</span> <span class="n">evaluate_board</span><span class="p">(</span><span class="n">board_o</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">result</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">result</span> <span class="o">==</span> <span class="s1">&#39;O&#39;</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="mf">1e6</span>
-
-        <span class="c1"># play all possible computation with X and compute the score</span>
-        <span class="c1"># the score gives us how favorable the position for O: how many</span>
-        <span class="c1"># winning chances are there and whether the position is lost. </span>
-        <span class="n">score</span> <span class="o">=</span> <span class="mi">0</span>
-        <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">):</span>
-          <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">):</span>
-            <span class="k">if</span> <span class="n">board_o</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="n">l</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39; &#39;</span><span class="p">:</span>   
-              <span class="n">board_x</span> <span class="o">=</span> <span class="n">copy_board</span><span class="p">(</span><span class="n">board_o</span><span class="p">)</span>            
-              <span class="n">board_x</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="n">l</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;X&#39;</span>
-              <span class="n">result</span> <span class="o">=</span> <span class="n">evaluate_board</span><span class="p">(</span><span class="n">board_x</span><span class="p">)</span>
-              <span class="k">if</span> <span class="n">result</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-                <span class="k">if</span> <span class="p">(</span><span class="n">result</span> <span class="o">==</span> <span class="s1">&#39;O&#39;</span><span class="p">):</span>
-                  <span class="n">score</span> <span class="o">+=</span> <span class="mi">1</span>
-                <span class="k">elif</span> <span class="p">(</span><span class="n">result</span> <span class="o">==</span> <span class="s1">&#39;Draw&#39;</span><span class="p">):</span>
-                  <span class="n">score</span> <span class="o">+=</span> <span class="mi">0</span>
-                <span class="k">elif</span> <span class="p">(</span><span class="n">result</span> <span class="o">==</span> <span class="s1">&#39;X&#39;</span><span class="p">):</span>
-                  <span class="n">score</span> <span class="o">+=</span> <span class="o">-</span><span class="mf">1e6</span>
-        
-        <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">score</span><span class="p">)</span> 
-
-        <span class="k">if</span> <span class="n">score</span> <span class="o">&gt;</span> <span class="n">best_score</span><span class="p">:</span>
-          <span class="n">best_score</span> <span class="o">=</span> <span class="n">score</span>
-          <span class="n">best_i</span> <span class="o">=</span> <span class="n">i</span>
-          <span class="n">best_j</span> <span class="o">=</span> <span class="n">j</span>
-
-  <span class="k">return</span> <span class="n">best_i</span><span class="p">,</span> <span class="n">best_j</span><span class="p">,</span> <span class="n">best_score</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tictactoe</span><span class="p">(</span><span class="n">strategy_one_move</span><span class="p">)</span> <span class="c1"># play 3,3 -&gt; 2,2 -&gt; 1,3</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   |   |  
------------
-   |   |  
------------
-   |   |  
-
-Row: 3
-Column: 3
-1 1 0
-1 2 0
-1 3 0
-2 1 0
-2 2 0
-2 3 0
-3 1 0
-3 2 0
- O |   |  
------------
-   |   |  
------------
-   |   | X
-
-Row: 2
-Column: 2
-1 2 0
-1 3 0
-2 1 0
-2 3 0
-3 1 0
-3 2 0
- O | O |  
------------
-   | X |  
------------
-   |   | X
-
-Row: 1
-Column: 3
-2 1 -2000000.0
-2 3 -1000000.0
-3 1 -1000000.0
-3 2 -2000000.0
- O | O | X
------------
-   | X | O
------------
-   |   | X
-
-Row: 3
-Column: 1
- O | O | X
------------
-   | X | O
------------
- X |   | X
-
-Winner:  X
-Exited.
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">strategy_recursive</span><span class="p">(</span><span class="n">board</span><span class="p">,</span> <span class="n">depth</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span> 
-
-  <span class="c1"># 1. evaluate position and return if this is an end position</span>
-  <span class="n">result</span> <span class="o">=</span> <span class="n">evaluate_board</span><span class="p">(</span><span class="n">board</span><span class="p">)</span>
-  <span class="k">if</span> <span class="n">result</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">result</span> <span class="o">==</span> <span class="s1">&#39;O&#39;</span><span class="p">):</span>
-      <span class="k">return</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="mi">1</span>
-    <span class="k">elif</span> <span class="p">(</span><span class="n">result</span> <span class="o">==</span> <span class="s1">&#39;Draw&#39;</span><span class="p">):</span>
-      <span class="k">return</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="mi">0</span>      
-    <span class="k">elif</span> <span class="p">(</span><span class="n">result</span> <span class="o">==</span> <span class="s1">&#39;X&#39;</span><span class="p">):</span>
-      <span class="k">return</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="o">-</span><span class="mf">1e6</span>
-
-  <span class="c1"># 2. expand: play all possible computation with O</span>
-  <span class="n">best_i</span> <span class="o">=</span> <span class="kc">None</span>
-  <span class="n">best_j</span> <span class="o">=</span> <span class="kc">None</span>
-  <span class="n">best_score</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="s1">&#39;-inf&#39;</span><span class="p">)</span>
-  <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">):</span>
-    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">):</span>
-      <span class="k">if</span> <span class="n">board</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39; &#39;</span><span class="p">:</span>
-        <span class="n">board_o</span> <span class="o">=</span> <span class="n">copy_board</span><span class="p">(</span><span class="n">board</span><span class="p">)</span>              
-        <span class="n">board_o</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;O&#39;</span>  
-        
-        <span class="n">result</span> <span class="o">=</span> <span class="n">evaluate_board</span><span class="p">(</span><span class="n">board_o</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">result</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">result</span> <span class="o">==</span> <span class="s1">&#39;O&#39;</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="mi">1</span>
-
-        <span class="c1"># play all possible computation with X and compute the score</span>
-        <span class="c1"># the score gives us how favorable the position for O: how many</span>
-        <span class="c1"># winning chances are there and whether the position is lost. </span>
-        <span class="n">score</span> <span class="o">=</span> <span class="mi">0</span>
-        <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">):</span>
-          <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">):</span>
-            <span class="k">if</span> <span class="n">board_o</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="n">l</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39; &#39;</span><span class="p">:</span>   
-              <span class="n">board_x</span> <span class="o">=</span> <span class="n">copy_board</span><span class="p">(</span><span class="n">board_o</span><span class="p">)</span>            
-              <span class="n">board_x</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="n">l</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;X&#39;</span>
-
-              <span class="c1"># Instead of this:</span>
-              <span class="c1"># result = evaluate_board(board_x)</span>
-
-              <span class="c1"># recursive call to get the score for the next possible moves</span>
-              <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">step_score</span> <span class="o">=</span> <span class="n">strategy_recursive</span><span class="p">(</span><span class="n">board_x</span><span class="p">,</span> <span class="n">depth</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
-              <span class="n">score</span> <span class="o">+=</span> <span class="n">step_score</span>
-
-        <span class="k">if</span> <span class="n">depth</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span> <span class="c1"># some analytics</span>
-          <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">score</span><span class="p">)</span>  
-
-        <span class="k">if</span> <span class="n">score</span> <span class="o">&gt;</span> <span class="n">best_score</span><span class="p">:</span>
-          <span class="n">best_score</span> <span class="o">=</span> <span class="n">score</span>
-          <span class="n">best_i</span> <span class="o">=</span> <span class="n">i</span>
-          <span class="n">best_j</span> <span class="o">=</span> <span class="n">j</span>
-
-  <span class="k">return</span> <span class="n">best_i</span><span class="p">,</span> <span class="n">best_j</span><span class="p">,</span> <span class="n">best_score</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tictactoe</span><span class="p">(</span><span class="n">strategy_recursive</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   |   |  
------------
-   |   |  
------------
-   |   |  
-
-Row: q
-Exited.
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mi">2</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2
-</pre></div>
-</div>
-</div>
-</div>
 </section>
 
     <script type="text/x-thebe-config">
@@ -3485,7 +3109,7 @@ Exited.
       </div>
     </a>
     <a class="right-next"
-       href="2_Introduction_to_NumPy_and_Matplotlib.html"
+       href="2_Introduction_to_NumPy.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
@@ -3511,7 +3135,6 @@ Exited.
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Bevezetés a Python nyelvbe</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#colab-kornyezet">Colab környezet</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hello-world">Hello world!</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#valtozok">Változók</a></li>
@@ -3520,7 +3143,8 @@ Exited.
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tipus-konverziok">Típus konverziók</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fuggvenyek">Függvények</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#valtozok-lathatosaga-es-hatokorok-scope">Változók láthatósága és hatókörök (scope)</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hivasi-verem-es-rekurzio">Hívási verem és rekurzió</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hivasi-verem">Hívási verem</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rekurzios-fuggvenyek">Rekurziós függvények</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fuggveny-konytarak-es-import">Függvény könytárak és <code class="docutils literal notranslate"><span class="pre">import</span></code></a></li>
@@ -3567,10 +3191,6 @@ Exited.
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#iteratorok-es-generatorok">Iterátorok és generátorok</a></li>
 </ul>
-</li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#tic-tac-toe">Tic tac toe</a></li>
-</ul>
-
   </nav></div>
 
 </div></div>
