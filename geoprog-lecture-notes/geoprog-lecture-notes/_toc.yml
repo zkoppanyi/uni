@@ -5,3 +5,6 @@ format: jb-book
 root: intro
 chapters:
 - file: 1_Introduction_to_Python
+- file: 2_Introduction_to_NumPy
+- file: 3_Introduction_to_Matplotlib
+- file: X_TicTacToe

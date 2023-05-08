@@ -11,4 +11,6 @@ jupyter-book build geoprog-lecture-notes/
 
 # generate pdf: https://jupyterbook.org/en/stable/advanced/pdf.html
 # #jupyter-book build geoprog-lecture-notes/ --builder pdfhtml
-# jupyter-book build mybookname/ --builder pdflatex # preferred
+#jupyter-book build ./geoprog-lecture-notes// --builder pdflatex # preferred
+
+google-chrome file:///$PWD/geoprog-lecture-notes/_build/html/intro.html

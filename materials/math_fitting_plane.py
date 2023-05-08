@@ -20,18 +20,23 @@ from utils.viz.viz import set_3d_axes_equal
 # points = np.array(points)
 # point_ids = [point_file_data[k, 0] for k in range(len(point_file_data))]
 
-point_file_path = '/home/zoltan/Repo/pix/.scratch/task0/e5972c03-2719-43bb-92c9-6b453c0166bd/meta_tile_group_0_8fcba91c-ccf1-4c89-bd48-745c50fb57df/wall_points_2.txt'
-point_file_data = np.loadtxt(point_file_path)
-print(point_file_data)
-points = point_file_data
-points = np.vstack((points, points[0, :].reshape(1, -1)))
-point_ids = list(range(0, len(points)))
+# point_file_path = '/home/zoltan/Repo/pix/.scratch/task0/e5972c03-2719-43bb-92c9-6b453c0166bd/meta_tile_group_0_8fcba91c-ccf1-4c89-bd48-745c50fb57df/wall_points_2.txt'
+# point_file_data = np.loadtxt(point_file_path)
+# print(point_file_data)
+# points = point_file_data
+# points = np.vstack((points, points[0, :].reshape(1, -1)))
 
+points = [[-1.569, -15.422, -40.652], [-1.46, -18.746, -40.652], [-7.66, -17.617, -40.652], [-9.909, -19.629, -40.652], [-24.132, -18.272, -40.652], [-28.39, -18.122, -40.652], [-27.547, -15.606, -40.652], [-20.298, -14.298, -40.652], [-13.346, -14.505, -40.652]]
+points = np.array(points)
+
+point_ids = list(range(0, len(points)))
 idx = list(range(len(point_ids)))
 # idx = []
 # for k in range(len(point_ids)):
 #     if int(point_ids[k]) in [9, 10, 29, 11, 25, 26, 27, 28, 30, 31]:
 #           idx.append(k)
+
+
 
 plt.figure(figsize=(12,10))
 ax = plt.axes(projection='3d')
