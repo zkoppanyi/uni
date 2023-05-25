@@ -1,19 +1,17 @@
 Traceback (most recent call last):
-  File "/home/zoltan/env/photo/lib/python3.8/site-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
+  File "/home/zoltan/env/uni/lib/python3.8/site-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
     executenb(
-  File "/home/zoltan/env/photo/lib/python3.8/site-packages/nbclient/client.py", line 1117, in execute
+  File "/home/zoltan/env/uni/lib/python3.8/site-packages/nbclient/client.py", line 1305, in execute
     return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
-  File "/home/zoltan/env/photo/lib/python3.8/site-packages/nbclient/util.py", line 78, in wrapped
-    return just_run(coro(*args, **kwargs))
-  File "/home/zoltan/env/photo/lib/python3.8/site-packages/nbclient/util.py", line 57, in just_run
-    return loop.run_until_complete(coro)
+  File "/home/zoltan/env/uni/lib/python3.8/site-packages/jupyter_core/utils/__init__.py", line 166, in wrapped
+    return loop.run_until_complete(inner)
   File "/usr/lib/python3.8/asyncio/base_events.py", line 616, in run_until_complete
     return future.result()
-  File "/home/zoltan/env/photo/lib/python3.8/site-packages/nbclient/client.py", line 558, in async_execute
+  File "/home/zoltan/env/uni/lib/python3.8/site-packages/nbclient/client.py", line 705, in async_execute
     await self.async_execute_cell(
-  File "/home/zoltan/env/photo/lib/python3.8/site-packages/nbclient/client.py", line 862, in async_execute_cell
-    self._check_raise_for_error(cell, exec_reply)
-  File "/home/zoltan/env/photo/lib/python3.8/site-packages/nbclient/client.py", line 765, in _check_raise_for_error
+  File "/home/zoltan/env/uni/lib/python3.8/site-packages/nbclient/client.py", line 1058, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/home/zoltan/env/uni/lib/python3.8/site-packages/nbclient/client.py", line 914, in _check_raise_for_error
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
@@ -21,26 +19,37 @@ nbclient.exceptions.CellExecutionError: An error occurred while executing the fo
 tictactoe(strategy_greedy)
 ------------------
 
+----- stdout -----
+   |   |  
+-----------
+   |   |  
+-----------
+   |   |
+------------------
+
 [0;31m---------------------------------------------------------------------------[0m
 [0;31mStdinNotImplementedError[0m                  Traceback (most recent call last)
-[0;32m/tmp/ipykernel_217001/3018012903.py[0m in [0;36m<module>[0;34m[0m
-[1;32m      1[0m [0;31m#@title[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
-[0;32m----> 2[0;31m [0mtictactoe[0m[0;34m([0m[0mstrategy_greedy[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-[0m
-[0;32m/tmp/ipykernel_217001/601778189.py[0m in [0;36mtictactoe[0;34m(strategy)[0m
-[1;32m      6[0m     [0mdisplay_board[0m[0;34m([0m[0mboard[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-[1;32m      7[0m [0;34m[0m[0m
-[0;32m----> 8[0;31m     [0mrow[0m [0;34m=[0m [0minput[0m[0;34m([0m[0;34m"Row: "[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-[0m[1;32m      9[0m     [0;32mif[0m [0mrow[0m [0;34m==[0m [0;34m'q'[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
-[1;32m     10[0m       [0;32mbreak[0m[0;34m[0m[0;34m[0m[0m
+Cell [0;32mIn[7], line 2[0m
+[1;32m      1[0m [38;5;66;03m#@title[39;00m
+[0;32m----> 2[0m [43mtictactoe[49m[43m([49m[43mstrategy_greedy[49m[43m)[49m
 
-[0;32m~/env/photo/lib/python3.8/site-packages/ipykernel/kernelbase.py[0m in [0;36mraw_input[0;34m(self, prompt)[0m
-[1;32m   1001[0m         """
-[1;32m   1002[0m         [0;32mif[0m [0;32mnot[0m [0mself[0m[0;34m.[0m[0m_allow_stdin[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
-[0;32m-> 1003[0;31m             raise StdinNotImplementedError(
-[0m[1;32m   1004[0m                 [0;34m"raw_input was called, but this frontend does not support input requests."[0m[0;34m[0m[0;34m[0m[0m
-[1;32m   1005[0m             )
+Cell [0;32mIn[4], line 8[0m, in [0;36mtictactoe[0;34m(strategy)[0m
+[1;32m      4[0m [38;5;28;01mwhile[39;00m [38;5;28;01mTrue[39;00m:
+[1;32m      6[0m   display_board(board)
+[0;32m----> 8[0m   row [38;5;241m=[39m [38;5;28;43minput[39;49m[43m([49m[38;5;124;43m"[39;49m[38;5;124;43mRow: [39;49m[38;5;124;43m"[39;49m[43m)[49m
+[1;32m      9[0m   [38;5;28;01mif[39;00m row [38;5;241m==[39m [38;5;124m'[39m[38;5;124mq[39m[38;5;124m'[39m:
+[1;32m     10[0m     [38;5;28;01mbreak[39;00m
+
+File [0;32m~/env/uni/lib/python3.8/site-packages/ipykernel/kernelbase.py:1190[0m, in [0;36mKernel.raw_input[0;34m(self, prompt)[0m
+[1;32m   1188[0m [38;5;28;01mif[39;00m [38;5;129;01mnot[39;00m [38;5;28mself[39m[38;5;241m.[39m_allow_stdin:
+[1;32m   1189[0m     msg [38;5;241m=[39m [38;5;124m"[39m[38;5;124mraw_input was called, but this frontend does not support input requests.[39m[38;5;124m"[39m
+[0;32m-> 1190[0m     [38;5;28;01mraise[39;00m StdinNotImplementedError(msg)
+[1;32m   1191[0m [38;5;28;01mreturn[39;00m [38;5;28mself[39m[38;5;241m.[39m_input_request(
+[1;32m   1192[0m     [38;5;28mstr[39m(prompt),
+[1;32m   1193[0m     [38;5;28mself[39m[38;5;241m.[39m_parent_ident[[38;5;124m"[39m[38;5;124mshell[39m[38;5;124m"[39m],
+[1;32m   1194[0m     [38;5;28mself[39m[38;5;241m.[39mget_parent([38;5;124m"[39m[38;5;124mshell[39m[38;5;124m"[39m),
+[1;32m   1195[0m     password[38;5;241m=[39m[38;5;28;01mFalse[39;00m,
+[1;32m   1196[0m )
 
 [0;31mStdinNotImplementedError[0m: raw_input was called, but this frontend does not support input requests.
-StdinNotImplementedError: raw_input was called, but this frontend does not support input requests.
 

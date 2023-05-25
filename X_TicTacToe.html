@@ -65,6 +65,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'X_TicTacToe';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Geodéziai koordináta rendszer transzformációk" href="6_Coordinate_System_Transformations.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -149,10 +150,14 @@ const thebe_selector_output = ".output, .cell_output"
                 </a>
             </li>
         </ul>
-        <ul class="nav bd-sidenav">
+        <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="1_Introduction_to_Python.html">Bevezetés a Python nyelvbe</a></li>
 <li class="toctree-l1"><a class="reference internal" href="2_Introduction_to_NumPy.html">Bevezetés a <code class="docutils literal notranslate"><span class="pre">numpy</span></code> könyvtárba</a></li>
 <li class="toctree-l1"><a class="reference internal" href="3_Introduction_to_Matplotlib.html">Bevezetés a <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code> könyvtárba</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4_Spatial_transformations.html">Transzformációk</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5_Interpolation_and_Regression.html">Interpolációs és regressziós feladatok <code class="docutils literal notranslate"><span class="pre">scipy</span></code> segítségével</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6_Coordinate_System_Transformations.html">Geodéziai koordináta rendszer transzformációk</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">A <em>Tic tac toe</em> program</a></li>
 </ul>
 
     </div>
@@ -516,23 +521,27 @@ document.write(`
 </div>
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">StdinNotImplementedError</span><span class="g g-Whitespace">                  </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_217001</span><span class="o">/</span><span class="mf">3018012903.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">7</span><span class="p">],</span> <span class="n">line</span> <span class="mi">2</span>
 <span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1">#@title</span>
 <span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">tictactoe</span><span class="p">(</span><span class="n">strategy_greedy</span><span class="p">)</span>
 
-<span class="nn">/tmp/ipykernel_217001/601778189.py</span> in <span class="ni">tictactoe</span><span class="nt">(strategy)</span>
-<span class="g g-Whitespace">      </span><span class="mi">6</span>     <span class="n">display_board</span><span class="p">(</span><span class="n">board</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">7</span> 
-<span class="ne">----&gt; </span><span class="mi">8</span>     <span class="n">row</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Row: &quot;</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">9</span>     <span class="k">if</span> <span class="n">row</span> <span class="o">==</span> <span class="s1">&#39;q&#39;</span><span class="p">:</span>
-<span class="g g-Whitespace">     </span><span class="mi">10</span>       <span class="k">break</span>
+<span class="nn">Cell In[4], line 8,</span> in <span class="ni">tictactoe</span><span class="nt">(strategy)</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+<span class="g g-Whitespace">      </span><span class="mi">6</span>   <span class="n">display_board</span><span class="p">(</span><span class="n">board</span><span class="p">)</span>
+<span class="ne">----&gt; </span><span class="mi">8</span>   <span class="n">row</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Row: &quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">9</span>   <span class="k">if</span> <span class="n">row</span> <span class="o">==</span> <span class="s1">&#39;q&#39;</span><span class="p">:</span>
+<span class="g g-Whitespace">     </span><span class="mi">10</span>     <span class="k">break</span>
 
-<span class="nn">~/env/photo/lib/python3.8/site-packages/ipykernel/kernelbase.py</span> in <span class="ni">raw_input</span><span class="nt">(self, prompt)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1001</span>         <span class="s2">&quot;&quot;&quot;</span>
-<span class="g g-Whitespace">   </span><span class="mi">1002</span><span class="s2">         if not self._allow_stdin:</span>
-<span class="ne">-&gt; </span><span class="mi">1003</span><span class="s2">             raise StdinNotImplementedError(</span>
-<span class="g g-Whitespace">   </span><span class="mi">1004</span><span class="s2">                 &quot;raw_input was called, but this frontend does not support input requests.&quot;</span>
-<span class="g g-Whitespace">   </span><span class="mi">1005</span><span class="s2">             )</span>
+<span class="nn">File ~/env/uni/lib/python3.8/site-packages/ipykernel/kernelbase.py:1190,</span> in <span class="ni">Kernel.raw_input</span><span class="nt">(self, prompt)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1188</span> <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_allow_stdin</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1189</span>     <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;raw_input was called, but this frontend does not support input requests.&quot;</span>
+<span class="ne">-&gt; </span><span class="mi">1190</span>     <span class="k">raise</span> <span class="n">StdinNotImplementedError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1191</span> <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_input_request</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1192</span>     <span class="nb">str</span><span class="p">(</span><span class="n">prompt</span><span class="p">),</span>
+<span class="g g-Whitespace">   </span><span class="mi">1193</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_parent_ident</span><span class="p">[</span><span class="s2">&quot;shell&quot;</span><span class="p">],</span>
+<span class="g g-Whitespace">   </span><span class="mi">1194</span>     <span class="bp">self</span><span class="o">.</span><span class="n">get_parent</span><span class="p">(</span><span class="s2">&quot;shell&quot;</span><span class="p">),</span>
+<span class="g g-Whitespace">   </span><span class="mi">1195</span>     <span class="n">password</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1196</span> <span class="p">)</span>
 
 <span class="ne">StdinNotImplementedError</span>: raw_input was called, but this frontend does not support input requests.
 </pre></div>
@@ -777,6 +786,15 @@ Exited.
   
     <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="6_Coordinate_System_Transformations.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Geodéziai koordináta rendszer transzformációk</p>
+      </div>
+    </a>
 </div></div>
   
 </div>

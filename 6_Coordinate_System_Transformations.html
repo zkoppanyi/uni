@@ -1,0 +1,758 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Geodéziai koordináta rendszer transzformációk &#8212; Geoinformatikai programozás jegyzet</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '6_Coordinate_System_Transformations';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="A Tic tac toe program" href="X_TicTacToe.html" />
+    <link rel="prev" title="Interpolációs és regressziós feladatok scipy segítségével" href="5_Interpolation_and_Regression.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    <p class="title logo__title">Geoinformatikai programozás jegyzet</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Előszó
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="1_Introduction_to_Python.html">Bevezetés a Python nyelvbe</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_Introduction_to_NumPy.html">Bevezetés a <code class="docutils literal notranslate"><span class="pre">numpy</span></code> könyvtárba</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3_Introduction_to_Matplotlib.html">Bevezetés a <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code> könyvtárba</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4_Spatial_transformations.html">Transzformációk</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5_Interpolation_and_Regression.html">Interpolációs és regressziós feladatok <code class="docutils literal notranslate"><span class="pre">scipy</span></code> segítségével</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Geodéziai koordináta rendszer transzformációk</a></li>
+<li class="toctree-l1"><a class="reference internal" href="X_TicTacToe.html">A <em>Tic tac toe</em> program</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2F6_Coordinate_System_Transformations.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/6_Coordinate_System_Transformations.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Geodéziai koordináta rendszer transzformációk</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bevezetes">Bevezetés</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#eov">EOV</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="geodeziai-koordinata-rendszer-transzformaciok">
+<h1>Geodéziai koordináta rendszer transzformációk<a class="headerlink" href="#geodeziai-koordinata-rendszer-transzformaciok" title="Permalink to this heading">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>pyproj
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">pyproj</span> <span class="kn">import</span> <span class="n">CRS</span><span class="p">,</span> <span class="n">Transformer</span><span class="p">,</span> <span class="n">Proj</span>
+<span class="kn">from</span> <span class="nn">geopy.distance</span> <span class="kn">import</span> <span class="n">geodesic</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: pyproj in /home/zoltan/env/uni/lib/python3.8/site-packages (3.5.0)
+Requirement already satisfied: certifi in /home/zoltan/env/uni/lib/python3.8/site-packages (from pyproj) (2023.5.7)
+</pre></div>
+</div>
+</div>
+</div>
+<section id="bevezetes">
+<h2>Bevezetés<a class="headerlink" href="#bevezetes" title="Permalink to this heading">#</a></h2>
+<p>Egy pontot a térben természetes módon megadhatunk X, Y, Z descartes-i koordinátákkal. A geodéziában a térbeli koordináta rendszert gyakran a Föld középpontjához és forgásához kötnek, ekkor geocentrikus koordináta rendszerről beszélünk, vagy külföldi szakirodalomban gyakran (<a class="reference external" href="https://en.wikipedia.org/wiki/Earth-centered,_Earth-fixed_coordinate_system">ECEF</a>) koordináta rendszerként hivatkoznak rá.</p>
+<p>A térbeli koordináta rendszerben adott pont koordinátái viszonylag nagy számok, mely számok alapján nehéz megmondani a pont körübelüli helyzetét a Földön. Ezért a három X, Y, Z koordináta helyett, a gyakorlatban gyakran alkalmazzunk szög alapú (hosszúság és szélesség) koordináta definíciót; ezek megadásához azonban gömb vagy ellipszoid használata szükséges.</p>
+<p>A geodéziai alapfelület, vegy geodéziai dátum, az ellipszoid méretére és alakjára vonatkozó adatok, kiegészítve az ellipszoid elhelyezésével és esetlegesen a tájékozásával kapcsolatos paraméterekkel. Az ellipszoid elhelyezése lehetséges úgy, hogy az a világ minden pontján a legjobban közelítse a geoidot (pl. WGS84, ETRS89, NAD83), vagy pedig úgy is, hogy egy adott területet jobban közelít; ekkor lokális dátumról beszélünk (pl. ED50, NAD27)</p>
+<p>Egy másik nyomós érv a geodézi dátum, és így a szög alapú koordináta definiálás mellett, hogy geodéziában a vizszintes és magassági koordináták gyakran külön kezeltek azok gyakorlati különbözőségei miatt. Hasonló módon, térinformatikai rendszerkben a vizszintes és magassági dátum esetenként külön kezeltek. Ekkor a koordináta transzformációkor a transzformációt végző programok a magasság értékeket nem kerül adják meg, vagy a bemenettel megegyező érték kerül visszaadásra.</p>
+<p>Ezek alapján egy pont megadása a következő módokon történik az EPSG definíciókban:</p>
+<ul class="simple">
+<li><p><strong>Térbeli koordináta</strong>: három X, Y, Z descartes-i koordánátával adható meg egy pont. Példák <a class="reference external" href="https://epsg.io/4936">EPSG:4978</a> (WGS84), <a class="reference external" href="https://epsg.io/4936">EPSG:4936</a> (ETRS89)</p></li>
+<li><p><strong>Ellipszoidi koordináta</strong>: egy térbeli pont megadásához a hosszúság, szélesség és esetlegesen ellipszoid vagy geoid feletti magasságot használjuk. Ahhoz hogy a hosszúság és szélességet értelmezni tudjuk, egy ellipszoidot illesztenek egy adott térbeli koordináta rendszerhez. Példák <a class="reference external" href="https://epsg.io/4326">EPSG:4326</a> (WGS84), <a class="reference external" href="https://epsg.io/4937">EPSG:4937</a> (ETRS89)</p></li>
+<li><p><strong>Vetületi koordináta</strong>:</p></li>
+</ul>
+<p>Irodalom:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://pygis.io/docs/d_crs_what_is_it.html">Koordináta rendszerek</a></p></li>
+</ul>
+</section>
+<section id="eov">
+<h2>EOV<a class="headerlink" href="#eov" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">crs_eov</span> <span class="o">=</span> <span class="n">CRS</span><span class="o">.</span><span class="n">from_epsg</span><span class="p">(</span><span class="mi">23700</span><span class="p">)</span> <span class="c1"># HD72 / EOV</span>
+<span class="n">crs_etrs89_llh</span> <span class="o">=</span> <span class="n">CRS</span><span class="o">.</span><span class="n">from_epsg</span><span class="p">(</span><span class="mi">4258</span><span class="p">)</span> <span class="c1"># ETRS89/GRS80, lat/lon</span>
+<span class="n">crs_etrs89_xyz</span> <span class="o">=</span> <span class="n">CRS</span><span class="o">.</span><span class="n">from_epsg</span><span class="p">(</span><span class="mi">4936</span><span class="p">)</span> <span class="c1"># ETRS89, ECEF-XYZ</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;EOV/HD72: &#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">crs_eov</span><span class="o">.</span><span class="n">to_wkt</span><span class="p">(</span><span class="n">pretty</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>EOV/HD72: 
+PROJCRS[&quot;HD72 / EOV&quot;,
+    BASEGEOGCRS[&quot;HD72&quot;,
+        DATUM[&quot;Hungarian Datum 1972&quot;,
+            ELLIPSOID[&quot;GRS 1967&quot;,6378160,298.247167427,
+                LENGTHUNIT[&quot;metre&quot;,1]]],
+        PRIMEM[&quot;Greenwich&quot;,0,
+            ANGLEUNIT[&quot;degree&quot;,0.0174532925199433]],
+        ID[&quot;EPSG&quot;,4237]],
+    CONVERSION[&quot;Egyseges Orszagos Vetuleti&quot;,
+        METHOD[&quot;Hotine Oblique Mercator (variant B)&quot;,
+            ID[&quot;EPSG&quot;,9815]],
+        PARAMETER[&quot;Latitude of projection centre&quot;,47.1443937222222,
+            ANGLEUNIT[&quot;degree&quot;,0.0174532925199433],
+            ID[&quot;EPSG&quot;,8811]],
+        PARAMETER[&quot;Longitude of projection centre&quot;,19.0485717777778,
+            ANGLEUNIT[&quot;degree&quot;,0.0174532925199433],
+            ID[&quot;EPSG&quot;,8812]],
+        PARAMETER[&quot;Azimuth of initial line&quot;,90,
+            ANGLEUNIT[&quot;degree&quot;,0.0174532925199433],
+            ID[&quot;EPSG&quot;,8813]],
+        PARAMETER[&quot;Angle from Rectified to Skew Grid&quot;,90,
+            ANGLEUNIT[&quot;degree&quot;,0.0174532925199433],
+            ID[&quot;EPSG&quot;,8814]],
+        PARAMETER[&quot;Scale factor on initial line&quot;,0.99993,
+            SCALEUNIT[&quot;unity&quot;,1],
+            ID[&quot;EPSG&quot;,8815]],
+        PARAMETER[&quot;Easting at projection centre&quot;,650000,
+            LENGTHUNIT[&quot;metre&quot;,1],
+            ID[&quot;EPSG&quot;,8816]],
+        PARAMETER[&quot;Northing at projection centre&quot;,200000,
+            LENGTHUNIT[&quot;metre&quot;,1],
+            ID[&quot;EPSG&quot;,8817]]],
+    CS[Cartesian,2],
+        AXIS[&quot;easting (Y)&quot;,east,
+            ORDER[1],
+            LENGTHUNIT[&quot;metre&quot;,1]],
+        AXIS[&quot;northing (X)&quot;,north,
+            ORDER[2],
+            LENGTHUNIT[&quot;metre&quot;,1]],
+    USAGE[
+        SCOPE[&quot;Engineering survey, topographic mapping.&quot;],
+        AREA[&quot;Hungary.&quot;],
+        BBOX[45.74,16.11,48.58,22.9]],
+    ID[&quot;EPSG&quot;,23700]]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># %%</span>
+<span class="n">eov2etrs89_xyz</span> <span class="o">=</span> <span class="n">Transformer</span><span class="o">.</span><span class="n">from_crs</span><span class="p">(</span><span class="n">crs_eov</span><span class="p">,</span> <span class="n">crs_etrs89_xyz</span><span class="p">)</span>
+<span class="n">eov2etrs89_llh</span> <span class="o">=</span> <span class="n">Transformer</span><span class="o">.</span><span class="n">from_crs</span><span class="p">(</span><span class="n">crs_eov</span><span class="p">,</span> <span class="n">crs_etrs89_llh</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># %%</span>
+<span class="c1"># BUTE GPS Point: https://www.gnssnet.hu/pdf/BUTE.pdf</span>
+<span class="n">y_eov</span> <span class="o">=</span> <span class="mf">650684.479</span> <span class="c1"># easting</span>
+<span class="n">x_eov</span> <span class="o">=</span> <span class="mf">237444.175</span> <span class="c1"># northing</span>
+<span class="n">z_eov</span> <span class="o">=</span> <span class="mf">137.177</span> <span class="c1"># EOMA height</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">p_etrs89_xyz</span> <span class="o">=</span> <span class="n">eov2etrs89_xyz</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">y_eov</span><span class="p">,</span> <span class="n">x_eov</span><span class="p">,</span> <span class="n">z_eov</span><span class="p">)</span>
+<span class="n">p_etrs89_llh</span> <span class="o">=</span> <span class="n">eov2etrs89_llh</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">y_eov</span><span class="p">,</span> <span class="n">x_eov</span><span class="p">,</span> <span class="n">z_eov</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># %% Comparison to eht2: http://eht.gnssnet.hu/index.php</span>
+<span class="n">p_eht_etrs89_xyz</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">4081882.378</span><span class="p">,</span> <span class="mf">1410011.142</span><span class="p">,</span> <span class="mf">4678199.391</span><span class="p">])</span>
+<span class="n">p_eht_etrs89_llh</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">47.4809437284</span><span class="p">,</span> <span class="mf">19.0565297521</span><span class="p">,</span> <span class="mf">180.811</span><span class="p">])</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">p_etrs89_xyz</span> <span class="o">-</span> <span class="n">p_eht_etrs89_xyz</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[-27.79323961  -9.71344038 -32.2041526 ]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># %% Geodetic distance between two points defined with lat/lon</span>
+<span class="n">coords_1</span> <span class="o">=</span> <span class="p">(</span><span class="mf">52.2296756</span><span class="p">,</span> <span class="mf">21.0122287</span><span class="p">)</span>
+<span class="n">coords_2</span> <span class="o">=</span> <span class="p">(</span><span class="mf">52.406374</span><span class="p">,</span> <span class="mf">16.9251681</span><span class="p">)</span>
+<span class="n">sol_1</span> <span class="o">=</span> <span class="n">geodesic</span><span class="p">(</span><span class="n">coords_1</span><span class="p">,</span> <span class="n">coords_2</span><span class="p">,</span> <span class="n">ellipsoid</span><span class="o">=</span><span class="s1">&#39;GRS-80&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">m</span> <span class="o">*</span> <span class="mi">100</span>
+<span class="n">sol_2</span> <span class="o">=</span> <span class="n">geodesic</span><span class="p">(</span><span class="n">coords_1</span><span class="p">,</span> <span class="n">coords_2</span><span class="p">,</span> <span class="n">ellipsoid</span><span class="o">=</span><span class="s1">&#39;WGS-84&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">m</span> <span class="o">*</span> <span class="mi">100</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Difference GRS-80 vs. WGS-84 [cm]: &#39;</span><span class="p">,</span> <span class="n">sol_1</span> <span class="o">-</span> <span class="n">sol_2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Difference GRS-80 vs. WGS-84 [cm]:  0.00028607621788978577
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># %%</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Difference XY [cm]: &#39;</span><span class="p">,</span> <span class="n">geodesic</span><span class="p">(</span><span class="n">p_eht_etrs89_llh</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">2</span><span class="p">],</span> <span class="n">p_etrs89_llh</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">2</span><span class="p">])</span><span class="o">.</span><span class="n">m</span> <span class="o">*</span> <span class="mi">100</span><span class="p">)</span>
+<span class="c1"># Note: the Z of p_etrs89_llh[2] is the same as input, no Z coordinate transformation</span>
+<span class="c1"># print(&#39;Difference Z  [m]: &#39;, (p_eht_etrs89_llh[2] - p_etrs89_llh[2]))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Difference XY [cm]:  12.471731150364025
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># %% Original definiation of HD72/EOV in proj4 format</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Original definiation:&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">crs_eov</span><span class="o">.</span><span class="n">to_proj4</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Original definiation:
++proj=somerc +lat_0=47.1443937222222 +lon_0=19.0485717777778 +k_0=0.99993 +x_0=650000 +y_0=200000 +ellps=GRS67 +units=m +no_defs +type=crs
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/zoltan/env/uni/lib/python3.8/site-packages/pyproj/crs/crs.py:1286: UserWarning: You will likely lose important projection information when converting to a PROJ string from another format. See: https://proj.org/faq.html#what-is-the-best-format-for-describing-coordinate-reference-systems
+  proj = self._crs.to_proj4(version=version)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># %%</span>
+<span class="c1"># Grid letölthető: https://github.com/OSGeoLabBp/eov2etrs</span>
+<span class="c1"># &lt; transzformáció 1 cm-es középhibán belül azonos az EHT-vel</span>
+<span class="c1"># az EHT transzformációja 10 cm-es középhibájú</span>
+<span class="n">nadgrids</span> <span class="o">=</span> <span class="s1">&#39;/home/zoltan/Repo/uni/geoprog-lecture-notes/geoprog-lecture-notes/data/etrs2eov_notowgs.gsb&#39;</span><span class="c1"># XY grid</span>
+<span class="n">geoidgrids</span> <span class="o">=</span> <span class="s1">&#39;/home/zoltan/Repo/uni/geoprog-lecture-notes/geoprog-lecture-notes/data/geoid_eht2014.gtx&#39;</span> <span class="c1"># geoid model for Z transformation</span>
+<span class="n">crs_eov_grid</span> <span class="o">=</span> <span class="n">Proj</span><span class="p">(</span><span class="n">init</span><span class="o">=</span><span class="s1">&#39;EPSG:23700&#39;</span><span class="p">,</span> <span class="n">nadgrids</span><span class="o">=</span><span class="n">nadgrids</span><span class="p">,</span> <span class="n">geoidgrids</span><span class="o">=</span><span class="n">geoidgrids</span><span class="p">)</span> <span class="c1"># HD72 / EOV</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">crs_eov_grid</span><span class="o">.</span><span class="n">to_proj4</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>+proj=somerc +lat_0=47.1443937222222 +lon_0=19.0485717777778 +k_0=0.99993 +x_0=650000 +y_0=200000 +ellps=GRS67 +nadgrids=/home/zoltan/Repo/uni/geoprog-lecture-notes/geoprog-lecture-notes/data/etrs2eov_notowgs.gsb +units=m +geoidgrids=/home/zoltan/Repo/uni/geoprog-lecture-notes/geoprog-lecture-notes/data/geoid_eht2014.gtx +geoid_crs=WGS84 +vunits=m +no_defs
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/zoltan/env/uni/lib/python3.8/site-packages/pyproj/crs/crs.py:141: FutureWarning: &#39;+init=&lt;authority&gt;:&lt;code&gt;&#39; syntax is deprecated. &#39;&lt;authority&gt;:&lt;code&gt;&#39; is the preferred initialization method. When making the change, be mindful of axis order changes: https://pyproj4.github.io/pyproj/stable/gotchas.html#axis-order-changes-in-proj-6
+  in_crs_string = _prepare_from_proj_string(in_crs_string)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># %% XYZ transformation</span>
+<span class="n">eov2etrs89_xyz</span> <span class="o">=</span> <span class="n">Transformer</span><span class="o">.</span><span class="n">from_proj</span><span class="p">(</span><span class="n">crs_eov_grid</span><span class="p">,</span> <span class="n">crs_etrs89_xyz</span><span class="p">)</span>
+<span class="n">p_etrs89_xyz</span> <span class="o">=</span> <span class="n">eov2etrs89_xyz</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">y_eov</span><span class="p">,</span> <span class="n">x_eov</span><span class="p">,</span> <span class="n">z_eov</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">p_etrs89_xyz</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">p_eht_etrs89_xyz</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Difference [cm]: &#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">p_etrs89_xyz</span> <span class="o">-</span> <span class="n">p_eht_etrs89_xyz</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(4081882.3770687627, 1410011.1433535905, 4678199.3908524215)
+[4081882.378 1410011.142 4678199.391]
+Difference [cm]:  0.16496028796703496
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># %% LLH transformation:</span>
+<span class="n">eov2etrs89_llh</span> <span class="o">=</span> <span class="n">Transformer</span><span class="o">.</span><span class="n">from_proj</span><span class="p">(</span><span class="n">crs_eov_grid</span><span class="p">,</span> <span class="n">crs_etrs89_llh</span><span class="p">)</span>
+<span class="n">p_etrs89_llh</span> <span class="o">=</span> <span class="n">eov2etrs89_llh</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">y_eov</span><span class="p">,</span> <span class="n">x_eov</span><span class="p">,</span> <span class="n">z_eov</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Difference [cm]: &#39;</span><span class="p">,</span> <span class="n">geodesic</span><span class="p">(</span><span class="n">p_etrs89_llh</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">2</span><span class="p">],</span> <span class="n">p_eht_etrs89_llh</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">2</span><span class="p">])</span><span class="o">.</span><span class="n">m</span> <span class="o">*</span> <span class="mi">100</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Difference Z  [cm]: &#39;</span><span class="p">,</span> <span class="p">(</span><span class="n">p_etrs89_llh</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">-</span> <span class="n">p_eht_etrs89_llh</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span><span class="o">*</span><span class="mi">100</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Difference [cm]:  0.16408611991976702
+Difference Z  [cm]:  -4363.4000000000015
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">p_eht_etrs89_llh</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[ 47.48094373  19.05652975 180.811     ]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="5_Interpolation_and_Regression.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Interpolációs és regressziós feladatok <code class="docutils literal notranslate"><span class="pre">scipy</span></code> segítségével</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="X_TicTacToe.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">A <em>Tic tac toe</em> program</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bevezetes">Bevezetés</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#eov">EOV</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Dr. Koppányi Zoltán
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
