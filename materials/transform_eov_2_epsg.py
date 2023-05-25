@@ -49,8 +49,8 @@ print(crs_eov.to_proj4())
 # %%
 # < transzformáció 1 cm-es középhibán belül azonos az EHT-vel
 # az EHT transzformációja 10 cm-es középhibájú
-nadgrids = '/home/zoltan/Repo/eov2etrs/etrs2eov_notowgs.gsb'# XY grid
-geoidgrids = '/home/zoltan/Repo/eov2etrs/geoid_eht2014.gtx' # geoid model for Z transformation
+nadgrids = '/home/zoltan/Repo/uni/data/etrs2eov_notowgs.gsb'# XY grid
+geoidgrids = '/home/zoltan/Repo/uni/data/geoid_eht2014.gtx' # geoid model for Z transformation
 crs_eov = Proj(init='EPSG:23700', nadgrids=nadgrids, geoidgrids=geoidgrids) # HD72 / EOV
 print(crs_eov.to_proj4())
 
