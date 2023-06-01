@@ -1,0 +1,1887 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Térinformatikai vizualizáció Geopandas segítségével &#8212; Geoinformatikai programozás jegyzet</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '7_Geospatial_Visualization';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="A Tic tac toe program" href="X_TicTacToe.html" />
+    <link rel="prev" title="Geodéziai koordináta rendszer transzformációk" href="6_Coordinate_System_Transformations.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    <p class="title logo__title">Geoinformatikai programozás jegyzet</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Előszó
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="1_Introduction_to_Python.html">Bevezetés a Python nyelvbe</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_Introduction_to_NumPy.html">Bevezetés a <code class="docutils literal notranslate"><span class="pre">numpy</span></code> könyvtárba</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3_Introduction_to_Matplotlib.html">Bevezetés a <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code> könyvtárba</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4_Spatial_transformations.html">Transzformációk</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5_Interpolation_and_Regression.html">Interpolációs és regressziós feladatok <code class="docutils literal notranslate"><span class="pre">scipy</span></code> segítségével</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6_Coordinate_System_Transformations.html">Geodéziai koordináta rendszer transzformációk</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Térinformatikai vizualizáció <code class="docutils literal notranslate"><span class="pre">Geopandas</span></code> segítségével</a></li>
+<li class="toctree-l1"><a class="reference internal" href="X_TicTacToe.html">A <em>Tic tac toe</em> program</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2F7_Geospatial_Visualization.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/7_Geospatial_Visualization.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Térinformatikai vizualizáció Geopandas segítségével</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bevezetes-a-shapely-konyvtarba">Bevezetés a <code class="docutils literal notranslate"><span class="pre">Shapely</span></code> könyvtárba</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pontok-point">Pontok (<code class="docutils literal notranslate"><span class="pre">Point</span></code>)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vonalak-linestring-es-muveleteik">Vonalak (<code class="docutils literal notranslate"><span class="pre">LineString</span></code>) és műveleteik</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#poligonok-poligon-es-muveleteik">Poligonok (<code class="docutils literal notranslate"><span class="pre">Poligon</span></code>) és műveleteik</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bevezetes-a-geopandas-konyvtarba">Bevezetés a <code class="docutils literal notranslate"><span class="pre">Geopandas</span></code> könyvtárba</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#adatbetoltes">Adatbetöltés</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#geodataframes-es-geodataseries"><code class="docutils literal notranslate"><span class="pre">GeoDataFrames</span></code> és <code class="docutils literal notranslate"><span class="pre">GeoDataSeries</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#egyszeru-vizualizacio">Egyszerű vizualizáció</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leiro-adatok">Leíró adatok</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bonyolultabb-vizualizacio-a-vilagterkepen">Bonyolultabb vizualizáció a világtérképen</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#viagvarosok-adat">Viágvárosok adat</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#terbeli-lekerdezes-contains-es-within">Térbeli lekérdezés: <code class="docutils literal notranslate"><span class="pre">contains</span></code> és <code class="docutils literal notranslate"><span class="pre">within</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#terbeli-lekerdezes-buffer">Térbeli lekérdezés: buffer</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="terinformatikai-vizualizacio-geopandas-segitsegevel">
+<h1>Térinformatikai vizualizáció <code class="docutils literal notranslate"><span class="pre">Geopandas</span></code> segítségével<a class="headerlink" href="#terinformatikai-vizualizacio-geopandas-segitsegevel" title="Permalink to this heading">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
+</pre></div>
+</div>
+</div>
+</div>
+<section id="bevezetes-a-shapely-konyvtarba">
+<h2>Bevezetés a <code class="docutils literal notranslate"><span class="pre">Shapely</span></code> könyvtárba<a class="headerlink" href="#bevezetes-a-shapely-konyvtarba" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>shapely
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: shapely in /home/zoltan/env/uni/lib/python3.8/site-packages (1.8.5.post1)
+</pre></div>
+</div>
+</div>
+</div>
+<section id="pontok-point">
+<h3>Pontok (<code class="docutils literal notranslate"><span class="pre">Point</span></code>)<a class="headerlink" href="#pontok-point" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#from shapely import Point</span>
+<span class="kn">from</span> <span class="nn">shapely.geometry</span> <span class="kn">import</span> <span class="n">Point</span>
+<span class="n">point</span> <span class="o">=</span> <span class="n">Point</span><span class="p">((</span><span class="mf">10.0</span><span class="p">,</span> <span class="mf">20.0</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">point</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/6f16c35f559e15e14d536db24eb3a63b9446d387be8c25ed0b332df277f4516d.svg" src="_images/6f16c35f559e15e14d536db24eb3a63b9446d387be8c25ed0b332df277f4516d.svg" /></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">point</span><span class="o">.</span><span class="n">coords</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">point</span><span class="o">.</span><span class="n">coords</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">point</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">point</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">point</span><span class="o">.</span><span class="n">coords</span><span class="p">[:])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;shapely.coords.CoordinateSequence object at 0x7f26aa15b310&gt;
+[(10.0, 20.0)]
+10.0 20.0
+[(10.0, 20.0)]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;length = &#39;</span><span class="p">,</span> <span class="n">point</span><span class="o">.</span><span class="n">length</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;area = &#39;</span><span class="p">,</span> <span class="n">point</span><span class="o">.</span><span class="n">area</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>length =  0.0
+area =  0.0
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="vonalak-linestring-es-muveleteik">
+<h3>Vonalak (<code class="docutils literal notranslate"><span class="pre">LineString</span></code>) és műveleteik<a class="headerlink" href="#vonalak-linestring-es-muveleteik" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">shapely.geometry</span> <span class="kn">import</span> <span class="n">LineString</span>
+<span class="n">north_high_street</span> <span class="o">=</span> <span class="n">LineString</span><span class="p">([(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">)])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">north_high_street</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/7732ee81569002f0462428326cac832d2e4c4fb8ae4bc8afdc6c3d6d481421dd.svg" src="_images/7732ee81569002f0462428326cac832d2e4c4fb8ae4bc8afdc6c3d6d481421dd.svg" /></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">north_high_street</span><span class="o">.</span><span class="n">coords</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">north_high_street</span><span class="o">.</span><span class="n">coords</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">north_high_street</span><span class="o">.</span><span class="n">coords</span><span class="p">[:])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;shapely.coords.CoordinateSequence object at 0x7f26aa15e190&gt;
+[(5.0, 0.0), (5.0, 10.0)]
+[(5.0, 0.0), (5.0, 10.0)]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;length = &#39;</span><span class="p">,</span> <span class="n">north_high_street</span><span class="o">.</span><span class="n">length</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;area = &#39;</span><span class="p">,</span> <span class="n">north_high_street</span><span class="o">.</span><span class="n">area</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>length =  10.0
+area =  0.0
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">p1</span> <span class="o">=</span> <span class="n">Point</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">p2</span> <span class="o">=</span> <span class="n">Point</span><span class="p">((</span><span class="mi">20</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">fifth_street</span> <span class="o">=</span> <span class="n">LineString</span><span class="p">([</span><span class="n">p1</span><span class="p">,</span> <span class="n">p2</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fifth_street</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/a5b98f0380645adc7014fe07fde2ac04909b7165e3546f68dd55c0fe7350648c.svg" src="_images/a5b98f0380645adc7014fe07fde2ac04909b7165e3546f68dd55c0fe7350648c.svg" /></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cross_fifth_and_high</span> <span class="o">=</span> <span class="n">fifth_street</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="n">north_high_street</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cross_fifth_and_high</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/0ecb7178dd4fc38c1a9d922eeab6b4d60631d7438b7a75a442366f2b262459a9.svg" src="_images/0ecb7178dd4fc38c1a9d922eeab6b4d60631d7438b7a75a442366f2b262459a9.svg" /></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="o">*</span><span class="n">north_high_street</span><span class="o">.</span><span class="n">xy</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="o">*</span><span class="n">fifth_street</span><span class="o">.</span><span class="n">xy</span><span class="p">,</span> <span class="s1">&#39;g&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="o">*</span><span class="n">cross_fifth_and_high</span><span class="o">.</span><span class="n">xy</span><span class="p">,</span> <span class="s1">&#39;r.&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f26a9eac5b0&gt;]
+</pre></div>
+</div>
+<img alt="_images/30418400b273df5e2c23b6fc84c39226280ccd3b1abbc810845104c77ba5e003.png" src="_images/30418400b273df5e2c23b6fc84c39226280ccd3b1abbc810845104c77ba5e003.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">north_high_street</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="n">cross_fifth_and_high</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">fifth_street</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="n">cross_fifth_and_high</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+True
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="poligonok-poligon-es-muveleteik">
+<h3>Poligonok (<code class="docutils literal notranslate"><span class="pre">Poligon</span></code>) és műveleteik<a class="headerlink" href="#poligonok-poligon-es-muveleteik" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">shapely.geometry</span> <span class="kn">import</span> <span class="n">Polygon</span>
+<span class="n">district</span> <span class="o">=</span> <span class="n">Polygon</span><span class="p">([(</span><span class="mf">2.5</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">2</span><span class="p">)])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">district</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/ad971c7a948e4125c11cb13aa85cf22e30b99001fd2294210be44cd0c5e25a44.svg" src="_images/ad971c7a948e4125c11cb13aa85cf22e30b99001fd2294210be44cd0c5e25a44.svg" /></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;length = &#39;</span><span class="p">,</span> <span class="n">district</span><span class="o">.</span><span class="n">length</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;area = &#39;</span><span class="p">,</span> <span class="n">district</span><span class="o">.</span><span class="n">area</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>length =  30.0
+area =  52.5
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="bevezetes-a-geopandas-konyvtarba">
+<h2>Bevezetés a <code class="docutils literal notranslate"><span class="pre">Geopandas</span></code> könyvtárba<a class="headerlink" href="#bevezetes-a-geopandas-konyvtarba" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>--upgrade<span class="w"> </span>geopandas
+<span class="kn">import</span> <span class="nn">geopandas</span>
+<span class="kn">import</span> <span class="nn">fiona</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already up-to-date: geopandas in /home/zoltan/env/uni/lib/python3.8/site-packages (0.13.0)
+Requirement already satisfied, skipping upgrade: fiona&gt;=1.8.19 in /home/zoltan/env/uni/lib/python3.8/site-packages (from geopandas) (1.9.4.post1)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied, skipping upgrade: pandas&gt;=1.1.0 in /home/zoltan/env/uni/lib/python3.8/site-packages (from geopandas) (2.0.2)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied, skipping upgrade: pyproj&gt;=3.0.1 in /home/zoltan/env/uni/lib/python3.8/site-packages (from geopandas) (3.5.0)
+Requirement already satisfied, skipping upgrade: shapely&gt;=1.7.1 in /home/zoltan/env/uni/lib/python3.8/site-packages (from geopandas) (1.8.5.post1)
+Requirement already satisfied, skipping upgrade: packaging in /home/zoltan/env/uni/lib/python3.8/site-packages (from geopandas) (23.1)
+Requirement already satisfied, skipping upgrade: click~=8.0 in /home/zoltan/env/uni/lib/python3.8/site-packages (from fiona&gt;=1.8.19-&gt;geopandas) (8.1.3)
+Requirement already satisfied, skipping upgrade: click-plugins&gt;=1.0 in /home/zoltan/env/uni/lib/python3.8/site-packages (from fiona&gt;=1.8.19-&gt;geopandas) (1.1.1)
+Requirement already satisfied, skipping upgrade: importlib-metadata; python_version &lt; &quot;3.10&quot; in /home/zoltan/env/uni/lib/python3.8/site-packages (from fiona&gt;=1.8.19-&gt;geopandas) (6.6.0)
+Requirement already satisfied, skipping upgrade: attrs&gt;=19.2.0 in /home/zoltan/env/uni/lib/python3.8/site-packages (from fiona&gt;=1.8.19-&gt;geopandas) (23.1.0)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied, skipping upgrade: cligj&gt;=0.5 in /home/zoltan/env/uni/lib/python3.8/site-packages (from fiona&gt;=1.8.19-&gt;geopandas) (0.7.2)
+Requirement already satisfied, skipping upgrade: certifi in /home/zoltan/env/uni/lib/python3.8/site-packages (from fiona&gt;=1.8.19-&gt;geopandas) (2023.5.7)
+Requirement already satisfied, skipping upgrade: six in /home/zoltan/env/uni/lib/python3.8/site-packages (from fiona&gt;=1.8.19-&gt;geopandas) (1.16.0)
+Requirement already satisfied, skipping upgrade: numpy&gt;=1.20.3; python_version &lt; &quot;3.10&quot; in /home/zoltan/env/uni/lib/python3.8/site-packages (from pandas&gt;=1.1.0-&gt;geopandas) (1.24.3)
+Requirement already satisfied, skipping upgrade: tzdata&gt;=2022.1 in /home/zoltan/env/uni/lib/python3.8/site-packages (from pandas&gt;=1.1.0-&gt;geopandas) (2023.3)
+Requirement already satisfied, skipping upgrade: python-dateutil&gt;=2.8.2 in /home/zoltan/env/uni/lib/python3.8/site-packages (from pandas&gt;=1.1.0-&gt;geopandas) (2.8.2)
+Requirement already satisfied, skipping upgrade: pytz&gt;=2020.1 in /home/zoltan/env/uni/lib/python3.8/site-packages (from pandas&gt;=1.1.0-&gt;geopandas) (2023.3)
+Requirement already satisfied, skipping upgrade: zipp&gt;=0.5 in /home/zoltan/env/uni/lib/python3.8/site-packages (from importlib-metadata; python_version &lt; &quot;3.10&quot;-&gt;fiona&gt;=1.8.19-&gt;geopandas) (3.15.0)
+</pre></div>
+</div>
+</div>
+</div>
+<section id="adatbetoltes">
+<h3>Adatbetöltés<a class="headerlink" href="#adatbetoltes" title="Permalink to this heading">#</a></h3>
+<p>Térbeli adatot tartalmazó fájlok felhasználás szerinti csoportosítása:</p>
+<ul class="simple">
+<li><p>CAD-célú: DWG, DXF, DGN</p></li>
+<li><p>GIS-célú: SHP, GPKG, MapInfo File, SQLite, DAT</p></li>
+<li><p>Hobby-rekreációs: GPX, KML</p></li>
+</ul>
+<p>Téradat fájl formátumok osztályozása az adat tárolásának módja szerint:</p>
+<ul class="simple">
+<li><p>Bináris fájl: SHP, GPKG, MapInfo File</p></li>
+<li><p>Szöveges fájl: GeoJson, KML, GPX, DAT</p></li>
+<li><p>Téradatbázis: SQLite</p></li>
+</ul>
+<p>TODO</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">fiona</span>
+<span class="n">fiona</span><span class="o">.</span><span class="n">supported_drivers</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;DXF&#39;: &#39;rw&#39;,
+ &#39;CSV&#39;: &#39;raw&#39;,
+ &#39;OpenFileGDB&#39;: &#39;raw&#39;,
+ &#39;ESRIJSON&#39;: &#39;r&#39;,
+ &#39;ESRI Shapefile&#39;: &#39;raw&#39;,
+ &#39;FlatGeobuf&#39;: &#39;raw&#39;,
+ &#39;GeoJSON&#39;: &#39;raw&#39;,
+ &#39;GeoJSONSeq&#39;: &#39;raw&#39;,
+ &#39;GPKG&#39;: &#39;raw&#39;,
+ &#39;GML&#39;: &#39;rw&#39;,
+ &#39;OGR_GMT&#39;: &#39;rw&#39;,
+ &#39;GPX&#39;: &#39;rw&#39;,
+ &#39;MapInfo File&#39;: &#39;raw&#39;,
+ &#39;DGN&#39;: &#39;raw&#39;,
+ &#39;S57&#39;: &#39;r&#39;,
+ &#39;SQLite&#39;: &#39;raw&#39;,
+ &#39;TopoJSON&#39;: &#39;r&#39;}
+</pre></div>
+</div>
+</div>
+</div>
+<p>Töltsük le, majd kicsomagolás után töltsük be a Világtérkép adatokat.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">world_borders</span> <span class="o">=</span> <span class="n">geopandas</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="s2">&quot;data/geo_viz/world_borders.shp&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Támogatott formátumok a <code class="docutils literal notranslate"><span class="pre">fiona</span></code> drivert használva:</p>
+</section>
+<section id="geodataframes-es-geodataseries">
+<h3><code class="docutils literal notranslate"><span class="pre">GeoDataFrames</span></code> és <code class="docutils literal notranslate"><span class="pre">GeoDataSeries</span></code><a class="headerlink" href="#geodataframes-es-geodataseries" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">world_borders</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>geopandas.geodataframe.GeoDataFrame
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">world_borders</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>FIPS</th>
+      <th>ISO2</th>
+      <th>ISO3</th>
+      <th>UN</th>
+      <th>NAME</th>
+      <th>AREA</th>
+      <th>POP2005</th>
+      <th>REGION</th>
+      <th>SUBREGION</th>
+      <th>LON</th>
+      <th>LAT</th>
+      <th>Density</th>
+      <th>geometry</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>AC</td>
+      <td>AG</td>
+      <td>ATG</td>
+      <td>28</td>
+      <td>Antigua and Barbuda</td>
+      <td>550</td>
+      <td>83039</td>
+      <td>19</td>
+      <td>29</td>
+      <td>-61.783</td>
+      <td>17.078</td>
+      <td>151</td>
+      <td>MULTIPOLYGON (((-61.68667 17.02444, -61.73806 ...</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>AG</td>
+      <td>DZ</td>
+      <td>DZA</td>
+      <td>12</td>
+      <td>Algeria</td>
+      <td>2334790</td>
+      <td>32854159</td>
+      <td>2</td>
+      <td>15</td>
+      <td>2.632</td>
+      <td>28.163</td>
+      <td>14</td>
+      <td>POLYGON ((2.96361 36.80222, 2.98139 36.80694, ...</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>AJ</td>
+      <td>AZ</td>
+      <td>AZE</td>
+      <td>31</td>
+      <td>Azerbaijan</td>
+      <td>86147</td>
+      <td>8352021</td>
+      <td>142</td>
+      <td>145</td>
+      <td>47.395</td>
+      <td>40.430</td>
+      <td>97</td>
+      <td>MULTIPOLYGON (((45.08332 39.76804, 45.26639 39...</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>AL</td>
+      <td>AL</td>
+      <td>ALB</td>
+      <td>8</td>
+      <td>Albania</td>
+      <td>28729</td>
+      <td>3153731</td>
+      <td>150</td>
+      <td>39</td>
+      <td>20.068</td>
+      <td>41.143</td>
+      <td>110</td>
+      <td>POLYGON ((19.43621 41.02107, 19.45055 41.06000...</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>AM</td>
+      <td>AM</td>
+      <td>ARM</td>
+      <td>51</td>
+      <td>Armenia</td>
+      <td>29774</td>
+      <td>3017661</td>
+      <td>142</td>
+      <td>145</td>
+      <td>44.563</td>
+      <td>40.534</td>
+      <td>101</td>
+      <td>MULTIPOLYGON (((45.57305 40.63249, 45.52888 40...</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">world_borders</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>geopandas.geodataframe.GeoDataFrame
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">world_borders</span><span class="o">.</span><span class="n">crs</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Geographic 2D CRS: EPSG:4326&gt;
+Name: WGS 84
+Axis Info [ellipsoidal]:
+- Lat[north]: Geodetic latitude (degree)
+- Lon[east]: Geodetic longitude (degree)
+Area of Use:
+- name: World.
+- bounds: (-180.0, -90.0, 180.0, 90.0)
+Datum: World Geodetic System 1984 ensemble
+- Ellipsoid: WGS 84
+- Prime Meridian: Greenwich
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">world_borders</span><span class="o">.</span><span class="n">columns</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Index([&#39;FIPS&#39;, &#39;ISO2&#39;, &#39;ISO3&#39;, &#39;UN&#39;, &#39;NAME&#39;, &#39;AREA&#39;, &#39;POP2005&#39;, &#39;REGION&#39;,
+       &#39;SUBREGION&#39;, &#39;LON&#39;, &#39;LAT&#39;, &#39;Density&#39;, &#39;geometry&#39;],
+      dtype=&#39;object&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">world_borders</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="mi">12</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">world_borders</span><span class="o">.</span><span class="n">geometry</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;geopandas.geoseries.GeoSeries&#39;&gt;
+&lt;class &#39;geopandas.geoseries.GeoSeries&#39;&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">country_names</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">world_borders</span><span class="p">[</span><span class="s2">&quot;NAME&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Hungary&quot;</span> <span class="ow">in</span> <span class="n">country_names</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Holy Roman Empire&quot;</span> <span class="ow">in</span> <span class="n">country_names</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+False
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hungary_df</span> <span class="o">=</span> <span class="n">world_borders</span><span class="p">[</span><span class="n">world_borders</span><span class="p">[</span><span class="s2">&quot;NAME&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;Hungary&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hungary_shp</span> <span class="o">=</span> <span class="n">hungary_df</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="nb">type</span><span class="p">(</span><span class="n">hungary_shp</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>shapely.geometry.polygon.Polygon
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hungary_shp</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/895dea5469c038c2ad11ee1a7163d0e7f10fcf78b488c0da8e53f75215ffa063.svg" src="_images/895dea5469c038c2ad11ee1a7163d0e7f10fcf78b488c0da8e53f75215ffa063.svg" /></div>
+</div>
+</section>
+<section id="egyszeru-vizualizacio">
+<h3>Egyszerű vizualizáció<a class="headerlink" href="#egyszeru-vizualizacio" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">world_borders</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">9</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: &gt;
+</pre></div>
+</div>
+<img alt="_images/a430acbcd4fa89f2fd18801ff43d811ac9444ade0e6eb907135ab061bbe63e3a.png" src="_images/a430acbcd4fa89f2fd18801ff43d811ac9444ade0e6eb907135ab061bbe63e3a.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">minx</span><span class="p">,</span> <span class="n">miny</span><span class="p">,</span> <span class="n">maxx</span><span class="p">,</span> <span class="n">maxy</span> <span class="o">=</span> <span class="n">hungary_df</span><span class="o">.</span><span class="n">total_bounds</span>
+
+<span class="n">ax</span> <span class="o">=</span> <span class="n">world_borders</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="n">minx</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">maxx</span><span class="o">+</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="n">miny</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">maxy</span><span class="o">+</span><span class="mf">0.5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(45.248329, 49.07666)
+</pre></div>
+</div>
+<img alt="_images/33c1c7f7ce465e323aa85cf3fac430cb3cf289fb31172b0b17fb210825f30413.png" src="_images/33c1c7f7ce465e323aa85cf3fac430cb3cf289fb31172b0b17fb210825f30413.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">zoom_to_hun</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">buffer</span><span class="o">=</span><span class="mf">0.5</span><span class="p">):</span>
+  <span class="n">minx</span><span class="p">,</span> <span class="n">miny</span><span class="p">,</span> <span class="n">maxx</span><span class="p">,</span> <span class="n">maxy</span> <span class="o">=</span> <span class="n">hungary_df</span><span class="o">.</span><span class="n">total_bounds</span>
+  <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="n">minx</span><span class="o">-</span><span class="n">buffer</span><span class="p">,</span> <span class="n">maxx</span><span class="o">+</span><span class="n">buffer</span><span class="p">)</span>
+  <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="n">miny</span><span class="o">-</span><span class="n">buffer</span><span class="p">,</span> <span class="n">maxy</span><span class="o">+</span><span class="n">buffer</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">world_borders</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+<span class="n">zoom_to_hun</span><span class="p">(</span><span class="n">ax</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/33c1c7f7ce465e323aa85cf3fac430cb3cf289fb31172b0b17fb210825f30413.png" src="_images/33c1c7f7ce465e323aa85cf3fac430cb3cf289fb31172b0b17fb210825f30413.png" />
+</div>
+</div>
+</section>
+<section id="leiro-adatok">
+<h3>Leíró adatok<a class="headerlink" href="#leiro-adatok" title="Permalink to this heading">#</a></h3>
+<p>Olvassunk ki leíró adatokat az országokról a korábban bemutatott elem azonosítás
+opcióval. Nézzük meg mennyi volt Görögország népessége 2005-ben?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">world_borders</span><span class="o">.</span><span class="n">columns</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Index([&#39;FIPS&#39;, &#39;ISO2&#39;, &#39;ISO3&#39;, &#39;UN&#39;, &#39;NAME&#39;, &#39;AREA&#39;, &#39;POP2005&#39;, &#39;REGION&#39;,
+       &#39;SUBREGION&#39;, &#39;LON&#39;, &#39;LAT&#39;, &#39;Density&#39;, &#39;geometry&#39;],
+      dtype=&#39;object&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># POP2005</span>
+<span class="n">world_borders</span><span class="p">[</span><span class="n">world_borders</span><span class="p">[</span><span class="s1">&#39;NAME&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;Greece&quot;</span><span class="p">][</span><span class="s2">&quot;POP2005&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>73    11099737
+Name: POP2005, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<p>Rendezzük az országokat terület szerint növekvő sorrendbe.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">world_borders</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;AREA&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>FIPS</th>
+      <th>ISO2</th>
+      <th>ISO3</th>
+      <th>UN</th>
+      <th>NAME</th>
+      <th>AREA</th>
+      <th>POP2005</th>
+      <th>REGION</th>
+      <th>SUBREGION</th>
+      <th>LON</th>
+      <th>LAT</th>
+      <th>Density</th>
+      <th>geometry</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>238</th>
+      <td>VT</td>
+      <td>VA</td>
+      <td>VAT</td>
+      <td>336</td>
+      <td>Holy See (Vatican City)</td>
+      <td>1</td>
+      <td>783</td>
+      <td>150</td>
+      <td>39</td>
+      <td>12.451</td>
+      <td>41.904</td>
+      <td>783</td>
+      <td>POLYGON ((12.44509 41.90312, 12.45165 41.90799...</td>
+    </tr>
+    <tr>
+      <th>136</th>
+      <td>MC</td>
+      <td>MO</td>
+      <td>MAC</td>
+      <td>446</td>
+      <td>Macau</td>
+      <td>7</td>
+      <td>47309</td>
+      <td>142</td>
+      <td>30</td>
+      <td>113.545</td>
+      <td>22.200</td>
+      <td>6758</td>
+      <td>POLYGON ((113.53166 22.19474, 113.53137 22.201...</td>
+    </tr>
+    <tr>
+      <th>133</th>
+      <td>GI</td>
+      <td>GI</td>
+      <td>GIB</td>
+      <td>292</td>
+      <td>Gibraltar</td>
+      <td>8</td>
+      <td>291</td>
+      <td>150</td>
+      <td>39</td>
+      <td>-5.345</td>
+      <td>36.138</td>
+      <td>36</td>
+      <td>POLYGON ((-5.33451 36.16256, -5.33755 36.14944...</td>
+    </tr>
+    <tr>
+      <th>137</th>
+      <td>MN</td>
+      <td>MC</td>
+      <td>MCO</td>
+      <td>492</td>
+      <td>Monaco</td>
+      <td>13</td>
+      <td>325</td>
+      <td>150</td>
+      <td>155</td>
+      <td>7.412</td>
+      <td>43.750</td>
+      <td>25</td>
+      <td>POLYGON ((7.43929 43.75752, 7.42305 43.74000, ...</td>
+    </tr>
+    <tr>
+      <th>196</th>
+      <td>TL</td>
+      <td>TK</td>
+      <td>TKL</td>
+      <td>772</td>
+      <td>Tokelau</td>
+      <td>21</td>
+      <td>1401</td>
+      <td>9</td>
+      <td>61</td>
+      <td>-171.853</td>
+      <td>-9.193</td>
+      <td>67</td>
+      <td>MULTIPOLYGON (((-171.21472 -9.37750, -171.2191...</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">world_borders</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;AREA&#39;</span><span class="p">])[</span><span class="s2">&quot;NAME&quot;</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;Holy See (Vatican City)&#39;, &#39;Macau&#39;, &#39;Gibraltar&#39;, &#39;Monaco&#39;, &#39;Tokelau&#39;, &#39;Cocos (Keeling) Islands&#39;, &#39;Nauru&#39;, &#39;Bermuda&#39;, &#39;United States Minor Outlying Islands&#39;, &#39;Norfolk Island&#39;, &#39;Tuvalu&#39;, &#39;Pitcairn Islands&#39;, &#39;Saint Barthelemy&#39;, &#39;Saint Martin&#39;, &#39;Bouvet Island&#39;, &#39;San Marino&#39;, &#39;Guernsey&#39;, &#39;Anguilla&#39;, &#39;British Indian Ocean Territory&#39;, &#39;Montserrat&#39;, &#39;Jersey&#39;, &#39;Christmas Island&#39;, &#39;Marshall Islands&#39;, &#39;Maldives&#39;, &#39;British Virgin Islands&#39;, &#39;Wallis and Futuna Islands&#39;, &#39;Liechtenstein&#39;, &#39;Aruba&#39;, &#39;American Samoa&#39;, &#39;Cook Islands&#39;, &#39;Niue&#39;, &#39;Saint Pierre and Miquelon&#39;, &#39;Saint Kitts and Nevis&#39;, &#39;Cayman Islands&#39;, &#39;United States Virgin Islands&#39;, &#39;Malta&#39;, &#39;Saint Vincent and the Grenadines&#39;, &#39;Heard Island and McDonald Islands&#39;, &#39;Saint Helena&#39;, &#39;Grenada&#39;, &#39;Turks and Caicos Islands&#39;, &#39;Barbados&#39;, &#39;Mayotte&#39;, &#39;Andorra&#39;, &#39;Palau&#39;, &#39;Seychelles&#39;, &#39;Antigua and Barbuda&#39;, &#39;Singapore&#39;, &#39;Guam&#39;, &#39;Isle of Man&#39;, &#39;Northern Mariana Islands&#39;, &#39;Saint Lucia&#39;, &#39;Bahrain&#39;, &#39;Dominica&#39;, &#39;Micronesia, Federated States of&#39;, &#39;Tonga&#39;, &#39;Åland Islands&#39;, &#39;Netherlands Antilles&#39;, &#39;Hong Kong&#39;, &#39;Sao Tome and Principe&#39;, &#39;Martinique&#39;, &#39;Kiribati&#39;, &#39;Faroe Islands&#39;, &#39;Guadeloupe&#39;, &#39;Comoros&#39;, &#39;Mauritius&#39;, &#39;Luxembourg&#39;, &#39;Reunion&#39;, &#39;Samoa&#39;, &#39;French Polynesia&#39;, &#39;Cape Verde&#39;, &#39;South Georgia South Sandwich Islands&#39;, &#39;Trinidad and Tobago&#39;, &#39;Brunei Darussalam&#39;, &#39;Palestine&#39;, &#39;French Southern and Antarctic Lands&#39;, &#39;Cyprus&#39;, &#39;Puerto Rico&#39;, &#39;Lebanon&#39;, &#39;Gambia&#39;, &#39;Jamaica&#39;, &#39;Qatar&#39;, &#39;Falkland Islands (Malvinas)&#39;, &#39;Vanuatu&#39;, &#39;Bahamas&#39;, &#39;Montenegro&#39;, &#39;Timor-Leste&#39;, &#39;Kuwait&#39;, &#39;Swaziland&#39;, &#39;New Caledonia&#39;, &#39;Fiji&#39;, &#39;Slovenia&#39;, &#39;El Salvador&#39;, &#39;Israel&#39;, &#39;Djibouti&#39;, &#39;Belize&#39;, &#39;Rwanda&#39;, &#39;The former Yugoslav Republic of Macedonia&#39;, &#39;Equatorial Guinea&#39;, &#39;Burundi&#39;, &#39;Haiti&#39;, &#39;Solomon Islands&#39;, &#39;Albania&#39;, &#39;Armenia&#39;, &#39;Belgium&#39;, &#39;Lesotho&#39;, &#39;Republic of Moldova&#39;, &#39;Guinea-Bissau&#39;, &#39;Netherlands&#39;, &#39;Taiwan&#39;, &#39;Bhutan&#39;, &#39;Switzerland&#39;, &#39;Denmark&#39;, &#39;Estonia&#39;, &#39;Slovakia&#39;, &#39;Dominican Republic&#39;, &#39;Bosnia and Herzegovina&#39;, &#39;Costa Rica&#39;, &#39;Croatia&#39;, &#39;Togo&#39;, &#39;Svalbard&#39;, &#39;Latvia&#39;, &#39;Lithuania&#39;, &#39;Sri Lanka&#39;, &#39;Ireland&#39;, &#39;Georgia&#39;, &#39;United Arab Emirates&#39;, &#39;Sierra Leone&#39;, &#39;Panama&#39;, &#39;Czech Republic&#39;, &#39;Austria&#39;, &#39;French Guiana&#39;, &#39;Azerbaijan&#39;, &#39;Serbia&#39;, &#39;Jordan&#39;, &#39;Portugal&#39;, &#39;Hungary&#39;, &#39;Liberia&#39;, &#39;Korea, Republic of&#39;, &#39;Iceland&#39;, &#39;Guatemala&#39;, &#39;Cuba&#39;, &#39;Bulgaria&#39;, &#39;Honduras&#39;, &#39;Benin&#39;, &#39;Malawi&#39;, &#39;Eritrea&#39;, &quot;Korea, Democratic People&#39;s Republic of&quot;, &#39;Nicaragua&#39;, &#39;Greece&#39;, &#39;Bangladesh&#39;, &#39;Tajikistan&#39;, &#39;Suriname&#39;, &#39;Nepal&#39;, &#39;Tunisia&#39;, &#39;Uruguay&#39;, &#39;Cambodia&#39;, &#39;Syrian Arab Republic&#39;, &#39;Senegal&#39;, &#39;Kyrgyzstan&#39;, &#39;Belarus&#39;, &#39;Guyana&#39;, &quot;Lao People&#39;s Democratic Republic&quot;, &#39;Romania&#39;, &#39;Ghana&#39;, &#39;United Kingdom&#39;, &#39;Uganda&#39;, &#39;Guinea&#39;, &#39;Ecuador&#39;, &#39;Gabon&#39;, &#39;New Zealand&#39;, &#39;Western Sahara&#39;, &#39;Burkina Faso&#39;, &#39;Philippines&#39;, &#39;Italy&#39;, &#39;Poland&#39;, &#39;Oman&#39;, &#39;Norway&#39;, &quot;Cote d&#39;Ivoire&quot;, &#39;Viet Nam&#39;, &#39;Finland&#39;, &#39;Malaysia&#39;, &#39;Congo&#39;, &#39;Germany&#39;, &#39;Japan&#39;, &#39;Zimbabwe&#39;, &#39;Paraguay&#39;, &#39;Morocco&#39;, &#39;Yemen&#39;, &#39;Iraq&#39;, &#39;Sweden&#39;, &#39;Uzbekistan&#39;, &#39;Papua New Guinea&#39;, &#39;Cameroon&#39;, &#39;Turkmenistan&#39;, &#39;Spain&#39;, &#39;Thailand&#39;, &#39;France&#39;, &#39;Botswana&#39;, &#39;Kenya&#39;, &#39;Ukraine&#39;, &#39;Madagascar&#39;, &#39;Central African Republic&#39;, &#39;Somalia&#39;, &#39;Afghanistan&#39;, &#39;Burma&#39;, &#39;Chile&#39;, &#39;Zambia&#39;, &#39;Turkey&#39;, &#39;Mozambique&#39;, &#39;Namibia&#39;, &#39;Pakistan&#39;, &#39;Nigeria&#39;, &#39;Venezuela&#39;, &#39;United Republic of Tanzania&#39;, &#39;Egypt&#39;, &#39;Mauritania&#39;, &#39;Bolivia&#39;, &#39;Ethiopia&#39;, &#39;Colombia&#39;, &#39;Niger&#39;, &#39;South Africa&#39;, &#39;Angola&#39;, &#39;Mali&#39;, &#39;Chad&#39;, &#39;Peru&#39;, &#39;Mongolia&#39;, &#39;Libyan Arab Jamahiriya&#39;, &#39;Iran (Islamic Republic of)&#39;, &#39;Indonesia&#39;, &#39;Saudi Arabia&#39;, &#39;Mexico&#39;, &#39;Greenland&#39;, &#39;Algeria&#39;, &#39;Democratic Republic of the Congo&#39;, &#39;Sudan&#39;, &#39;Kazakhstan&#39;, &#39;Argentina&#39;, &#39;India&#39;, &#39;Australia&#39;, &#39;Brazil&#39;, &#39;China&#39;, &#39;United States&#39;, &#39;Canada&#39;, &#39;Antarctica&#39;, &#39;Russia&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Új attribútum mező levezetése: Az egyes országok népsűrűséget akár, mint leíró adatot is kiszámíhatjuk.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">world_borders</span><span class="p">[</span><span class="s1">&#39;density&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">world_borders</span><span class="p">[</span><span class="s1">&#39;POP2005&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="n">world_borders</span><span class="p">[</span><span class="s1">&#39;AREA&#39;</span><span class="p">]</span>  
+</pre></div>
+</div>
+</div>
+</div>
+<p>Olvassuk ki várhatóan hány fő tartózkodott egy négyzetkilométeren Magyarországon 2005-ben?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">world_borders</span><span class="p">[</span><span class="n">world_borders</span><span class="p">[</span><span class="s2">&quot;NAME&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;Hungary&quot;</span><span class="p">][</span><span class="s1">&#39;density&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>80    108.578363
+Name: density, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="bonyolultabb-vizualizacio-a-vilagterkepen">
+<h3>Bonyolultabb vizualizáció a világtérképen<a class="headerlink" href="#bonyolultabb-vizualizacio-a-vilagterkepen" title="Permalink to this heading">#</a></h3>
+<p>Színezzük véletlenszerűen az országokat!</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">matplotlib.colors</span> <span class="kn">import</span> <span class="n">to_rgba</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="c1"># convert 3 random 0-1 number to color</span>
+<span class="n">to_rgba</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(0.8238810562389399, 0.7781616250079789, 0.4860282623345692, 1)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">country_colors</span> <span class="o">=</span> <span class="p">[</span><span class="n">to_rgba</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">world_borders</span><span class="p">))]</span>
+<span class="n">world_borders</span><span class="p">[</span><span class="s1">&#39;color&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">country_colors</span>
+<span class="n">world_borders</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="n">world_borders</span><span class="p">[</span><span class="s1">&#39;color&#39;</span><span class="p">],</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">9</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: &gt;
+</pre></div>
+</div>
+<img alt="_images/26c8729cede3fe869f91af042e0b83ec040389af5ac250b334facd7a8cedfd3d.png" src="_images/26c8729cede3fe869f91af042e0b83ec040389af5ac250b334facd7a8cedfd3d.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">world_borders</span><span class="p">[</span><span class="s1">&#39;color&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">world_borders</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">row</span><span class="p">:</span> <span class="n">to_rgba</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">3</span><span class="p">)),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">world_borders</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">color</span> <span class="o">=</span> <span class="n">world_borders</span><span class="p">[</span><span class="s1">&#39;color&#39;</span><span class="p">],</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">zoom_to_hun</span><span class="p">(</span><span class="n">ax</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/f059a3e09cdbc92e3ad706303a14667c5d621c140e4b02d771aadb3729277fdd.png" src="_images/f059a3e09cdbc92e3ad706303a14667c5d621c140e4b02d771aadb3729277fdd.png" />
+</div>
+</div>
+<p>Feliratozzuk az országok a neveikkel:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">world_borders</span><span class="p">[</span><span class="s1">&#39;anchor&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">world_borders</span><span class="p">[</span><span class="s1">&#39;geometry&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">representative_point</span><span class="p">()</span><span class="o">.</span><span class="n">coords</span><span class="p">[:])</span>
+<span class="n">world_borders</span><span class="p">[</span><span class="s1">&#39;anchor&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">coords</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">coords</span> <span class="ow">in</span> <span class="n">world_borders</span><span class="p">[</span><span class="s1">&#39;anchor&#39;</span><span class="p">]]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">world_borders</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="n">world_borders</span><span class="p">[</span><span class="s1">&#39;color&#39;</span><span class="p">],</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">9</span><span class="p">))</span>
+<span class="c1">#zoom_to_hun(ax)</span>
+<span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">world_borders</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;NAME&#39;</span><span class="p">],</span> <span class="n">xy</span><span class="o">=</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;anchor&#39;</span><span class="p">],</span> <span class="n">horizontalalignment</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/09ca929781a70a1a15e5e0f204ffd1d14b4742f3012a34c1dc91c6a5d17c6144.png" src="_images/09ca929781a70a1a15e5e0f204ffd1d14b4742f3012a34c1dc91c6a5d17c6144.png" />
+</div>
+</div>
+<p>Jelenítsük meg az országokat népességük alapján 5 egyenlő számosságú osztályba sorolva.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="c1">#cats = pd.cut(world_borders.POP2005, 5) # bins with equal length not equal sized bins </span>
+<span class="n">categories_column</span><span class="p">,</span> <span class="n">bins</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">qcut</span><span class="p">(</span><span class="n">world_borders</span><span class="o">.</span><span class="n">POP2005</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="n">retbins</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">duplicates</span><span class="o">=</span><span class="s1">&#39;drop&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">categories_column</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0            (67827.0, 1067285.0]
+1      (18642586.0, 1312978855.0]
+2         (5416945.0, 18642586.0]
+3          (1067285.0, 5416945.0]
+4          (1067285.0, 5416945.0]
+                  ...            
+241             (-0.001, 67827.0]
+242             (-0.001, 67827.0]
+243             (-0.001, 67827.0]
+244             (-0.001, 67827.0]
+245             (-0.001, 67827.0]
+Name: POP2005, Length: 246, dtype: category
+Categories (5, interval[float64, right]): [(-0.001, 67827.0] &lt; (67827.0, 1067285.0] &lt; (1067285.0, 5416945.0] &lt; (5416945.0, 18642586.0] &lt; (18642586.0, 1312978855.0]]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pop_categories</span> <span class="o">=</span> <span class="n">categories_column</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">world_borders</span><span class="p">[</span><span class="n">categories_column</span> <span class="o">==</span> <span class="n">pop_categories</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>FIPS</th>
+      <th>ISO2</th>
+      <th>ISO3</th>
+      <th>UN</th>
+      <th>NAME</th>
+      <th>AREA</th>
+      <th>POP2005</th>
+      <th>REGION</th>
+      <th>SUBREGION</th>
+      <th>LON</th>
+      <th>LAT</th>
+      <th>Density</th>
+      <th>geometry</th>
+      <th>density</th>
+      <th>color</th>
+      <th>anchor</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>AC</td>
+      <td>AG</td>
+      <td>ATG</td>
+      <td>28</td>
+      <td>Antigua and Barbuda</td>
+      <td>550</td>
+      <td>83039</td>
+      <td>19</td>
+      <td>29</td>
+      <td>-61.783</td>
+      <td>17.078</td>
+      <td>151</td>
+      <td>MULTIPOLYGON (((-61.68667 17.02444, -61.73806 ...</td>
+      <td>150.980000</td>
+      <td>(0.6586796535706532, 0.965756299514864, 0.5419...</td>
+      <td>(-61.77846144624214, 17.06541450000003)</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>BA</td>
+      <td>BH</td>
+      <td>BHR</td>
+      <td>48</td>
+      <td>Bahrain</td>
+      <td>657</td>
+      <td>724788</td>
+      <td>142</td>
+      <td>145</td>
+      <td>50.562</td>
+      <td>26.019</td>
+      <td>1103</td>
+      <td>MULTIPOLYGON (((50.81249 25.64222, 50.79250 25...</td>
+      <td>1103.178082</td>
+      <td>(0.071588822682083, 0.6128679477911719, 0.0258...</td>
+      <td>(50.55007111604336, 26.018053000000066)</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>BB</td>
+      <td>BB</td>
+      <td>BRB</td>
+      <td>52</td>
+      <td>Barbados</td>
+      <td>454</td>
+      <td>291933</td>
+      <td>19</td>
+      <td>29</td>
+      <td>-59.559</td>
+      <td>13.153</td>
+      <td>643</td>
+      <td>POLYGON ((-59.53306 13.05055, -59.54333 13.067...</td>
+      <td>643.024229</td>
+      <td>(0.7405055749689401, 0.9040914257886211, 0.757...</td>
+      <td>(-59.57258683669045, 13.197222)</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>BF</td>
+      <td>BS</td>
+      <td>BHS</td>
+      <td>44</td>
+      <td>Bahamas</td>
+      <td>12928</td>
+      <td>323295</td>
+      <td>19</td>
+      <td>29</td>
+      <td>-78.014</td>
+      <td>24.628</td>
+      <td>25</td>
+      <td>MULTIPOLYGON (((-73.03723 21.13944, -73.12361 ...</td>
+      <td>25.007348</td>
+      <td>(0.7202903965480626, 0.20361219685276166, 0.21...</td>
+      <td>(-73.33565591585821, 21.11791400000004)</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>BH</td>
+      <td>BZ</td>
+      <td>BLZ</td>
+      <td>84</td>
+      <td>Belize</td>
+      <td>22391</td>
+      <td>275546</td>
+      <td>19</td>
+      <td>13</td>
+      <td>-88.602</td>
+      <td>17.219</td>
+      <td>12</td>
+      <td>MULTIPOLYGON (((-87.80334 17.29417, -87.80917 ...</td>
+      <td>12.306105</td>
+      <td>(0.6661462291529219, 0.6208771916204171, 0.007...</td>
+      <td>(-88.7216096567985, 17.213470500000057)</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">world_borders</span><span class="p">)</span> <span class="o">/</span> <span class="mi">5</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">world_borders</span><span class="p">[</span><span class="n">categories_column</span> <span class="o">==</span> <span class="n">pop_categories</span><span class="p">[</span><span class="mi">0</span><span class="p">]]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">world_borders</span><span class="p">[</span><span class="n">categories_column</span> <span class="o">==</span> <span class="n">pop_categories</span><span class="p">[</span><span class="mi">4</span><span class="p">]]))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>49.2
+49
+50
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">world_borders</span><span class="p">[</span><span class="n">categories_column</span> <span class="o">==</span> <span class="n">pop_categories</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">9</span><span class="p">))</span>
+<span class="n">world_borders</span><span class="p">[</span><span class="n">categories_column</span> <span class="o">==</span> <span class="n">pop_categories</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;g&#39;</span><span class="p">)</span>
+<span class="n">world_borders</span><span class="p">[</span><span class="n">categories_column</span> <span class="o">==</span> <span class="n">pop_categories</span><span class="p">[</span><span class="mi">2</span><span class="p">]]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">)</span>
+<span class="n">world_borders</span><span class="p">[</span><span class="n">categories_column</span> <span class="o">==</span> <span class="n">pop_categories</span><span class="p">[</span><span class="mi">3</span><span class="p">]]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;c&#39;</span><span class="p">)</span>
+<span class="n">world_borders</span><span class="p">[</span><span class="n">categories_column</span> <span class="o">==</span> <span class="n">pop_categories</span><span class="p">[</span><span class="mi">4</span><span class="p">]]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: &gt;
+</pre></div>
+</div>
+<img alt="_images/dcb7305d5ac52898917b2de26cc2eb487d433f967ff938065da4c9b9c1b3bba8.png" src="_images/dcb7305d5ac52898917b2de26cc2eb487d433f967ff938065da4c9b9c1b3bba8.png" />
+</div>
+</div>
+<p>Vagy használhajtuk a <code class="docutils literal notranslate"><span class="pre">mapclassify</span></code> csomagot, amit viszont telepíteni kell. További információkat <a class="reference external" href="https://dmnfarrell.github.io/plotting/categorical-geopandas-maps">itt</a> és további példákat <a class="reference external" href="https://nbviewer.org/github/pysal/mapclassify/blob/main/notebooks/03_choropleth.ipynb">itt</a> lehet találni a csomag használatáról.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>mapclassify
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: mapclassify in /home/zoltan/env/uni/lib/python3.8/site-packages (2.5.0)
+Requirement already satisfied: pandas&gt;=1.0 in /home/zoltan/env/uni/lib/python3.8/site-packages (from mapclassify) (2.0.2)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: networkx in /home/zoltan/env/uni/lib/python3.8/site-packages (from mapclassify) (3.1)
+Requirement already satisfied: scipy&gt;=1.0 in /home/zoltan/env/uni/lib/python3.8/site-packages (from mapclassify) (1.10.1)
+Requirement already satisfied: scikit-learn in /home/zoltan/env/uni/lib/python3.8/site-packages (from mapclassify) (1.2.2)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: numpy&gt;=1.3 in /home/zoltan/env/uni/lib/python3.8/site-packages (from mapclassify) (1.24.3)
+Requirement already satisfied: pytz&gt;=2020.1 in /home/zoltan/env/uni/lib/python3.8/site-packages (from pandas&gt;=1.0-&gt;mapclassify) (2023.3)
+Requirement already satisfied: python-dateutil&gt;=2.8.2 in /home/zoltan/env/uni/lib/python3.8/site-packages (from pandas&gt;=1.0-&gt;mapclassify) (2.8.2)
+Requirement already satisfied: tzdata&gt;=2022.1 in /home/zoltan/env/uni/lib/python3.8/site-packages (from pandas&gt;=1.0-&gt;mapclassify) (2023.3)
+Requirement already satisfied: joblib&gt;=1.1.1 in /home/zoltan/env/uni/lib/python3.8/site-packages (from scikit-learn-&gt;mapclassify) (1.2.0)
+Requirement already satisfied: threadpoolctl&gt;=2.0.0 in /home/zoltan/env/uni/lib/python3.8/site-packages (from scikit-learn-&gt;mapclassify) (3.1.0)
+Requirement already satisfied: six&gt;=1.5 in /home/zoltan/env/uni/lib/python3.8/site-packages (from python-dateutil&gt;=2.8.2-&gt;pandas&gt;=1.0-&gt;mapclassify) (1.16.0)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">world_borders</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">column</span><span class="o">=</span><span class="s1">&#39;POP2005&#39;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;OrRd&#39;</span><span class="p">,</span> <span class="n">scheme</span><span class="o">=</span><span class="s1">&#39;quantiles&#39;</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">9</span><span class="p">),</span> <span class="n">legend</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: &gt;
+</pre></div>
+</div>
+<img alt="_images/8cd39a27525814e9b3eeff1bc245dd8cfb4611eb6127c614668114cac80c47aa.png" src="_images/8cd39a27525814e9b3eeff1bc245dd8cfb4611eb6127c614668114cac80c47aa.png" />
+</div>
+</div>
+</section>
+<section id="viagvarosok-adat">
+<h3>Viágvárosok adat<a class="headerlink" href="#viagvarosok-adat" title="Permalink to this heading">#</a></h3>
+<p>Töltsük be a Világvárosok vektor réteget, és címkézzük meg a réteg elemeit a városok neveivel. Ezt követően jelenítsük meg csak a fővárosokat:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">world_cities</span> <span class="o">=</span> <span class="n">geopandas</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="s2">&quot;data/geo_viz/cities.shp&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">world_cities</span><span class="o">.</span><span class="n">columns</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Index([&#39;NAME&#39;, &#39;COUNTRY&#39;, &#39;POPULATION&#39;, &#39;CAPITAL&#39;, &#39;geometry&#39;], dtype=&#39;object&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">world_borders</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">9</span><span class="p">))</span>
+<span class="n">world_cities</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: &gt;
+</pre></div>
+</div>
+<img alt="_images/53cd9fff921ac051848bee184f8f8a0273bb4601193c9f905df9ad5b4464cbd5.png" src="_images/53cd9fff921ac051848bee184f8f8a0273bb4601193c9f905df9ad5b4464cbd5.png" />
+</div>
+</div>
+</section>
+<section id="terbeli-lekerdezes-contains-es-within">
+<h3>Térbeli lekérdezés: <code class="docutils literal notranslate"><span class="pre">contains</span></code> és <code class="docutils literal notranslate"><span class="pre">within</span></code><a class="headerlink" href="#terbeli-lekerdezes-contains-es-within" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">world_borders</span><span class="p">[</span><span class="s2">&quot;REGION&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 19,   2, 142, 150,   9,   0])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">world_borders</span><span class="p">[</span><span class="n">world_borders</span><span class="p">[</span><span class="s2">&quot;REGION&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">unary_union</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/d93ed3bbefd604fe9ce5ef3a8756a6af262145b4bcdb1e3d3f145b36c082b80c.svg" src="_images/d93ed3bbefd604fe9ce5ef3a8756a6af262145b4bcdb1e3d3f145b36c082b80c.svg" /></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">africa_df</span> <span class="o">=</span> <span class="n">world_borders</span><span class="p">[</span><span class="n">world_borders</span><span class="p">[</span><span class="s2">&quot;REGION&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">2</span><span class="p">]</span>
+<span class="n">africa_shp</span> <span class="o">=</span> <span class="n">africa_df</span><span class="o">.</span><span class="n">unary_union</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cities_in_africa</span> <span class="o">=</span> <span class="n">world_cities</span><span class="p">[</span><span class="n">world_cities</span><span class="o">.</span><span class="n">within</span><span class="p">(</span><span class="n">africa_shp</span><span class="p">)]</span>
+<span class="n">cities_in_africa</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: &gt;
+</pre></div>
+</div>
+<img alt="_images/bfae24c606b378ef520efc629abb47ea8fdc228847568202b404df1bbd0a208e.png" src="_images/bfae24c606b378ef520efc629abb47ea8fdc228847568202b404df1bbd0a208e.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">africa_df</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+<span class="n">cities_in_africa</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: &gt;
+</pre></div>
+</div>
+<img alt="_images/d8bb5faa698e79bc886596f30c1539ae3ffc6dac8c7246decf6ce5f2931d370c.png" src="_images/d8bb5faa698e79bc886596f30c1539ae3ffc6dac8c7246decf6ce5f2931d370c.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">africa_df</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span><span class="mi">9</span><span class="p">))</span>
+<span class="n">max_val</span> <span class="o">=</span> <span class="n">cities_in_africa</span><span class="p">[</span><span class="s1">&#39;POPULATION&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+<span class="n">marker_size</span> <span class="o">=</span> <span class="n">cities_in_africa</span><span class="p">[</span><span class="s1">&#39;POPULATION&#39;</span><span class="p">]</span><span class="o">/</span><span class="n">max_val</span><span class="o">*</span><span class="mi">3000</span>
+<span class="n">cities_in_africa</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="n">marker_size</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/zoltan/env/uni/lib/python3.8/site-packages/matplotlib/collections.py:963: RuntimeWarning: invalid value encountered in sqrt
+  scale = np.sqrt(self._sizes) * dpi / 72.0 * self._factor
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: &gt;
+</pre></div>
+</div>
+<img alt="_images/2c98c90ac0cc5299ea348325d557079a5822d6598f0367d2506c5f5352409911.png" src="_images/2c98c90ac0cc5299ea348325d557079a5822d6598f0367d2506c5f5352409911.png" />
+</div>
+</div>
+</section>
+<section id="terbeli-lekerdezes-buffer">
+<h3>Térbeli lekérdezés: buffer<a class="headerlink" href="#terbeli-lekerdezes-buffer" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hungary_shp</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/895dea5469c038c2ad11ee1a7163d0e7f10fcf78b488c0da8e53f75215ffa063.svg" src="_images/895dea5469c038c2ad11ee1a7163d0e7f10fcf78b488c0da8e53f75215ffa063.svg" /></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hungary_shp</span><span class="o">.</span><span class="n">buffer</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/c883e9c8bc476ee83b10f36360e9f5c06616dfa25137dd94134bf831d6535507.svg" src="_images/c883e9c8bc476ee83b10f36360e9f5c06616dfa25137dd94134bf831d6535507.svg" /></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hungary_df</span><span class="o">.</span><span class="n">crs</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Geographic 2D CRS: EPSG:4326&gt;
+Name: WGS 84
+Axis Info [ellipsoidal]:
+- Lat[north]: Geodetic latitude (degree)
+- Lon[east]: Geodetic longitude (degree)
+Area of Use:
+- name: World.
+- bounds: (-180.0, -90.0, 180.0, 90.0)
+Datum: World Geodetic System 1984 ensemble
+- Ellipsoid: WGS 84
+- Prime Meridian: Greenwich
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">world_borders</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">56</span><span class="p">][</span><span class="s2">&quot;NAME&quot;</span><span class="p">])</span>
+
+<span class="n">hungary_shp</span><span class="o">.</span><span class="n">buffer</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span><span class="o">.</span><span class="n">intersects</span><span class="p">(</span><span class="n">world_borders</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">56</span><span class="p">]</span><span class="o">.</span><span class="n">geometry</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Austria
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Using shapely intersects</span>
+<span class="n">idx_df</span> <span class="o">=</span> <span class="n">world_borders</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">g</span><span class="p">:</span> <span class="n">hungary_shp</span><span class="o">.</span><span class="n">buffer</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span><span class="o">.</span><span class="n">intersects</span><span class="p">(</span><span class="n">g</span><span class="p">))</span>
+<span class="n">hungary_neihgbors</span> <span class="o">=</span> <span class="n">world_borders</span><span class="p">[</span><span class="n">idx_df</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hungary_neihgbors</span><span class="p">[</span><span class="s2">&quot;NAME&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>56      Austria
+79      Croatia
+80      Hungary
+104    Slovakia
+170     Romania
+183    Slovenia
+207     Ukraine
+237      Serbia
+Name: NAME, dtype: object
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">hungary_neihgbors</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="n">world_borders</span><span class="p">[</span><span class="s1">&#39;color&#39;</span><span class="p">],</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">9</span><span class="p">))</span>
+<span class="n">zoom_to_hun</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="mf">8.0</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">hungary_neihgbors</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;NAME&#39;</span><span class="p">],</span> <span class="n">xy</span><span class="o">=</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;anchor&#39;</span><span class="p">],</span> <span class="n">horizontalalignment</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/7656e763d623572f508d9e9167ff7344d43296fff697758b124f34a0152be2b2.png" src="_images/7656e763d623572f508d9e9167ff7344d43296fff697758b124f34a0152be2b2.png" />
+</div>
+</div>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="6_Coordinate_System_Transformations.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Geodéziai koordináta rendszer transzformációk</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="X_TicTacToe.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">A <em>Tic tac toe</em> program</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bevezetes-a-shapely-konyvtarba">Bevezetés a <code class="docutils literal notranslate"><span class="pre">Shapely</span></code> könyvtárba</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pontok-point">Pontok (<code class="docutils literal notranslate"><span class="pre">Point</span></code>)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vonalak-linestring-es-muveleteik">Vonalak (<code class="docutils literal notranslate"><span class="pre">LineString</span></code>) és műveleteik</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#poligonok-poligon-es-muveleteik">Poligonok (<code class="docutils literal notranslate"><span class="pre">Poligon</span></code>) és műveleteik</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bevezetes-a-geopandas-konyvtarba">Bevezetés a <code class="docutils literal notranslate"><span class="pre">Geopandas</span></code> könyvtárba</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#adatbetoltes">Adatbetöltés</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#geodataframes-es-geodataseries"><code class="docutils literal notranslate"><span class="pre">GeoDataFrames</span></code> és <code class="docutils literal notranslate"><span class="pre">GeoDataSeries</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#egyszeru-vizualizacio">Egyszerű vizualizáció</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leiro-adatok">Leíró adatok</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bonyolultabb-vizualizacio-a-vilagterkepen">Bonyolultabb vizualizáció a világtérképen</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#viagvarosok-adat">Viágvárosok adat</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#terbeli-lekerdezes-contains-es-within">Térbeli lekérdezés: <code class="docutils literal notranslate"><span class="pre">contains</span></code> és <code class="docutils literal notranslate"><span class="pre">within</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#terbeli-lekerdezes-buffer">Térbeli lekérdezés: buffer</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Dr. Koppányi Zoltán
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
