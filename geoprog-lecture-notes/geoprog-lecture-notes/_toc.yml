@@ -8,4 +8,7 @@ chapters:
 - file: 2_Introduction_to_NumPy
 - file: 3_Introduction_to_Matplotlib
 - file: 4_Spatial_transformations
+- file: 5_Interpolation_and_Regression
+- file: 6_Coordinate_System_Transformations
+- file: 7_Geospatial_Visualization
 - file: X_TicTacToe
