@@ -203,50 +203,18 @@ const thebe_selector_output = ".output, .cell_output"
 <div class="article-header-buttons">
 
 
-
-
-
-<div class="dropdown dropdown-source-buttons">
-  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
-    <i class="fab fa-github"></i>
-  </button>
-  <ul class="dropdown-menu">
-      
-      
-      
-      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
-   class="btn btn-sm btn-source-repository-button dropdown-item"
-   title="Source repository"
-   data-bs-placement="left" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  <i class="fab fa-github"></i>
-  </span>
-<span class="btn__text-container">Repository</span>
-</a>
-</li>
-      
-      
-      
-      
-      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2F1_Introduction_to_Python.html&body=Your%20issue%20content%20here." target="_blank"
-   class="btn btn-sm btn-source-issues-button dropdown-item"
+<a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2F1_Introduction_to_Python.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button"
    title="Open an issue"
-   data-bs-placement="left" data-bs-toggle="tooltip"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
 >
   
 
 <span class="btn__icon-container">
   <i class="fas fa-lightbulb"></i>
   </span>
-<span class="btn__text-container">Open issue</span>
+
 </a>
-</li>
-      
-  </ul>
-</div>
 
 
 
@@ -421,6 +389,13 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="bevezetes-a-python-nyelvbe">
 <h1>Bevezetés a Python nyelvbe<a class="headerlink" href="#bevezetes-a-python-nyelvbe" title="Permalink to this heading">#</a></h1>
+<p>Python egy álatlános célú, magas színtű, gyengén típusos, interpretált programozási nyelv. Nézzük meg egyesével, mit jelentenek ezek a jelzők.</p>
+<ul class="simple">
+<li><p>Általános célú, így számos különböző célra használható a web applikációktól kezdve, tudományos kutatáson át, különböző szkript feladatok elátására.</p></li>
+<li><p>A nyelv magas színtű, mivel a Python magas szintű absztrakciót nyújt a gépi kódhoz képest. Ezzel szemben a Matlab főleg mérnöki és kutatási feladatokra használható jól.</p></li>
+<li><p>Gyengén típusos, mivel nem szükséges előre definiálni az egyes változók típusát, így a változó deklarálás és inicializálása nem válik tisztán szét. A változók típusa futás időben, dinamikusan döl el.</p></li>
+<li><p>Interpretált, ugyanis a Python kód önmagában nem futtatható, szükséges hozzá egy interpreter, ezért általánosságban elmondható, hogy a Python kód lassabban fut, mint egy olyan nyelv kódja, mely gépi kódra fordul (pl. C vagy C++). Megjegyezzük azonban, hogy nem minden esetben érzékelhető a Python nyelv lassúsága, bizonyos esetekben azt tapasztalhatjuk, hogy a Python kód gyorsabban fut mint egy álatlunk írt C kód. Ez azért lehetséges, mert számos Python könyvtár mögött direketen alacsonyabb szintű nyelven írt kódok futnak, amikor bizonyos műveleteket, függvényeket írunk. Ilyen például különboző mátrix műveletek a <code class="docutils literal notranslate"><span class="pre">numpy</span></code> könyvtárban. Ezért nagy méretű mátrix szorzás Pythonban nagy valószínűséggel gyorsaban fog futni, mintha mi probálnánk azt C nyelvbe megírni. Továbbá, érdemes tudni, hogy a Python képes arra, hogy futás időben lefordítsa a Python kódot gépi kódra (Just-In-Time fordítás), de annak futás ideje és memória kezelése még mindig elmaradhat egy alacsony nyelv implementációjától.</p></li>
+</ul>
 <p>Órán elmondani:</p>
 <ol class="arabic simple">
 <li><p>Motiváció</p></li>
