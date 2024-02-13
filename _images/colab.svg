@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="150mm"
+   height="80mm"
+   viewBox="0 0 150 80"
+   version="1.1"
+   id="svg1"
+   inkscape:version="1.3.1 (9b9bdc1480, 2023-11-25, custom)"
+   sodipodi:docname="colab.svg"
+   xml:space="preserve"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"><sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     inkscape:zoom="1.0280428"
+     inkscape:cx="318.56651"
+     inkscape:cy="287.92576"
+     inkscape:window-width="1848"
+     inkscape:window-height="1016"
+     inkscape:window-x="72"
+     inkscape:window-y="27"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" /><defs
+     id="defs1"><marker
+       style="overflow:visible"
+       id="Triangle-4-7"
+       refX="0"
+       refY="0"
+       orient="auto-start-reverse"
+       inkscape:stockid="Triangle arrow"
+       markerWidth="1"
+       markerHeight="1"
+       viewBox="0 0 1 1"
+       inkscape:isstock="true"
+       inkscape:collect="always"
+       preserveAspectRatio="xMidYMid"><path
+         transform="scale(0.5)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         id="path135-0-5" /></marker><marker
+       style="overflow:visible"
+       id="Triangle-4-7-2"
+       refX="0"
+       refY="0"
+       orient="auto-start-reverse"
+       inkscape:stockid="Triangle arrow"
+       markerWidth="1"
+       markerHeight="1"
+       viewBox="0 0 1 1"
+       inkscape:isstock="true"
+       inkscape:collect="always"
+       preserveAspectRatio="xMidYMid"><path
+         transform="scale(0.5)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         id="path135-0-5-9" /></marker></defs><g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"><g
+       id="g23"
+       transform="matrix(1.2306549,0,0,1.2306549,-19.381636,-45.741687)"><g
+         style="fill:#000000;stroke-width:0;stroke-dasharray:none"
+         id="g16"
+         transform="matrix(0.05423398,0,0,0.05423398,23.39778,55.798215)"><g
+           id="g4"
+           style="stroke-width:0;stroke-dasharray:none">
+	<g
+   id="g3"
+   style="stroke-width:0;stroke-dasharray:none">
+		<g
+   id="g2"
+   style="stroke-width:0;stroke-dasharray:none">
+			<path
+   d="M 455.5,348 H 447 V 99.5 C 447,82.131 432.869,68 415.5,68 H 47.5 C 30.131,68 16,82.131 16,99.5 V 348 H 7.5 C 3.358,348 0,351.358 0,355.5 v 16 C 0,384.458 10.542,395 23.5,395 h 416 c 12.958,0 23.5,-10.542 23.5,-23.5 v -16 c 0,-4.142 -3.358,-7.5 -7.5,-7.5 z M 31,99.5 C 31,90.402 38.402,83 47.5,83 h 368 c 9.098,0 16.5,7.402 16.5,16.5 V 348 H 31 Z m 417,272 c 0,4.687 -3.813,8.5 -8.5,8.5 H 23.5 C 18.813,380 15,376.187 15,371.5 V 363 h 169.025 c -0.011,0.166 -0.025,0.331 -0.025,0.5 0,4.142 3.358,7.5 7.5,7.5 h 80 c 4.142,0 7.5,-3.358 7.5,-7.5 0,-0.169 -0.014,-0.334 -0.025,-0.5 H 448 Z"
+   id="path1"
+   style="stroke-width:0;stroke-dasharray:none" />
+			<path
+   d="m 407.5,100 h -352 c -4.142,0 -7.5,3.358 -7.5,7.5 v 216 c 0,4.142 3.358,7.5 7.5,7.5 h 352 c 4.142,0 7.5,-3.358 7.5,-7.5 v -216 c 0,-4.142 -3.358,-7.5 -7.5,-7.5 z M 400,316 H 63 V 115 h 337 z"
+   id="path2"
+   style="stroke-width:0;stroke-dasharray:none" />
+		</g>
+	</g>
+</g></g><g
+         style="fill:#000000"
+         id="g17"
+         transform="matrix(0.05905989,0,0,0.05905989,97.455338,52.395835)"><g
+           id="g13">
+	<path
+   d="m 471.5,167 c 21.78,0 39.5,-17.72 39.5,-39.5 v -64 C 511,41.72 493.28,24 471.5,24 H 39.5 C 17.72,24 0,41.72 0,63.5 v 64 C 0,149.28 17.72,167 39.5,167 H 248 v 17 H 39.5 C 17.72,184 0,201.72 0,223.5 v 64 C 0,309.28 17.72,327 39.5,327 H 248 v 17 H 39.5 C 17.72,344 0,361.72 0,383.5 v 64 C 0,469.28 17.72,487 39.5,487 h 432 c 21.78,0 39.5,-17.72 39.5,-39.5 v -64 C 511,361.72 493.28,344 471.5,344 H 263 v -17 h 208.5 c 21.78,0 39.5,-17.72 39.5,-39.5 v -64 C 511,201.72 493.28,184 471.5,184 H 263 V 167 Z M 496,383.5 v 64 c 0,13.51 -10.991,24.5 -24.5,24.5 H 39.5 C 25.991,472 15,461.01 15,447.5 v -64 C 15,369.99 25.991,359 39.5,359 h 432 c 13.509,0 24.5,10.99 24.5,24.5 z m 0,-160 v 64 c 0,13.51 -10.991,24.5 -24.5,24.5 H 39.5 C 25.991,312 15,301.01 15,287.5 v -64 C 15,209.99 25.991,199 39.5,199 h 432 c 13.509,0 24.5,10.99 24.5,24.5 z m -481,-96 v -64 C 15,49.99 25.991,39 39.5,39 h 432 c 13.509,0 24.5,10.99 24.5,24.5 v 64 c 0,13.51 -10.991,24.5 -24.5,24.5 H 39.5 C 25.991,152 15,141.01 15,127.5 Z"
+   id="path1-2" />
+	<path
+   d="M 71.5,64 C 54.131,64 40,78.131 40,95.5 40,112.869 54.131,127 71.5,127 88.869,127 103,112.869 103,95.5 103,78.131 88.869,64 71.5,64 Z m 0,48 C 62.402,112 55,104.598 55,95.5 55,86.402 62.402,79 71.5,79 80.598,79 88,86.402 88,95.5 88,104.598 80.598,112 71.5,112 Z"
+   id="path2-1" />
+	<path
+   d="M 143.5,72 C 130.542,72 120,82.542 120,95.5 120,108.458 130.542,119 143.5,119 156.458,119 167,108.458 167,95.5 167,82.542 156.458,72 143.5,72 Z m 0,32 c -4.687,0 -8.5,-3.813 -8.5,-8.5 0,-4.687 3.813,-8.5 8.5,-8.5 4.687,0 8.5,3.813 8.5,8.5 0,4.687 -3.813,8.5 -8.5,8.5 z"
+   id="path3" />
+	<path
+   d="M 71.5,224 C 54.131,224 40,238.131 40,255.5 40,272.869 54.131,287 71.5,287 88.869,287 103,272.869 103,255.5 103,238.131 88.869,224 71.5,224 Z m 0,48 C 62.402,272 55,264.598 55,255.5 55,246.402 62.402,239 71.5,239 c 9.098,0 16.5,7.402 16.5,16.5 0,9.098 -7.402,16.5 -16.5,16.5 z"
+   id="path4" />
+	<path
+   d="m 143.5,232 c -12.958,0 -23.5,10.542 -23.5,23.5 0,12.958 10.542,23.5 23.5,23.5 12.958,0 23.5,-10.542 23.5,-23.5 0,-12.958 -10.542,-23.5 -23.5,-23.5 z m 0,32 c -4.687,0 -8.5,-3.813 -8.5,-8.5 0,-4.687 3.813,-8.5 8.5,-8.5 4.687,0 8.5,3.813 8.5,8.5 0,4.687 -3.813,8.5 -8.5,8.5 z"
+   id="path5" />
+	<path
+   d="m 455.5,264 h -264 c -4.142,0 -7.5,3.357 -7.5,7.5 0,4.143 3.358,7.5 7.5,7.5 h 264 c 4.142,0 7.5,-3.357 7.5,-7.5 0,-4.143 -3.358,-7.5 -7.5,-7.5 z"
+   id="path6" />
+	<path
+   d="m 184,239.5 c 0,4.143 3.358,7.5 7.5,7.5 h 264 c 4.142,0 7.5,-3.357 7.5,-7.5 0,-4.143 -3.358,-7.5 -7.5,-7.5 h -264 c -4.142,0 -7.5,3.357 -7.5,7.5 z"
+   id="path7" />
+	<path
+   d="m 463,111.5 c 0,-4.143 -3.358,-7.5 -7.5,-7.5 h -264 c -4.142,0 -7.5,3.357 -7.5,7.5 0,4.143 3.358,7.5 7.5,7.5 h 264 c 4.142,0 7.5,-3.357 7.5,-7.5 z"
+   id="path8" />
+	<path
+   d="m 191.5,87 h 264 c 4.142,0 7.5,-3.357 7.5,-7.5 0,-4.143 -3.358,-7.5 -7.5,-7.5 h -264 c -4.142,0 -7.5,3.357 -7.5,7.5 0,4.143 3.358,7.5 7.5,7.5 z"
+   id="path9" />
+	<path
+   d="M 71.5,384 C 54.131,384 40,398.131 40,415.5 40,432.869 54.131,447 71.5,447 88.869,447 103,432.869 103,415.5 103,398.131 88.869,384 71.5,384 Z m 0,48 C 62.402,432 55,424.598 55,415.5 55,406.402 62.402,399 71.5,399 c 9.098,0 16.5,7.402 16.5,16.5 0,9.098 -7.402,16.5 -16.5,16.5 z"
+   id="path10" />
+	<path
+   d="m 143.5,392 c -12.958,0 -23.5,10.542 -23.5,23.5 0,12.958 10.542,23.5 23.5,23.5 12.958,0 23.5,-10.542 23.5,-23.5 0,-12.958 -10.542,-23.5 -23.5,-23.5 z m 0,32 c -4.687,0 -8.5,-3.813 -8.5,-8.5 0,-4.687 3.813,-8.5 8.5,-8.5 4.687,0 8.5,3.813 8.5,8.5 0,4.687 -3.813,8.5 -8.5,8.5 z"
+   id="path11-5" />
+	<path
+   d="m 455.5,424 h -264 c -4.142,0 -7.5,3.357 -7.5,7.5 0,4.143 3.358,7.5 7.5,7.5 h 264 c 4.142,0 7.5,-3.357 7.5,-7.5 0,-4.143 -3.358,-7.5 -7.5,-7.5 z"
+   id="path12" />
+	<path
+   d="m 184,399.5 c 0,4.143 3.358,7.5 7.5,7.5 h 264 c 4.142,0 7.5,-3.357 7.5,-7.5 0,-4.143 -3.358,-7.5 -7.5,-7.5 h -264 c -4.142,0 -7.5,3.357 -7.5,7.5 z"
+   id="path13" />
+</g></g><text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.68496px;font-family:'Bitstream Vera Sans Mono';-inkscape-font-specification:'Bitstream Vera Sans Mono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.232123;stroke-dasharray:none;stroke-opacity:1"
+         x="30.390419"
+         y="68.869293"
+         id="text1-0-4"><tspan
+           sodipodi:role="line"
+           id="tspan17"
+           x="30.390419"
+           y="68.869293">Colab</tspan></text><path
+         style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.5;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#Triangle-4-7)"
+         d="M 50.147369,64.086405 H 93.274441"
+         id="path11-9-7"
+         sodipodi:nodetypes="cc" /><text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.00055px;font-family:'Bitstream Vera Sans Mono';-inkscape-font-specification:'Bitstream Vera Sans Mono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.18901;stroke-dasharray:none;stroke-opacity:1"
+         x="60.628437"
+         y="61.960705"
+         id="text1-0-4-0"><tspan
+           sodipodi:role="line"
+           id="tspan18"
+           x="60.628437"
+           y="61.960705"
+           style="stroke-width:0.18901">(1) Python kód</tspan></text><text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.93267px;font-family:'Bitstream Vera Sans Mono';-inkscape-font-specification:'Bitstream Vera Sans Mono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.184735;stroke-dasharray:none;stroke-opacity:1"
+         x="111.51772"
+         y="85.544899"
+         id="text1-0-4-0-1"><tspan
+           sodipodi:role="line"
+           id="tspan19"
+           x="111.51772"
+           y="85.544899"
+           style="stroke-width:0.184735">(2) Python kód lefut </tspan><tspan
+           sodipodi:role="line"
+           x="111.51772"
+           y="89.210739"
+           id="tspan23"
+           style="stroke-width:0.184735">a kernelen</tspan></text><text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.68496px;font-family:'Bitstream Vera Sans Mono';-inkscape-font-specification:'Bitstream Vera Sans Mono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.232123;stroke-dasharray:none;stroke-opacity:1"
+         x="104.86596"
+         y="51.393642"
+         id="text1-0-4-2"><tspan
+           sodipodi:role="line"
+           id="tspan20"
+           x="104.86596"
+           y="51.393642">Szerver</tspan></text><path
+         style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.5;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#Triangle-4-7-2)"
+         d="M 95.433032,72.485375 H 52.305956"
+         id="path11-9-7-2"
+         sodipodi:nodetypes="cc" /><text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.02559px;font-family:'Bitstream Vera Sans Mono';-inkscape-font-specification:'Bitstream Vera Sans Mono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.190588;stroke-dasharray:none;stroke-opacity:1"
+         x="56.365475"
+         y="77.590004"
+         id="text1-0-4-0-0"><tspan
+           sodipodi:role="line"
+           id="tspan21"
+           x="56.365475"
+           y="77.590004"
+           style="stroke-width:0.190588">(3) Futás eredménye</tspan></text></g></g></svg>

@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="150mm"
+   height="90mm"
+   viewBox="0 0 150 90"
+   version="1.1"
+   id="svg1"
+   inkscape:version="1.3.1 (9b9bdc1480, 2023-11-25, custom)"
+   sodipodi:docname="interpreter.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     inkscape:zoom="2.0560856"
+     inkscape:cx="314.18926"
+     inkscape:cy="175.08999"
+     inkscape:window-width="1848"
+     inkscape:window-height="1016"
+     inkscape:window-x="72"
+     inkscape:window-y="27"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs1">
+    <marker
+       style="overflow:visible"
+       id="Triangle"
+       refX="0"
+       refY="0"
+       orient="auto-start-reverse"
+       inkscape:stockid="Triangle arrow"
+       markerWidth="1"
+       markerHeight="1"
+       viewBox="0 0 1 1"
+       inkscape:isstock="true"
+       inkscape:collect="always"
+       preserveAspectRatio="xMidYMid">
+      <path
+         transform="scale(0.5)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         id="path135" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="Triangle-4"
+       refX="0"
+       refY="0"
+       orient="auto-start-reverse"
+       inkscape:stockid="Triangle arrow"
+       markerWidth="1"
+       markerHeight="1"
+       viewBox="0 0 1 1"
+       inkscape:isstock="true"
+       inkscape:collect="always"
+       preserveAspectRatio="xMidYMid">
+      <path
+         transform="scale(0.5)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         id="path135-0" />
+    </marker>
+  </defs>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <g
+       id="g14"
+       transform="translate(-21.297768,-72.584562)">
+      <rect
+         style="fill:none;stroke:#000000;stroke-width:0.5;stroke-dasharray:2, 0.5;stroke-dashoffset:0;stroke-opacity:1"
+         id="rect1"
+         width="35.69701"
+         height="13.529764"
+         x="41.852142"
+         y="80.658257">
+        <title
+           id="title1">asd</title>
+      </rect>
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.68496px;font-family:'Bitstream Vera Sans Mono';-inkscape-font-specification:'Bitstream Vera Sans Mono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.232123;stroke-dasharray:none;stroke-opacity:1"
+         x="59.592529"
+         y="86.208725"
+         id="text1"><tspan
+           sodipodi:role="line"
+           id="tspan9"
+           x="59.592529"
+           y="86.208725">Forrás kód</tspan><tspan
+           sodipodi:role="line"
+           id="tspan10"
+           x="59.592529"
+           y="90.814926">(pl. py)</tspan></text>
+    </g>
+    <rect
+       style="fill:none;stroke:#000000;stroke-width:0.5;stroke-dasharray:1.5, 0.5;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect1-6-5"
+       width="35.69701"
+       height="13.529764"
+       x="20.65497"
+       y="53.916233">
+      <title
+         id="title1-8-8">asd</title>
+    </rect>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.68496px;font-family:'Bitstream Vera Sans Mono';-inkscape-font-specification:'Bitstream Vera Sans Mono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.232123;stroke-dasharray:none;stroke-opacity:1"
+       x="29.070868"
+       y="59.445072"
+       id="text1-0-6"><tspan
+         sodipodi:role="line"
+         id="tspan7"
+         x="29.070868"
+         y="59.445072"
+         style="text-align:start;text-anchor:start">Gépi kód </tspan><tspan
+         sodipodi:role="line"
+         id="tspan8"
+         x="29.070868"
+         y="64.05127"
+         style="text-align:start;text-anchor:start">(pl. exe)</tspan></text>
+    <rect
+       style="fill:#000000;fill-opacity:0;stroke:#000000;stroke-width:0.5;stroke-dasharray:none;stroke-opacity:1"
+       id="rect1-6"
+       width="35.69701"
+       height="13.529764"
+       x="20.69528"
+       y="30.976526">
+      <title
+         id="title1-8">asd</title>
+    </rect>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.68496px;font-family:'Bitstream Vera Sans Mono';-inkscape-font-specification:'Bitstream Vera Sans Mono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.232123;stroke-dasharray:none;stroke-opacity:1"
+       x="30.165133"
+       y="38.77338"
+       id="text1-0"><tspan
+         sodipodi:role="line"
+         id="tspan4"
+         x="30.165133"
+         y="38.77338">Fordító</tspan></text>
+    <path
+       style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.5;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#Triangle)"
+       d="m 38.402875,21.603455 0.14091,7.305393"
+       id="path11"
+       sodipodi:nodetypes="cc" />
+    <path
+       style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.5;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#Triangle-4)"
+       d="m 38.627777,44.62926 0.14091,7.26448"
+       id="path11-9"
+       sodipodi:nodetypes="cc" />
+    <rect
+       style="fill:#000000;fill-opacity:0;stroke:#000000;stroke-width:0.499999;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect14"
+       width="50.77914"
+       height="25.24135"
+       x="16.162413"
+       y="50.674091" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.68496px;font-family:'Bitstream Vera Sans Mono';-inkscape-font-specification:'Bitstream Vera Sans Mono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.232123;stroke-dasharray:none;stroke-opacity:1"
+       x="18.746088"
+       y="73.790237"
+       id="text1-0-3"><tspan
+         sodipodi:role="line"
+         id="tspan14"
+         x="18.746088"
+         y="73.790237">Operációs rendszer</tspan></text>
+    <g
+       id="g15"
+       transform="translate(-12.492661,-63.726015)">
+      <g
+         id="g14-6"
+         transform="translate(59.828258,12.183984)">
+        <rect
+           style="fill:none;stroke:#000000;stroke-width:0.5;stroke-dasharray:2, 0.5;stroke-dashoffset:0;stroke-opacity:1"
+           id="rect1-64"
+           width="35.69701"
+           height="13.529764"
+           x="41.852142"
+           y="80.658257">
+          <title
+             id="title1-0">asd</title>
+        </rect>
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.68496px;font-family:'Bitstream Vera Sans Mono';-inkscape-font-specification:'Bitstream Vera Sans Mono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.232123;stroke-dasharray:none;stroke-opacity:1"
+           x="59.592529"
+           y="86.208725"
+           id="text1-04"><tspan
+             sodipodi:role="line"
+             id="tspan9-6"
+             x="59.592529"
+             y="86.208725">Forrás kód</tspan><tspan
+             sodipodi:role="line"
+             id="tspan10-2"
+             x="59.592529"
+             y="90.814926">(pl. py)</tspan></text>
+      </g>
+      <rect
+         style="fill:#000000;fill-opacity:0;stroke:#000000;stroke-width:0.499999;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+         id="rect14-6"
+         width="50.77914"
+         height="25.24135"
+         x="97.001709"
+         y="90.690414" />
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.68496px;font-family:'Bitstream Vera Sans Mono';-inkscape-font-specification:'Bitstream Vera Sans Mono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.232123;stroke-dasharray:none;stroke-opacity:1"
+         x="99.401802"
+         y="113.12838"
+         id="text1-0-3-2"><tspan
+           sodipodi:role="line"
+           id="tspan15"
+           x="99.401802"
+           y="113.12838">Interpreter</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.68496px;font-family:'Bitstream Vera Sans Mono';-inkscape-font-specification:'Bitstream Vera Sans Mono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.232123;stroke-dasharray:none;stroke-opacity:1"
+         x="98.323364"
+         y="122.12609"
+         id="text1-0-3-6"><tspan
+           sodipodi:role="line"
+           id="tspan14-0"
+           x="98.323364"
+           y="122.12609">Operációs rendszer</tspan></text>
+      <rect
+         style="fill:#000000;fill-opacity:0;stroke:#000000;stroke-width:0.63307;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+         id="rect14-6-1"
+         width="56.370819"
+         height="36.450954"
+         x="94.205872"
+         y="88.39653" />
+    </g>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.68496px;font-family:'Bitstream Vera Sans Mono';-inkscape-font-specification:'Bitstream Vera Sans Mono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.232123;stroke-dasharray:none;stroke-opacity:1"
+       x="36.530102"
+       y="84.340408"
+       id="text1-0-8"><tspan
+         sodipodi:role="line"
+         id="tspan4-8"
+         x="36.530102"
+         y="84.340408">(a)</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.68496px;font-family:'Bitstream Vera Sans Mono';-inkscape-font-specification:'Bitstream Vera Sans Mono, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.232123;stroke-dasharray:none;stroke-opacity:1"
+       x="107.96092"
+       y="82.583389"
+       id="text1-0-8-8"><tspan
+         sodipodi:role="line"
+         id="tspan4-8-3"
+         x="107.96092"
+         y="82.583389">(b)</tspan></text>
+  </g>
+</svg>
