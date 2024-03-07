@@ -62,6 +62,8 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = '1_Introduction_to_Python';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -370,7 +372,6 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-none-tipus">A <code class="docutils literal notranslate"><span class="pre">None</span></code> típus</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tipusok-osszefoglalas">Típusok összefoglalás</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fuggveny-valtozok">Függvény változók</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nevtelen-vagy-lambda-fuggvenyek">Névtelen vagy <code class="docutils literal notranslate"><span class="pre">lambda</span></code> függvények</a></li>
 </ul>
@@ -452,7 +453,7 @@ függvényeket hívunk; ilyen például különboző mátrix műveletek a <code 
 </section>
 <section id="hello-world">
 <h2>Hello world!<a class="headerlink" href="#hello-world" title="Permalink to this heading">#</a></h2>
-<p>A “Hello world!” program egy olyan kód, ami a címben szereplő szöveget kiírja képernyőre. Ez egy olyan egyszerű program ami demonstrálja, hogy a fordító/fejlesztési környezet készen áll a használatra. További információ és példa “Hello world!” programok a <a class="reference external" href="https://en.wikipedia.org/wiki/%22Hello,_World!%22_program">wikipédián</a> található.</p>
+<p>A “Hello world!” program egy olyan kód, ami a címben szereplő szöveget írja ki a képernyőre. Ez egy olyan egyszerű program ami demonstrálja, hogy a fordító/fejlesztési környezet készen áll a használatra. További információ és példa “Hello world!” programok a <a class="reference external" href="https://en.wikipedia.org/wiki/%22Hello,_World!%22_program">wikipédián</a> található.</p>
 <p>Írjuk meg legelső Hello world programunkat, és próbáljuk meg értelmezni!</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -506,7 +507,7 @@ Törekedjünk értelemes változó nevek megadására, így könnyebben olvashat
 </section>
 <section id="egyszeru-tipusok">
 <h2>Egyszerű típusok<a class="headerlink" href="#egyszeru-tipusok" title="Permalink to this heading">#</a></h2>
-<p>Az egyszerű típusok, olyan típusok, amelyeket a programozási nyelv alapértelmezetten definiál. Pythonban egyszerű típusok például az egész, lebegőpontos szám, a szöveg, vagy a logikai érték (boolean). Ahogy az Excelben a celláknak, úgy a változóknak is van típusa, pl. dátum, szöveg, szám.</p>
+<p>Az egyszerű típusok, olyan típusok, amelyekből más típusok felépíthetőek, vagy rendszerezésükkel más összetett adattípusok vezethetőek le. Az egyszerű típusokat a programozási nyelv alapértelmezetten definiálja, így bármilyen könyvtár használata nélkül elérhetőek. Megjegyezzük, hogy ez nem zárja ki azt, hogy összetett adattípusokat a nyelv alapértelmezetten definiáljon, mint ahogy azt később látni fogjuk a listák, szótárak esetén. Pythonban egyszerű típusok például az egész, lebegőpontos szám, a szöveg, vagy a logikai érték (boolean). Ahogy az Excelben a celláknak, úgy a változóknak is van típusa, pl. dátum, szöveg, szám.</p>
 <p>Példa egész szám definiálása:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -522,6 +523,11 @@ Törekedjünk értelemes változó nevek megadására, így könnyebben olvashat
 </pre></div>
 </div>
 </div>
+</div>
+<p>A fenti kódban, először az <code class="docutils literal notranslate"><span class="pre">1</span></code>-t értékül adjuk a <code class="docutils literal notranslate"><span class="pre">test_int</span></code> voltozónak, majd annak értékét kiírjuk. A <code class="docutils literal notranslate"><span class="pre">type(...)</span></code> függvény megadja a változó típusát, amit a kiírásnál az utolsó sorban láthatunk.</p>
+<div class="note admonition">
+<p class="admonition-title">Kiegészítő anyag</p>
+<p>Erősen típusos nyelveknél a válozók értékadása két elkülünölő lépésből áll: a változó deklarálásából és annak inicializálásából. A deklarálás alatt a változó típusát adjuk meg, inicializáláskor pedig megadjuk annak kezőértékét. Nézzünk egy példát C++ nyelven: <code class="docutils literal notranslate"><span class="pre">int</span> <span class="pre">a</span> <span class="pre">=</span> <span class="pre">1;</span></code> Itt az <code class="docutils literal notranslate"><span class="pre">a</span></code> változó <code class="docutils literal notranslate"><span class="pre">int</span></code> (egész) típusát deklaráljuk, majd a változó értékének 1-t adunk. Az <code class="docutils literal notranslate"><span class="pre">a</span></code> változó típusa ezután nem változhat meg: annak mindenkor valamilyen egész típust kell tárolnia. Gyengén típusos nyelvek esetén - amilyen a Python is - a deklarálás és inicializálás nem válik el élesen. A változó típusa az inicializáláskor megadott értéket veszi fel, mely típus futás során dinamikusan bármikor megváltozhat.</p>
 </div>
 <p>Lebegőpontos szám definiálása:</p>
 <div class="cell docutils container">
@@ -539,26 +545,12 @@ Törekedjünk értelemes változó nevek megadására, így könnyebben olvashat
 </div>
 </div>
 </div>
+<p>Láthatjuk, hogy a változó float, azaz lebegőpontos (tizedestört) számot vett fel.</p>
 <div class="warning admonition">
 <p class="admonition-title">Figyelem</p>
 <p>A tizedes jel a programozási nyelvek világában a pont <code class="docutils literal notranslate"><span class="pre">.</span></code> nem pedig a vessző <code class="docutils literal notranslate"><span class="pre">,</span></code>. Ez egy fontos különbség az Excelhez képest, ahol a lokalizációs beállításoktól függően, lehetőségünk van tizedes vessző használatára. A pont használatának oka, hogy a programozási nyelveket elsődlegesen az angolszász világ terjesztette el, és a angol nyelv a tizedes pontot használja. Ugyancsak vegyük észre, hogy nem áll módunkban az ezresek jelőlése sem ponttal, sem pedig vesszővel.</p>
 </div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">test_result</span> <span class="o">=</span> <span class="n">test_float</span> <span class="o">+</span> <span class="n">test_int</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">test_result</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">test_result</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.13242
-&lt;class &#39;float&#39;&gt;
-</pre></div>
-</div>
-</div>
-</div>
-<p>Logikai érték (boolean):</p>
+<p>Egy másik fontos egyszerű típus a logikai érték (<code class="docutils literal notranslate"><span class="pre">bool</span></code>):</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">test_logical</span> <span class="o">=</span> <span class="kc">True</span>
@@ -578,7 +570,7 @@ False
 </div>
 </div>
 </div>
-<p>Értelmezzük a következő kifejezést! Értsük meg az értékadás és összehasonlítás közötti különbséget!</p>
+<p>Értelmezzük a következő kifejezést! Vegyük észre hogy a <code class="docutils literal notranslate"><span class="pre">==</span></code> összehasonlítást, míg az <code class="docutils literal notranslate"><span class="pre">=</span></code> az értékadást jelentő egyenlőség jelek. Az összehasonítás eredménye True vagy False, azaz igaz vagy hamis érték lehet, aminek a típusa <code class="docutils literal notranslate"><span class="pre">bool</span></code>. Az alábbi kód a <code class="docutils literal notranslate"><span class="pre">False</span></code> értéket fogja kiírni, mivel a <code class="docutils literal notranslate"><span class="pre">1</span> <span class="pre">==</span> <span class="pre">2'</span> <span class="pre">kifejezés</span> <span class="pre">értéke</span> </code>False<code class="docutils literal notranslate"><span class="pre">,</span> <span class="pre">amit</span> <span class="pre">értékül</span> <span class="pre">adunk</span> <span class="pre">a</span> </code>test_logic` változónak.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">test_logical</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">==</span> <span class="mi">2</span><span class="p">)</span>
@@ -592,6 +584,7 @@ False
 </div>
 </div>
 </div>
+<p>Ezzel szemben az alábbi kód a <code class="docutils literal notranslate"><span class="pre">True</span></code> értéket fogja kiírni, mivel a <code class="docutils literal notranslate"><span class="pre">1</span> <span class="pre">==</span> <span class="pre">1</span></code> kifejezés értéke <code class="docutils literal notranslate"><span class="pre">True</span></code>, amit értékül adunk a <code class="docutils literal notranslate"><span class="pre">test_logic</span></code> változónak.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">test_logical</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span>
@@ -605,7 +598,7 @@ False
 </div>
 </div>
 </div>
-<p>Használhatunk logikai kifejezéseket, mint például <code class="docutils literal notranslate"><span class="pre">and</span></code>, <code class="docutils literal notranslate"><span class="pre">or</span></code>, <code class="docutils literal notranslate"><span class="pre">not</span></code>:</p>
+<p>Pythonban elérhetőek logikai műveleteket, mint például <code class="docutils literal notranslate"><span class="pre">and</span></code>, <code class="docutils literal notranslate"><span class="pre">or</span></code>, <code class="docutils literal notranslate"><span class="pre">not</span></code>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="ow">not</span> <span class="kc">True</span><span class="p">)</span>
@@ -624,7 +617,12 @@ False
 </div>
 </div>
 </div>
-<p>Ellenőrizzük le egy <a class="reference external" href="https://hu.wikipedia.org/wiki/De_Morgan-azonoss%C3%A1gok">De Morgan</a> azonosságot:</p>
+<p>Logikai műveletek eredményeit <a class="reference external" href="https://hu.scratch-wiki.info/wiki/Igazs%C3%A1gt%C3%A1bla">igazságtáblákba</a> foglalhatjuk. Néhány gyakran használt szabály:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">or</span></code> kifejezés akkor igaz ha <strong>valamelyik</strong> operandus igaz, és</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">and</span></code> kifejezés akkor igaz ha <strong>mindkét</strong> operandus igaz.</p></li>
+</ul>
+<p>Hasonlóan a valós számok körében megismert azonossádokhoz, a logikai műveleteken esetén is ismert számos azonosság. Például ellenőrízzük le <a class="reference external" href="https://hu.wikipedia.org/wiki/De_Morgan-azonoss%C3%A1gok">De Morgan</a> azonosságot:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">((</span><span class="ow">not</span> <span class="p">(</span><span class="kc">True</span> <span class="ow">and</span> <span class="kc">False</span><span class="p">))</span> <span class="o">==</span> <span class="p">(</span><span class="ow">not</span> <span class="kc">True</span> <span class="ow">or</span> <span class="ow">not</span> <span class="kc">False</span><span class="p">))</span>
@@ -637,23 +635,17 @@ False
 </div>
 </div>
 </div>
-<p>És még egy példa:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="mi">1</span>
+<div class="important admonition">
+<p class="admonition-title">Feladat</p>
+<p>Gyakorlásképpen nézzük meg mit ír ki a következő kód!</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="mi">1</span>
 <span class="n">b</span> <span class="o">=</span> <span class="mi">2</span>
 <span class="n">test_logical</span> <span class="o">=</span> <span class="p">(</span><span class="n">a</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="ow">or</span> <span class="ow">not</span> <span class="p">(</span><span class="n">a</span> <span class="o">==</span> <span class="n">b</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">test_logical</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
-</pre></div>
-</div>
-</div>
-</div>
-<p>Szöveg definiálása dupla vagy szimpla aposztrófok között lehetséges akövetkező módon:</p>
+<p>Másik gyakran használt egyszerű típus a szövek. Szöveg definiálása dupla vagy szimpla aposztrófok között lehetséges a következő módon:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">variable</span> <span class="o">=</span> <span class="s2">&quot;hello&quot;</span>
@@ -683,7 +675,7 @@ hello
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span>  <span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">13</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span>  <span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">11</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
     <span class="n">variable</span> <span class="o">=</span> <span class="s1">&#39;hello&quot; # Error</span>
                               <span class="o">^</span>
 <span class="ne">SyntaxError</span>: EOL while scanning string literal
@@ -691,7 +683,7 @@ hello
 </div>
 </div>
 </div>
-<p>… de ez így már jó:</p>
+<p>De <code class="docutils literal notranslate"><span class="pre">'</span></code> és <code class="docutils literal notranslate"><span class="pre">&quot;</span></code> egymásba ágyazhatóak, mint például:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Az mondta: &quot;menj tanulni!&quot;&#39;</span><span class="p">)</span>
@@ -707,8 +699,282 @@ hello
 </section>
 <section id="muveletek-egyszeru-tipusokkal">
 <h2>Műveletek egyszerű típusokkal<a class="headerlink" href="#muveletek-egyszeru-tipusokkal" title="Permalink to this heading">#</a></h2>
-<p>Számokkal és változókkal történő matematikai műveletek úgy működnek, ahogy ezt máshol is megszokhattuk, pl. Excelbe.</p>
-<p>Például egy kód részlet, amely a kör kerületét adja meg:</p>
+<p>Műveleteket változók között definiálhatunk. Unáris műveleteken, olyan műveleteket értünk, melynek egy operandusa van, pl. abszolút érték művelete. Bináris műveletnek két operandusa van, a leggyakrabban használt műveletek ilyenek, pl. összeadás, szorzás.</p>
+<p>Szám típusú változókkal történő matematikai műveletek úgy működnek, ahogy ezt máshol is megszokhattuk, pl. Excelbe.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pi</span> <span class="o">=</span> <span class="mf">3.14</span>
+<span class="n">r</span> <span class="o">=</span> <span class="mf">5.0</span>
+<span class="n">K</span> <span class="o">=</span> <span class="mf">2.0</span><span class="o">*</span><span class="n">r</span><span class="o">*</span><span class="n">pi</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;K értéke:&#39;</span><span class="p">,</span> <span class="n">K</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>K értéke: 31.400000000000002
+</pre></div>
+</div>
+</div>
+</div>
+<p>A műveletek kiértékelése balról jobbra történik a zárójelek és a matematikában megszokott precedenciák (műveleti sorrend) szerint. Törtek esetén különösen figyeljünk a matematikában megszokott kifejezések helyes kódolására. Erre példaként nézzük a <span class="math notranslate nohighlight">\(\dfrac{a}{b*2}\)</span> kifejezést:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">b</span> <span class="o">=</span> <span class="mf">2.0</span>
+<span class="n">a</span> <span class="o">=</span> <span class="mf">2.0</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="o">/</span><span class="n">b</span><span class="o">*</span><span class="mi">2</span><span class="p">)</span>     <span class="c1"># nem az eredeti tört kifejezés</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="o">/</span><span class="p">(</span><span class="n">b</span><span class="o">*</span><span class="mi">2</span><span class="p">))</span>   <span class="c1"># helyesen</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2.0
+0.5
+</pre></div>
+</div>
+</div>
+</div>
+<p>Az összeadás művelete szövegek esetén is értelmezett. Ekkor a szövegek összefűzéséről, vagy konkatenációjáról beszélhetünk, amikor két szöveg egy olyan új szöveggé válik, amely a bal oldali majd jobb oldali szövegek karaktereit tartalmazza:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hello_world</span> <span class="o">=</span> <span class="s2">&quot;Hello &quot;</span> <span class="o">+</span> <span class="s2">&quot;world!&quot;</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">hello_world</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Hello world!
+</pre></div>
+</div>
+</div>
+</div>
+<p>És egy másik példa a függvény parametér listájában megadott műveletre:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;Joe&quot;</span><span class="p">;</span>
+<span class="n">hello</span> <span class="o">=</span> <span class="s2">&quot;Hello&quot;</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">hello</span> <span class="o">+</span> <span class="s2">&quot; &quot;</span> <span class="o">+</span> <span class="n">name</span> <span class="o">+</span> <span class="s2">&quot;!&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Hello Joe!
+</pre></div>
+</div>
+</div>
+</div>
+<p>A fenti kódrészlet utolsó sorát a következő képpen kell olvasni:</p>
+<ol class="arabic simple">
+<li><p>először a <code class="docutils literal notranslate"><span class="pre">hello</span> <span class="pre">+</span> <span class="pre">&quot;</span> <span class="pre">&quot;</span> <span class="pre">+</span> <span class="pre">name</span> <span class="pre">+</span> <span class="pre">&quot;!&quot;</span></code> kifejezés balról jobbra kerül végrehajtásra, mely az egyes szöveg típusok konkatenációjat jelentik. Így egy köztes érték jön létre, mely a <code class="docutils literal notranslate"><span class="pre">Hello</span> <span class="pre">Joe!</span></code> szöveg,</p></li>
+<li><p>majd a köztes érték kerül a függvénynek átadásra. A függvényekről, még később bővebben lesz szó.</p></li>
+</ol>
+<p>Ezután nézzük meg a hatványozást Pythonban, melynek műveleti jele a <code class="docutils literal notranslate"><span class="pre">**</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">T</span> <span class="o">=</span> <span class="n">r</span><span class="o">**</span><span class="mf">2.0</span><span class="o">*</span><span class="n">pi</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">T</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>78.5
+</pre></div>
+</div>
+</div>
+</div>
+<p>Hatványozással négyzet gyök is kifejezhető. Az alábbi példában, egy új alapértelmezetten definiált típust is láthatunk, amikor a -9 negyzetgyökét vonjuk:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="o">-</span><span class="mi">9</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="o">**</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(1.8369701987210297e-16+3j)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="important admonition">
+<p class="admonition-title">Feladat</p>
+<p>Egy példa, melyben minden alapművelet szerepel. Mit csinál az alábbi kód? Mit fog kiírni a kód?</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span>
+<span class="n">x1</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="n">b</span> <span class="o">+</span> <span class="p">(</span><span class="n">b</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">4</span><span class="o">*</span><span class="n">a</span><span class="o">*</span><span class="n">c</span><span class="p">)</span><span class="o">**</span><span class="mf">0.5</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">a</span><span class="p">)</span>
+<span class="n">x2</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="n">b</span> <span class="o">-</span> <span class="p">(</span><span class="n">b</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">4</span><span class="o">*</span><span class="n">a</span><span class="o">*</span><span class="n">c</span><span class="p">)</span><span class="o">**</span><span class="mf">0.5</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">a</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x1</span> <span class="o">==</span> <span class="n">x2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="tipus-konverziok">
+<h2>Típus konverziók<a class="headerlink" href="#tipus-konverziok" title="Permalink to this heading">#</a></h2>
+<p>Nagy általánosságban, bináris műveleteket csak azonos típusok között értelmezzünk, melynek eredménye a kérdéses típus lesz. A fenti példában nézzük meg a változók típusát:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pi</span> <span class="o">=</span> <span class="mf">3.14</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;pi típusa:&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="n">pi</span><span class="p">))</span>
+
+<span class="n">r</span> <span class="o">=</span> <span class="mf">5.0</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;r típusa:&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="n">r</span><span class="p">))</span>
+
+<span class="n">K</span> <span class="o">=</span> <span class="mf">2.0</span><span class="o">*</span><span class="n">r</span><span class="o">*</span><span class="n">pi</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;K értéke:&#39;</span><span class="p">,</span> <span class="n">K</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;K típusa: &#39;</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="n">K</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>pi típusa: &lt;class &#39;float&#39;&gt;
+r típusa: &lt;class &#39;float&#39;&gt;
+K értéke: 31.400000000000002
+K típusa:  &lt;class &#39;float&#39;&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<p>Amennyiben a két típus nem azonos, akkor típuskonverzióra van szükség. Nézzünk meg egy példát, amely során <code class="docutils literal notranslate"><span class="pre">int</span></code> típust akarunk <code class="docutils literal notranslate"><span class="pre">str</span></code> típussal összeadni:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">age</span> <span class="o">=</span> <span class="mi">22</span>
+<span class="n">message</span> <span class="o">=</span> <span class="n">age</span> <span class="o">+</span> <span class="s2">&quot; éves vagyok&quot;</span> <span class="c1"># Error: TypeError: unsupported operand type(s) for +: &#39;int&#39; and &#39;str&#39;</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">42</span><span class="p">],</span> <span class="n">line</span> <span class="mi">2</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="n">age</span> <span class="o">=</span> <span class="mi">22</span>
+<span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">message</span> <span class="o">=</span> <span class="n">age</span> <span class="o">+</span> <span class="s2">&quot; éves vagyok&quot;</span> <span class="c1"># Error: TypeError: unsupported operand type(s) for +: &#39;int&#39; and &#39;str&#39;</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="nb">print</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+
+<span class="ne">TypeError</span>: unsupported operand type(s) for +: &#39;int&#39; and &#39;str&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>Hibát kapunk, mivel, habár egészek és szövegek között az összeadás művelete értelmezett, de egész és szöveg között nem. Nézzük meg az összeadásban resztevevő opreandusok típusát:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">age</span> <span class="o">=</span> <span class="mi">22</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;bal operandus: &#39;</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="n">age</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;jobb operandus: &#39;</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="s2">&quot; éves vagyok!&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>bal operandus:  &lt;class &#39;int&#39;&gt;
+jobb operandus:  &lt;class &#39;str&#39;&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<p>Tehát típuskonverzióra van szükség. Valamilyen típust szöveggé az <code class="docutils literal notranslate"><span class="pre">str()</span></code> függvény segítségével tudunk szöveg típussá alakítani:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">age</span> <span class="o">=</span> <span class="mi">22</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;age típusa:&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="n">age</span><span class="p">))</span>
+
+<span class="n">age_str</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">age</span><span class="p">)</span> <span class="c1"># &lt;-- típus konverzió az  str(..) függvény segítségével</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;age_str típusa:&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="n">age_str</span><span class="p">))</span>
+
+<span class="n">message</span> <span class="o">=</span> <span class="n">age_str</span> <span class="o">+</span> <span class="s2">&quot; éves vagyok!&quot;</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;message értéke:&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="n">age_str</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>age típusa: &lt;class &#39;int&#39;&gt;
+age_str típusa: &lt;class &#39;str&#39;&gt;
+message értéke: &lt;class &#39;str&#39;&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<p>Vagy röviden:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">age</span> <span class="o">=</span> <span class="mi">22</span>
+<span class="n">message</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">age</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; éves vagyok!&quot;</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>22 éves vagyok!
+</pre></div>
+</div>
+</div>
+</div>
+<div class="important admonition">
+<p class="admonition-title">Feladat</p>
+<p>Valamilye típust egésszé az <code class="docutils literal notranslate"><span class="pre">int()</span></code>, valamint lebegő pontossá a <code class="docutils literal notranslate"><span class="pre">float()</span></code> függvényekkel konvertálhatunk. Nézzük meg mit ír ki az alábbi kód. Mi történik a <code class="docutils literal notranslate"><span class="pre">float</span></code> típussal amikor <code class="docutils literal notranslate"><span class="pre">int</span></code> típusra konvertálódik?</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pi</span> <span class="o">=</span> <span class="mf">3.1415</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;val_float értéke: &#39;</span><span class="p">,</span> <span class="n">pi</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;val_float típusa: &#39;</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="n">pi</span><span class="p">))</span>
+
+<span class="n">pi_int</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">pi</span><span class="p">)</span> <span class="c1"># típuskonverzió float -&gt; int</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;val_float értéke: &#39;</span><span class="p">,</span> <span class="n">pi_int</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;val_float típusa: &#39;</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="n">pi_int</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<p>Nézzük meg a következő példát:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">test_float</span> <span class="o">=</span> <span class="mf">1.2</span>
+<span class="n">test_int</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">test_result</span> <span class="o">=</span> <span class="n">test_float</span> <span class="o">*</span> <span class="n">test_int</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">test_result</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.2
+</pre></div>
+</div>
+</div>
+</div>
+<p>Nézzük meg a műveletben résztvevő változók típusát:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">test_float</span> <span class="o">=</span> <span class="mf">1.2</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">test_float</span><span class="p">))</span>
+
+<span class="n">test_int</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">test_int</span><span class="p">))</span>
+
+<span class="n">test_result</span> <span class="o">=</span> <span class="n">test_float</span> <span class="o">+</span> <span class="n">test_int</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">test_result</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;float&#39;&gt;
+&lt;class &#39;int&#39;&gt;
+&lt;class &#39;float&#39;&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<p>Láthatuk, hogy az összeadás bal oldalán lebegőpontos, jobb oldalán egész típus található, az eredmény pedig lebegőpontos. Talán elsőre triviális, de vegyük észre, hogy a háttérben típus konverzió történik. Ez a típus konverzió automatikus. A következő lépések történnek a háttérben, amikor a <code class="docutils literal notranslate"><span class="pre">test_result</span> <span class="pre">=</span> <span class="pre">test_float</span> <span class="pre">+</span> <span class="pre">test_int</span></code> művelet végrehajtódik:</p>
+<ol class="arabic simple">
+<li><p>Mivel a szorzás két oldán különböző típus szerepel, a <code class="docutils literal notranslate"><span class="pre">test_int</span></code> változó <code class="docutils literal notranslate"><span class="pre">int</span></code> típusa <code class="docutils literal notranslate"><span class="pre">float</span></code> típussá konvertálódik.</p></li>
+<li><p>Ez a közbenső <code class="docutils literal notranslate"><span class="pre">float</span></code> típussú érték kerül szorzásra a <code class="docutils literal notranslate"><span class="pre">test_float</span></code> <code class="docutils literal notranslate"><span class="pre">float</span></code> típusú változóban található értékkel.</p></li>
+<li><p>Mindkét oldalon <code class="docutils literal notranslate"><span class="pre">float</span></code> típus található, így az eredmény is <code class="docutils literal notranslate"><span class="pre">float</span></code> lesz, amely a <code class="docutils literal notranslate"><span class="pre">test_result</span></code> változóba kerül.</p></li>
+</ol>
+<p>Más szavakkal a következő kód fog lefutni:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">test_result</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">test_float</span><span class="p">)</span> <span class="o">+</span> <span class="n">test_int</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Egy másik kód részlet, amely a kör kerületét adja meg:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pi</span> <span class="o">=</span> <span class="mf">3.14</span>
@@ -726,177 +992,7 @@ hello
 </div>
 </div>
 </div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="mi">4</span>
-<span class="n">b</span> <span class="o">=</span> <span class="mf">2.5</span>
-<span class="n">c</span> <span class="o">=</span> <span class="mi">4</span><span class="o">*</span><span class="mf">2.5</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">c</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>10.0
-&lt;class &#39;float&#39;&gt;
-</pre></div>
-</div>
-</div>
-</div>
-<p>Illetve a kör kerülete. A hatványozás jele Pythonban <code class="docutils literal notranslate"><span class="pre">**</span></code>.</p>
-<p>✅ <em>Vegyük észre, hogy az előző cellában definiált változókat újra tudjuk használni a következő cellában is.</em></p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">T</span> <span class="o">=</span> <span class="n">r</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">pi</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">T</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>78.5
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="o">-</span><span class="mi">9</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="o">**</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(1.8369701987210297e-16+3j)
-</pre></div>
-</div>
-</div>
-</div>
-<p>Most nézzünk néhány példát műveletekre szöveggel.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hello_world</span> <span class="o">=</span> <span class="s2">&quot;Hello &quot;</span> <span class="o">+</span> <span class="s2">&quot;world!&quot;</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">hello_world</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Hello world!
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;Joe&quot;</span><span class="p">;</span>
-<span class="n">hello</span> <span class="o">=</span> <span class="s2">&quot;Hello&quot;</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">hello</span> <span class="o">+</span> <span class="s2">&quot; &quot;</span> <span class="o">+</span> <span class="n">name</span> <span class="o">+</span> <span class="s2">&quot;!&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Hello Joe!
-</pre></div>
-</div>
-</div>
-</div>
-</section>
-<section id="tipus-konverziok">
-<h2>Típus konverziók<a class="headerlink" href="#tipus-konverziok" title="Permalink to this heading">#</a></h2>
-<p>Számot át kell konvertálni szöveggé, mielőtt ki tudnánk iratni.</p>
-<p>✅ <em>Hasonló konverziós problémával találkozhatunk Excelben is.</em></p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">age</span> <span class="o">=</span> <span class="mi">22</span>
-<span class="n">message</span> <span class="o">=</span> <span class="n">age</span> <span class="o">+</span> <span class="s2">&quot; éves vagyok&quot;</span> <span class="c1"># Error: TypeError: unsupported operand type(s) for +: &#39;int&#39; and &#39;str&#39;</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="nn">&lt;ipython-input-38-a95cfeed8d21&gt;</span> in <span class="ni">&lt;cell line: 2&gt;</span><span class="nt">()</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="n">age</span> <span class="o">=</span> <span class="mi">22</span>
-<span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">message</span> <span class="o">=</span> <span class="n">age</span> <span class="o">+</span> <span class="s2">&quot; éves vagyok&quot;</span> <span class="c1"># Error: TypeError: unsupported operand type(s) for +: &#39;int&#39; and &#39;str&#39;</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="nb">print</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
-
-<span class="ne">TypeError</span>: unsupported operand type(s) for +: &#39;int&#39; and &#39;str&#39;
-</pre></div>
-</div>
-</div>
-</div>
-<p>Át kell konvertálni az int típusú változót szöveggé az <code class="docutils literal notranslate"><span class="pre">str</span></code> függvény segítségével:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">age</span> <span class="o">=</span> <span class="mi">22</span>
-<span class="n">message</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">age</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; éves vagyok!&quot;</span> <span class="c1"># először az int-t sztringé konvertáljuk</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>22 éves vagyok!
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">age</span><span class="p">,</span> <span class="s2">&quot;éves vagyok&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>22 éves vagyok
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="mf">1.5</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">a</span><span class="p">))</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">a</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">a</span><span class="p">)))</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">a</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">a</span><span class="p">)))</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.5
-&lt;class &#39;float&#39;&gt;
-1.5
-&lt;class &#39;str&#39;&gt;
-1
-&lt;class &#39;int&#39;&gt;
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">b</span> <span class="o">=</span> <span class="mi">10</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">b</span><span class="p">))</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">b</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">b</span><span class="p">)))</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>10
-&lt;class &#39;int&#39;&gt;
-10.0
-&lt;class &#39;float&#39;&gt;
-</pre></div>
-</div>
-</div>
-</div>
+<p>Itt az <code class="docutils literal notranslate"><span class="pre">r</span></code> sugár <code class="docutils literal notranslate"><span class="pre">int</span></code> típusként van definiálva, melynek értéke a szorzás művelet során <code class="docutils literal notranslate"><span class="pre">float</span></code> típusúvá válik. Vegyük észre, hogyha a <code class="docutils literal notranslate"><span class="pre">pi</span></code> <code class="docutils literal notranslate"><span class="pre">float</span></code> típus kerülne <code class="docutils literal notranslate"><span class="pre">int</span></code> konverzióra, akkor rossz eredményt kapnánk, hiszen a tizedes értékek levágásra kerülnének. Elmondható tehát, hogy automatikus típuskonverzió esetén a kisebb halmazú típus kerül a nagyobb halmazú típusra konvertálásra.</p>
 </section>
 <section id="fuggvenyek">
 <h2>Függvények<a class="headerlink" href="#fuggvenyek" title="Permalink to this heading">#</a></h2>
@@ -1045,9 +1141,9 @@ Egy 5 sugarú kör területe: 78.53625
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="nn">&lt;ipython-input-52-64f0079a279d&gt;</span> in <span class="ni">&lt;cell line: 5&gt;</span><span class="nt">()</span>
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">34</span><span class="p">],</span> <span class="n">line</span> <span class="mi">5</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span>   <span class="n">name_in_hello</span> <span class="o">=</span> <span class="s1">&#39;Anna&#39;</span>
 <span class="g g-Whitespace">      </span><span class="mi">3</span>   <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Hello &#39;</span> <span class="o">+</span> <span class="n">name_in_hello</span> <span class="o">+</span> <span class="s2">&quot;!&quot;</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span> 
 <span class="ne">----&gt; </span><span class="mi">5</span> <span class="nb">print</span><span class="p">(</span><span class="n">name_in_hello</span><span class="p">)</span> <span class="c1"># &lt;-- Error: NameError: name &#39;name_in_hello&#39; is not defined</span>
 
 <span class="ne">NameError</span>: name &#39;name_in_hello&#39; is not defined
@@ -1147,124 +1243,6 @@ name: Anna
 <p>Ez a rész kiegészítő anyag és csak a függvényhívások mélyebb megértését segíti.</p>
 </div>
 <p>Hívási veremről további info: <a class="reference external" href="https://towardsdatascience.com/python-stack-frames-and-tail-call-optimization-4d0ea55b0542">https://towardsdatascience.com/python-stack-frames-and-tail-call-optimization-4d0ea55b0542</a></p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">inspect</span>
-<span class="n">main_scope_stack_length</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">inspect</span><span class="o">.</span><span class="n">stack</span><span class="p">(</span><span class="n">context</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
-<span class="k">def</span> <span class="nf">print_stack</span><span class="p">():</span>
-  <span class="n">valid_stack_depth</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">inspect</span><span class="o">.</span><span class="n">stack</span><span class="p">(</span><span class="n">context</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span> <span class="o">-</span> <span class="n">main_scope_stack_length</span>
-  <span class="n">frame_str</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
-  <span class="n">frameinfo</span> <span class="o">=</span> <span class="n">inspect</span><span class="o">.</span><span class="n">stack</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span>
-  <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;====================&#39;</span><span class="p">)</span>
-  <span class="nb">print</span><span class="p">(</span><span class="n">frameinfo</span><span class="o">.</span><span class="n">function</span><span class="p">)</span>
-  <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;====================&#39;</span><span class="p">)</span>
-  <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">valid_stack_depth</span><span class="p">):</span>
-    <span class="n">frameinfo</span> <span class="o">=</span> <span class="n">inspect</span><span class="o">.</span><span class="n">stack</span><span class="p">()[</span><span class="n">k</span><span class="p">]</span>
-    <span class="n">frame_str</span> <span class="o">+=</span> <span class="n">frameinfo</span><span class="o">.</span><span class="n">function</span> <span class="o">+</span> <span class="s2">&quot;  depth=&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">k</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; vars: &quot;</span>
-    <span class="k">for</span> <span class="n">var</span> <span class="ow">in</span> <span class="n">frameinfo</span><span class="o">.</span><span class="n">frame</span><span class="o">.</span><span class="n">f_locals</span><span class="p">:</span>
-      <span class="n">frame_str</span> <span class="o">+=</span> <span class="n">var</span> <span class="o">+</span> <span class="s2">&quot;=&quot;</span> <span class="o">+</span> <span class="n">frameinfo</span><span class="o">.</span><span class="n">frame</span><span class="o">.</span><span class="n">f_locals</span><span class="p">[</span><span class="n">var</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;, &quot;</span>
-    <span class="n">frame_str</span> <span class="o">+=</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span>
-  <span class="nb">print</span><span class="p">(</span><span class="n">frame_str</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="important admonition">
-<p class="admonition-title">Feladat</p>
-<p>Vizsgáljuk meg a hívási vermet (<em>call stack</em>) az alábbi példában.</p>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="s1">&#39;global&#39;</span>
-<span class="n">b</span> <span class="o">=</span> <span class="s1">&#39;global&#39;</span>
-<span class="n">c</span> <span class="o">=</span> <span class="s1">&#39;global&#39;</span>
-
-<span class="k">def</span> <span class="nf">my_func</span><span class="p">(</span><span class="n">a</span><span class="p">):</span>  
-  <span class="n">print_stack</span><span class="p">()</span>  
-  <span class="n">b</span> <span class="o">=</span> <span class="s1">&#39;my_func&#39;</span>
-  <span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span>
-
-<span class="k">def</span> <span class="nf">my_func_2</span><span class="p">(</span><span class="n">a</span><span class="p">):</span>
-  <span class="n">print_stack</span><span class="p">()</span>  
-  <span class="n">b</span> <span class="o">=</span> <span class="s1">&#39;my_func_2&#39;</span>
-  <span class="n">my_func</span><span class="p">(</span><span class="s1">&#39;my_func_2&#39;</span><span class="p">)</span>
-  <span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span>
-
-<span class="k">def</span> <span class="nf">my_func_3</span><span class="p">(</span><span class="n">a</span><span class="p">):</span>
-  <span class="n">print_stack</span><span class="p">()</span>  
-  <span class="n">b</span> <span class="o">=</span> <span class="s1">&#39;my_func_3&#39;</span>
-  <span class="n">my_func_2</span><span class="p">(</span><span class="s1">&#39;my_func_3&#39;</span><span class="p">)</span>  
-  <span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span>
-
-<span class="n">my_func_3</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>====================
-my_func_3
-====================
-my_func_3  depth=1 vars: a=global, 
-
-====================
-my_func_2
-====================
-my_func_2  depth=1 vars: a=my_func_3, 
-my_func_3  depth=2 vars: a=global, b=my_func_3, 
-
-====================
-my_func
-====================
-my_func  depth=1 vars: a=my_func_2, 
-my_func_2  depth=2 vars: a=my_func_3, b=my_func_2, 
-my_func_3  depth=3 vars: a=global, b=my_func_3, 
-
-my_func_2 my_func global
-my_func_3 my_func_2 global
-global my_func_3 global
-</pre></div>
-</div>
-</div>
-</div>
-<p>A “stack overflow” hibára példa és rekurzió:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">function_calling_itself</span><span class="p">(</span><span class="n">a</span><span class="p">):</span>
-  <span class="n">a</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="mi">1</span>
-  <span class="n">function_calling_itself</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">function_calling_itself</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="c1"># Error: RecursionError: maximum recursion depth exceeded</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">RecursionError</span><span class="g g-Whitespace">                            </span>Traceback (most recent call last)
-<span class="nn">&lt;ipython-input-61-e00d11853eae&gt;</span> in <span class="ni">&lt;cell line: 1&gt;</span><span class="nt">()</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">function_calling_itself</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="c1"># Error: RecursionError: maximum recursion depth exceeded</span>
-
-<span class="nn">&lt;ipython-input-58-0e362b951d9e&gt;</span> in <span class="ni">function_calling_itself</span><span class="nt">(a)</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="k">def</span> <span class="nf">function_calling_itself</span><span class="p">(</span><span class="n">a</span><span class="p">):</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span>   <span class="n">a</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="mi">1</span>
-<span class="ne">----&gt; </span><span class="mi">3</span>   <span class="n">function_calling_itself</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
-
-<span class="o">...</span> <span class="n">last</span> <span class="mi">1</span> <span class="n">frames</span> <span class="n">repeated</span><span class="p">,</span> <span class="kn">from</span> <span class="nn">the</span> <span class="n">frame</span> <span class="n">below</span> <span class="o">...</span>
-
-<span class="nn">&lt;ipython-input-58-0e362b951d9e&gt;</span> in <span class="ni">function_calling_itself</span><span class="nt">(a)</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="k">def</span> <span class="nf">function_calling_itself</span><span class="p">(</span><span class="n">a</span><span class="p">):</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span>   <span class="n">a</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="mi">1</span>
-<span class="ne">----&gt; </span><span class="mi">3</span>   <span class="n">function_calling_itself</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
-
-<span class="ne">RecursionError</span>: maximum recursion depth exceeded
-</pre></div>
-</div>
-</div>
-</div>
 </section>
 <section id="rekurzios-fuggvenyek">
 <h3>Rekurziós függvények<a class="headerlink" href="#rekurzios-fuggvenyek" title="Permalink to this heading">#</a></h3>
@@ -1303,7 +1281,7 @@ global my_func_3 global
 </section>
 <section id="fuggveny-konytarak-es-import">
 <h2>Függvény könytárak és <code class="docutils literal notranslate"><span class="pre">import</span></code><a class="headerlink" href="#fuggveny-konytarak-es-import" title="Permalink to this heading">#</a></h2>
-<p>A python egyik nagy erőssége, és az ok, hogy annyira népszerű, a kiterjedt és sokféle feladatra használható ingyenes függvénykönyvtárai. Leegyszerűsítve egy könyvtár hasonló függvények gyűjteménye. Egy könyvátrat az <code class="docutils literal notranslate"><span class="pre">import</span></code> kulcsszóval tudunk behúzni:</p>
+<p>A python egyik nagy erőssége, és az ok, hogy annyira népszerű, a kiterjedt és sokféle feladatra használható ingyenes függvénykönyvtárai. Leegyszerűsítve egy könyvtár hasonló változók és függvények gyűjteménye. Egy könyvtárat az <code class="docutils literal notranslate"><span class="pre">import</span></code> kulcsszóval tudunk betölteni:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">math</span>
@@ -1311,7 +1289,7 @@ global my_func_3 global
 </div>
 </div>
 </div>
-<p>Egy könytáron belüli függvényre hivatkozni . segítségével tudunk, például:</p>
+<p>Egy könytáron belüli változóra vagy függvényre hivatkozni a könyvtár neve és a <code class="docutils literal notranslate"><span class="pre">.</span></code> jel segítségével tudunk, például:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span>
@@ -1324,12 +1302,12 @@ global my_func_3 global
 </div>
 </div>
 </div>
+<p>A következő példa, a könyvtár használatát mutatja be egy korábbi függvényünkben. Itt a <code class="docutils literal notranslate"><span class="pre">pi</span></code> értékét nem mi definiáljuk, hanem a könyvtárból vesszük:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">circle_area</span><span class="p">(</span><span class="n">r</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
   <span class="n">T</span> <span class="o">=</span> <span class="n">r</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span>
   <span class="k">return</span> <span class="n">T</span>
-
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Egység sugarú kör területe: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">circle_area</span><span class="p">()))</span>
 </pre></div>
 </div>
@@ -1340,7 +1318,7 @@ global my_func_3 global
 </div>
 </div>
 </div>
-<p>Elhagyható az import, amennyiben a from … import … kulcsaszavakkal a függvényt direktbe importájuk:</p>
+<p>Elhagyható a könyvtár nevére való hivatkozás, amennyiben a <code class="docutils literal notranslate"><span class="pre">from</span> <span class="pre">...</span> <span class="pre">import</span> <span class="pre">...</span></code> kulcsaszavakkal a függvényt direktbe importájuk:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">pi</span>
@@ -1354,7 +1332,7 @@ global my_func_3 global
 </div>
 </div>
 </div>
-<p>Egy másik példa:</p>
+<p>A f</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">time</span>
@@ -1362,7 +1340,7 @@ global my_func_3 global
 </div>
 </div>
 </div>
-<p>Egy könytáron belüli függvényre hivatkozni <code class="docutils literal notranslate"><span class="pre">.</span></code> segítségével tudunk, például:</p>
+<p>Egy könytáron belüli változóra vagy függvényre hivatkozni <code class="docutils literal notranslate"><span class="pre">.</span></code> segítségével tudunk, például:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">t</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">localtime</span><span class="p">()</span>
@@ -1372,7 +1350,7 @@ global my_func_3 global
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2023/04/13 08:21:24
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2024/03/07 14:00:19
 </pre></div>
 </div>
 </div>
@@ -1386,12 +1364,28 @@ global my_func_3 global
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2023 év 04 hónap 13 nap 08 óra 21 perc 24 mp
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2024 év 03 hónap 07 nap 14 óra 00 perc 20 mp
 </pre></div>
 </div>
 </div>
 </div>
-<p>Elhagyható az import, amennyiben a <code class="docutils literal notranslate"><span class="pre">from</span> <span class="pre">...</span> <span class="pre">import</span> <span class="pre">...</span></code> kulcsaszavakkal a függvényt direktbe importájuk:</p>
+<p>Az <code class="docutils literal notranslate"><span class="pre">as</span></code> kulcszó segítségével átnevezhetjük a könyvtárat, így nem kell az eredeti hosszú névre hivatkozni:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">time</span> <span class="k">as</span> <span class="nn">t</span>
+<span class="n">local</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">localtime</span><span class="p">()</span>
+<span class="n">current_time</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;%Y/%m/</span><span class="si">%d</span><span class="s2"> %H:%M:%S&quot;</span><span class="p">,</span> <span class="n">local</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">current_time</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2024/03/07 14:00:21
+</pre></div>
+</div>
+</div>
+</div>
+<p>Elhagyható a könyvtár nevére való hivatkozás, amennyiben a <code class="docutils literal notranslate"><span class="pre">from</span> <span class="pre">...</span> <span class="pre">import</span> <span class="pre">...</span></code> kulcsaszavakkal a függvényt direktbe importájuk:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">localtime</span><span class="p">,</span> <span class="n">strftime</span>
@@ -1402,7 +1396,7 @@ global my_func_3 global
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2023/04/13 08:21:24
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2024/03/07 14:00:25
 </pre></div>
 </div>
 </div>
@@ -1449,21 +1443,6 @@ strftime(...)
     
     Other codes may be available on your platform.  See documentation for
     the C library strftime function.
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">time</span> <span class="k">as</span> <span class="nn">t</span>
-<span class="n">local</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">localtime</span><span class="p">()</span>
-<span class="n">current_time</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;%Y/%m/</span><span class="si">%d</span><span class="s2"> %H:%M:%S&quot;</span><span class="p">,</span> <span class="n">local</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">current_time</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2023/04/13 08:21:24
 </pre></div>
 </div>
 </div>
@@ -1587,6 +1566,13 @@ strftime(...)
 </div>
 </div>
 </div>
+<div class="important admonition">
+<p class="admonition-title">Feladat (Összegzés programozási tétele)</p>
+<ul class="simple">
+<li><p>Adjuk össze a számokat 1-től 10-ig.</p></li>
+<li><p>Szorozzuk össze a számokat 1-től 10-ig.</p></li>
+</ul>
+</div>
 <p>Írjunk egy függvényt, amely kiírja 1-9-ig a számokat egy mátrixba rendezve.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1632,10 +1618,6 @@ strftime(...)
 </pre></div>
 </div>
 </div>
-</div>
-<div class="important admonition">
-<p class="admonition-title">Feladat</p>
-<p>Adjuk össze a számokat 1-től 10-ig! (Összegzés tétele)</p>
 </div>
 </section>
 <section id="a-while-vezerlesi-szerkezet">
@@ -1706,10 +1688,10 @@ strftime(...)
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="nn">&lt;ipython-input-85-52172a5f72f5&gt;</span> in <span class="ni">&lt;cell line: 2&gt;</span><span class="nt">()</span>
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">68</span><span class="p">],</span> <span class="n">line</span> <span class="mi">3</span>
 <span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span>
-<span class="ne">----&gt; </span><span class="mi">2</span> <span class="k">while</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span>   <span class="n">i</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="k">while</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+<span class="ne">----&gt; </span><span class="mi">3</span>   <span class="n">i</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span> 
 
 <span class="ne">KeyboardInterrupt</span>: 
 </pre></div>
@@ -1763,10 +1745,6 @@ strftime(...)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Row: 1
-Column: q
-</pre></div>
-</div>
 </div>
 </div>
 </section>
@@ -2221,7 +2199,7 @@ cherry
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">ValueError</span><span class="g g-Whitespace">                                </span>Traceback (most recent call last)
-<span class="nn">&lt;ipython-input-113-1fa53d64c04e&gt;</span> in <span class="ni">&lt;cell line: 2&gt;</span><span class="nt">()</span>
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">80</span><span class="p">],</span> <span class="n">line</span> <span class="mi">2</span>
 <span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="n">l</span> <span class="o">=</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
 <span class="ne">----&gt; </span><span class="mi">2</span> <span class="nb">print</span><span class="p">(</span><span class="n">l</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="o">-</span><span class="mi">6</span><span class="p">))</span> <span class="c1"># ValueError: -6 is not in list</span>
 
@@ -2830,7 +2808,7 @@ board:   [[&#39; &#39;, &#39;X&#39;, &#39; &#39;], [&#39; &#39;, &#39; &#39;, &#
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;&gt;:2: SyntaxWarning: &quot;is&quot; with a literal. Did you mean &quot;==&quot;?
 &lt;&gt;:2: SyntaxWarning: &quot;is&quot; with a literal. Did you mean &quot;==&quot;?
-&lt;ipython-input-146-3c08a0c96986&gt;:2: SyntaxWarning: &quot;is&quot; with a literal. Did you mean &quot;==&quot;?
+/tmp/ipykernel_12599/1101705529.py:2: SyntaxWarning: &quot;is&quot; with a literal. Did you mean &quot;==&quot;?
   if a_number is 1:
 </pre></div>
 </div>
@@ -3030,22 +3008,6 @@ It is true, so they are married!
 </div>
 </div>
 </section>
-<section id="tipusok-osszefoglalas">
-<h2>Típusok összefoglalás<a class="headerlink" href="#tipusok-osszefoglalas" title="Permalink to this heading">#</a></h2>
-<p>| Type                   | Sequence | Ordered | Duplicate allowed | Mutable | Null elem. | Example |
-| ———————–| :—-: | :—-:  | :—-:  |  :—-:  |  :—-:  |    |
-| numeric   | ❌ | N/A | N/A | ❌ | <code class="docutils literal notranslate"><span class="pre">0</span></code>, <code class="docutils literal notranslate"><span class="pre">0.0</span></code> | <code class="docutils literal notranslate"><span class="pre">3.1415</span></code>
-| <code class="docutils literal notranslate"><span class="pre">boolean</span></code> | ❌ | N/A | N/A | ❌ | <code class="docutils literal notranslate"><span class="pre">False</span></code> | <code class="docutils literal notranslate"><span class="pre">True</span></code>
-| <code class="docutils literal notranslate"><span class="pre">string</span></code>  | ✅ | ✅ | ✅ | ❌ | <code class="docutils literal notranslate"><span class="pre">''</span></code> or <code class="docutils literal notranslate"><span class="pre">&quot;&quot;</span></code> | <code class="docutils literal notranslate"><span class="pre">&quot;apple&quot;</span></code>
-| <code class="docutils literal notranslate"><span class="pre">list</span></code>    | ✅ | ✅ | ✅ | ✅ | <code class="docutils literal notranslate"><span class="pre">[]</span></code> | <code class="docutils literal notranslate"><span class="pre">[&quot;apple&quot;,</span> <span class="pre">&quot;banana&quot;,</span> <span class="pre">1.0]</span></code>
-| <code class="docutils literal notranslate"><span class="pre">dict</span></code>    | ✅ | ✅ | ❌ | ✅ | <code class="docutils literal notranslate"><span class="pre">{}</span></code> | <code class="docutils literal notranslate"><span class="pre">{&quot;price&quot;:</span> <span class="pre">1.0}</span></code>
-| <code class="docutils literal notranslate"><span class="pre">tuple</span></code>   | ✅ | ✅ | ✅ | ❌ | <code class="docutils literal notranslate"><span class="pre">()</span></code> | <code class="docutils literal notranslate"><span class="pre">(&quot;apple&quot;,</span> <span class="pre">True)</span></code>
-| <code class="docutils literal notranslate"><span class="pre">set</span></code>     | ✅ | ❌ | ❌ | ❌ | <code class="docutils literal notranslate"><span class="pre">{}</span></code> | <code class="docutils literal notranslate"><span class="pre">(&quot;apple&quot;,</span> <span class="pre">&quot;banana&quot;,</span> <span class="pre">1.0)</span></code></p>
-<p><strong>Sequence</strong>: It can be iterated through the elements, for instance, with for loop.</p>
-<p><strong>Ordered</strong>:  The items have a defined order, and that order will not change.</p>
-<p><strong>Mutable</strong>: mutable is a fancy way of saying that the internal state of the object is changed/mutated. So, the simplest definition is: An object whose internal state can be changed is mutable. On the other hand, immutable doesn’t allow any change in the object once it has been created.</p>
-<p><em>As of Python version 3.7, dictionaries are ordered. In Python 3.6 and earlier, dictionaries are unordered.</em></p>
-</section>
 <section id="fuggveny-valtozok">
 <h2>Függvény változók<a class="headerlink" href="#fuggveny-valtozok" title="Permalink to this heading">#</a></h2>
 <div class="warning admonition">
@@ -3178,7 +3140,6 @@ It is true, so they are married!
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-none-tipus">A <code class="docutils literal notranslate"><span class="pre">None</span></code> típus</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tipusok-osszefoglalas">Típusok összefoglalás</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fuggveny-valtozok">Függvény változók</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nevtelen-vagy-lambda-fuggvenyek">Névtelen vagy <code class="docutils literal notranslate"><span class="pre">lambda</span></code> függvények</a></li>
 </ul>
