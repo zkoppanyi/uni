@@ -329,8 +329,9 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#egyszeru-tipusok">Egyszerű típusok</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#muveletek-egyszeru-tipusokkal">Műveletek egyszerű típusokkal</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tipus-konverziok">Típus konverziók</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-kod-szintaktikaja-es-szemantikaja">A kód szintaktikája és szemantikája</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fuggvenyek">Függvények</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#valtozok-lathatosaga-es-hatokorok-scope">Változók láthatósága és hatókörök (scope)</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#valtozok-lathatosaga-es-nevterek-scope">Változók láthatósága és névterek (scope)</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hivasi-verem">Hívási verem</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rekurzios-fuggvenyek">Rekurziós függvények</a></li>
 </ul>
@@ -683,6 +684,10 @@ hello
 </div>
 </div>
 </div>
+<div class="hint admonition">
+<p class="admonition-title">Tipp</p>
+<p>Érdemes a hibaüzeneteket is megnézni a jegyzetben, sokat segíthet kódolási hibák megtalálásában.</p>
+</div>
 <p>De <code class="docutils literal notranslate"><span class="pre">'</span></code> és <code class="docutils literal notranslate"><span class="pre">&quot;</span></code> egymásba ágyazhatóak, mint például:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -960,7 +965,7 @@ message értéke: &lt;class &#39;str&#39;&gt;
 </div>
 </div>
 </div>
-<p>Láthatuk, hogy az összeadás bal oldalán lebegőpontos, jobb oldalán egész típus található, az eredmény pedig lebegőpontos. Talán elsőre triviális, de vegyük észre, hogy a háttérben típus konverzió történik. Ez a típus konverzió automatikus. A következő lépések történnek a háttérben, amikor a <code class="docutils literal notranslate"><span class="pre">test_result</span> <span class="pre">=</span> <span class="pre">test_float</span> <span class="pre">+</span> <span class="pre">test_int</span></code> művelet végrehajtódik:</p>
+<p>Láthatjuk, hogy az összeadás bal oldalán lebegőpontos, jobb oldalán egész típus található, az eredmény pedig lebegőpontos. Talán elsőre triviális, de vegyük észre, hogy a háttérben típus konverzió történik. Ez a típus konverzió automatikus, ezért <strong>automatikus típuskonverzióról</strong> beszélünk. A következő lépések történnek a háttérben, amikor a <code class="docutils literal notranslate"><span class="pre">test_result</span> <span class="pre">=</span> <span class="pre">test_float</span> <span class="pre">+</span> <span class="pre">test_int</span></code> művelet végrehajtódik:</p>
 <ol class="arabic simple">
 <li><p>Mivel a szorzás két oldán különböző típus szerepel, a <code class="docutils literal notranslate"><span class="pre">test_int</span></code> változó <code class="docutils literal notranslate"><span class="pre">int</span></code> típusa <code class="docutils literal notranslate"><span class="pre">float</span></code> típussá konvertálódik.</p></li>
 <li><p>Ez a közbenső <code class="docutils literal notranslate"><span class="pre">float</span></code> típussú érték kerül szorzásra a <code class="docutils literal notranslate"><span class="pre">test_float</span></code> <code class="docutils literal notranslate"><span class="pre">float</span></code> típusú változóban található értékkel.</p></li>
@@ -994,10 +999,22 @@ message értéke: &lt;class &#39;str&#39;&gt;
 </div>
 <p>Itt az <code class="docutils literal notranslate"><span class="pre">r</span></code> sugár <code class="docutils literal notranslate"><span class="pre">int</span></code> típusként van definiálva, melynek értéke a szorzás művelet során <code class="docutils literal notranslate"><span class="pre">float</span></code> típusúvá válik. Vegyük észre, hogyha a <code class="docutils literal notranslate"><span class="pre">pi</span></code> <code class="docutils literal notranslate"><span class="pre">float</span></code> típus kerülne <code class="docutils literal notranslate"><span class="pre">int</span></code> konverzióra, akkor rossz eredményt kapnánk, hiszen a tizedes értékek levágásra kerülnének. Elmondható tehát, hogy automatikus típuskonverzió esetén a kisebb halmazú típus kerül a nagyobb halmazú típusra konvertálásra.</p>
 </section>
+<section id="a-kod-szintaktikaja-es-szemantikaja">
+<h2>A kód szintaktikája és szemantikája<a class="headerlink" href="#a-kod-szintaktikaja-es-szemantikaja" title="Permalink to this heading">#</a></h2>
+<p><strong>Szintaktika</strong> alatt a programozási nyelvet leíró “nyelvtant”, szabályrendszert értjük, például milyen elnevezése lehet egy változónak, vagy hogy hogyan definiálunk értékadást, függvényeket. Ezzel szemben a <strong>szemantika</strong> alatt a program “értelmét” értjük, vagyis azt hogy helyesen működik-e vagy sem.</p>
+<p>Nézzünk egy példát az elő nyelvből:</p>
+<p><code class="docutils literal notranslate"><span class="pre">A</span> <span class="pre">ég</span> <span class="pre">kék.</span></code></p>
+<p>Ez a mondat helytelen, mivel az “ég” határozott névelője “az”. Ez egy szintaktikai hiba.</p>
+<p><code class="docutils literal notranslate"><span class="pre">Az</span> <span class="pre">ég</span> <span class="pre">piros.</span></code></p>
+<p>Ez a mondat nyelvtanilag helyes, tehát szinaktikai hiba nincs. Ellenben az ég nem piros; ez szemantikai hiba.</p>
+<p>Ökölszabály, ha a kód szintaktikailag nem helyes, akkor mindenképpen hibaüzenetet kapunk. Valamilyen fejlesztő eszközt használva, az automatikus kódelemzők a legtöbb esetben már futás előtt jelzik a hibát. Nem interpretált nyelvek esetén - tehát olyan programozási nyelvek esetén, ahol szétválik a fordítás és a futtatás - a szintaktikai hiba már fordítási időben kiderül. Ezzel szemben, egy szemantikailag helytelen program esetén a hibára fordítási időben nem derül fény. Jó példa szemantikai hibára a tömbök túlcímzése, vagyis amikor egy tömb vagy vektor olyan elemére hivatkozunk, amely túlmutat a tömb hosszán.</p>
+</section>
 <section id="fuggvenyek">
 <h2>Függvények<a class="headerlink" href="#fuggvenyek" title="Permalink to this heading">#</a></h2>
-<p>Szintaktika alatt a programozási nyelvet leíró “nyelvtant”, szabályrendszert értjük, például milyen elnevezése lehet egy változónak, vagy hogy hogyan definiálunk értékadást, függvényeket. Ezzel szemben a szemantika alatt a program “értelmét” értjük, vagyis azt hogy mit csinál. Ha a kód szintaktikailag nem helyes, akkor mindenképpen hibaüzenetet kapunk. Ezzel szemben, egy szemantikailag helytelen program nem feltétlenül végződik hibában, mert a program kimenetet ad, csak nem azt amit elvárnánk.</p>
-<p>Függvények szintaktikája a következő:</p>
+<p>Függvényekkel már találkoztunk korábban, ilyen volt a <code class="docutils literal notranslate"><span class="pre">print</span></code>. A <code class="docutils literal notranslate"><span class="pre">print</span></code> egy alapértelmezetten definiált függvény, azonban saját magunk is írhatunk függvényeket.</p>
+<p>A függvények - hasonlóan a matematikában megtanultakhoz - valamilyen bemeneti értékre (független változó) adnak valamilyen kimenetet (függő változó). Azonban, szemben a matematikai függvényekkel, a programozási nyelvek függvényeinek nem feltétlenül van <strong>bemeneti paramétei</strong> (<strong>argumentumai</strong>), illetve nem feltétlenül van kimenetük (<strong>visszatérési érték</strong>). Függvényekre gyakran <strong>eljárásként</strong> hivatkoznak. A függvények egy speciális esete, az olyan függvény, melynek nincs bemeneti paramétere; ekkor használhatjuk a <strong>metódus</strong> elnevezést a függvényre.</p>
+<p>Egy függvény komplex dolgokat oldhat meg, melynek során további függvényeket is meghívhat. A függvények célja hogy logikailag összetartozó kódot egy egységbe foglaljanak, így növelje a kód újrafelhasználhatóságát és olvashatóságát. Vegyük észre, hogy a függvény használója számára nem érdekes hogy egy bizonyos feladatot a függvény hogyan old meg, csupán az, hogy mik a bemeneti paraméterei és kimeneti értékei. Így a feladat megoldásának mikéntje a függvény feladata. A függvény bemenetét leíró paraméter listát és a visszatérési értéket együtt a függvény <strong>szignatúrájának</strong> hívjuk.</p>
+<p>A Python nyelvben a függvények szintaktikája a következő:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">hello</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
@@ -1007,7 +1024,16 @@ message értéke: &lt;class &#39;str&#39;&gt;
 </div>
 </div>
 </div>
-<p>Vegyük észre az alábbi kód részletben a függvény törzsének definiciója be van húzva spaceszel vagy tabbal (ezeket közös néven <em>whitespace</em> karaktereknek hívjuk). Ezeket a whitespaceket hívjuk rossz magyarsággal indentálásnak. Pythonban a sor eleji whitespace karakterek fontos jelentőséggel bírnak, hogy megkülönböztessünk függvény törzs, illetve más vezérlési szerkezetek belső részét. Mindig figyelj oda, hogy a sor eleji whitespacek megfelelőek legyene, máskülönben hibát fogsz kapni.</p>
+<div class="important admonition">
+<p class="admonition-title">Feladat</p>
+<p>Elemezzük a fenti kódot és definiáljuk a függvény szintaktikáját! Azonosítsuk a következőeket:</p>
+<ul class="simple">
+<li><p>bemeneti paraméter</p></li>
+<li><p>függvény neve</p></li>
+<li><p>függvény törzse</p></li>
+</ul>
+</div>
+<p>Vegyük észre, hogy a fenti kód részletben a függvény törzsének definiciója be van húzva spaceszel vagy tabbal (ezeket közös néven <em>whitespace</em> karaktereknek hívjuk). Ezeket a whitespaceket hívjuk rossz magyarsággal indentálásnak. Pythonban a sor eleji whitespace karakterek fontos jelentőséggel bírnak, hogy megkülönböztessünk függvény törzs, illetve más vezérlési szerkezetek belső részét. Mindig figyelj oda, hogy a sor eleji whitespacek megfelelőek legyene, máskülönben hibát fogsz kapni.</p>
 <p>Az így definiált függvényt más cellákban is meg tudjuk hívni.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1023,8 +1049,7 @@ Hello Jane!
 </div>
 </div>
 </div>
-<p>Elemezzük milyen részekből áll egy függvény, és milyen szinaktikája van: függvény neve, függvény argumentumai vagy bemeneti változói, függvény törzse.</p>
-<p>A függvényeknek lehet visszatérési értéke:</p>
+<p>Ahogy említettük korábban, a függvényeknek lehet visszatérési értéke, melyet a <code class="docutils literal notranslate"><span class="pre">return</span></code> kulszóval adhatunk meg. A következő függvény egy kör területét számítja ki, és amelynek a bemeneti paramétere a kör sugara:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">circle_area</span><span class="p">(</span><span class="n">r</span><span class="p">):</span>
@@ -1034,6 +1059,7 @@ Hello Jane!
 </div>
 </div>
 </div>
+<p>Számítsuk ki az 5 sugarú kör területét:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">r</span> <span class="o">=</span> <span class="mi">5</span>
@@ -1048,28 +1074,80 @@ Hello Jane!
 </div>
 </div>
 </div>
-<p>Függvénynek lehet alapértelmezett paramétere:</p>
+<p>A python nyelveben egy függvénynek több visszatérési értéke is lehet, melyeket vesszővel elválasztva a <code class="docutils literal notranslate"><span class="pre">return</span></code> kulcsszó után adhatunk meg:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">circle_params</span><span class="p">(</span><span class="n">r</span><span class="p">):</span>
+  <span class="n">K</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">r</span><span class="o">*</span><span class="mf">3.14145</span>
+  <span class="n">T</span> <span class="o">=</span> <span class="n">r</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="mf">3.14145</span>
+  <span class="k">return</span> <span class="n">K</span><span class="p">,</span> <span class="n">T</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>A függvény hívásakor, a többszörös visszatérési értékeket, a bal oldalon, vesszővel elválasztva adhatjuk meg:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">K</span><span class="p">,</span> <span class="n">T</span> <span class="o">=</span> <span class="n">circle_params</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;A kör kerülete: &#39;</span><span class="p">,</span> <span class="n">K</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;A kör területe: &#39;</span><span class="p">,</span> <span class="n">T</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>A kör kerülete:  31.414499999999997
+A kör területe:  78.53625
+</pre></div>
+</div>
+</div>
+</div>
+<p>Függvénynek lehet ún alapértelmezett paramétere. A bemeneti paraméter alapértelmezett értékét függvény bemenetének megadásakor adhatjuk meg az egyenlőség jelet használva. Nézzünk egy példát:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">circle_area</span><span class="p">(</span><span class="n">r</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
   <span class="n">T</span> <span class="o">=</span> <span class="n">r</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="mf">3.14145</span>
   <span class="k">return</span> <span class="n">T</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Egység sugarú kör területe: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">circle_area</span><span class="p">()))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Egy 5 sugarú kör területe: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">circle_area</span><span class="p">(</span><span class="mi">5</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Az alapértelmezett paraméter, egy olyan bemeneti paraméter, amelyet nem kötelező megadni. Így például a <code class="docutils literal notranslate"><span class="pre">circle_area</span></code> függvényt paraméter nélkül is hívhatjuk:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Egység sugarú kör területe: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">circle_area</span><span class="p">()))</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Egység sugarú kör területe: 3.14145
-Egy 5 sugarú kör területe: 78.53625
 </pre></div>
 </div>
 </div>
 </div>
+<p>De lehetőség van a sugar megadására is, ha akarjuk:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">math</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Egy 5 sugarú kör területe: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">circle_area</span><span class="p">(</span><span class="mi">5</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Egy 5 sugarú kör területe: 78.53625
+</pre></div>
+</div>
+</div>
+</div>
+<div class="important admonition">
+<p class="admonition-title">Feladat</p>
+<p>A következőekben nézzünk egy példát egy komplex kódra, mely egy gyakran alkalmazott geodéziai számítást old meg. Vegyük észre, hogy a függvény egy jól körülhatárolt problémát old meg, melynek bemenetei és kimenetei tisztán adottak.</p>
+<ul class="simple">
+<li><p>Milyen geodéziai problémát old meg az alábbi kód?</p></li>
+<li><p>Mi a függvény szignatúrája? Mik a bemeneti és kimeneti paraméterek?</p></li>
+<li><p>Mi a célja az alapértelmezett paraméternek?</p></li>
+<li><p>Van-e sorrendi megkötés az alapértelmezett és nem alapértelmezett paramétereknek? Például felcserélhető-e a <code class="docutils literal notranslate"><span class="pre">lan</span></code> és <code class="docutils literal notranslate"><span class="pre">ellipsoid</span></code> paraméterek?</p></li>
+<li><p>Teszteljük a kódot a <a class="reference external" href="https://www.gnssnet.hu/pdf/BUTE.pdf">BUTE állomás koordinátáival</a>.</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">math</span>
 <span class="k">def</span> <span class="nf">llh2ecef</span><span class="p">(</span><span class="n">lat</span><span class="p">,</span> <span class="n">lon</span><span class="p">,</span> <span class="n">alt</span><span class="p">,</span> <span class="n">ellipsoid</span><span class="o">=</span><span class="s1">&#39;wgs84&#39;</span><span class="p">):</span>
     <span class="n">rad_lat</span> <span class="o">=</span> <span class="n">lat</span> <span class="o">*</span> <span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mf">180.0</span><span class="p">)</span>
     <span class="n">rad_lon</span> <span class="o">=</span> <span class="n">lon</span> <span class="o">*</span> <span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mf">180.0</span><span class="p">)</span>
@@ -1090,150 +1168,138 @@ Egy 5 sugarú kör területe: 78.53625
     <span class="n">z</span> <span class="o">=</span> <span class="p">(</span><span class="n">v</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">e2</span><span class="p">)</span> <span class="o">+</span> <span class="n">alt</span><span class="p">)</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">rad_lat</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span>
+
+<span class="n">llh2ecef</span><span class="p">(</span><span class="mf">47.4809437284</span><span class="p">,</span> <span class="mf">19.0565297521</span><span class="p">,</span> <span class="mf">180.811</span><span class="p">)</span>
+<span class="c1"># Eredmény: (4081882.3780616224, 1410011.1419668908, 4678199.39132865)</span>
 </pre></div>
-</div>
-</div>
-</div>
-<p>Test it with BUTE (<a class="reference external" href="https://www.gnssnet.hu/pdf/BUTE.pdf">https://www.gnssnet.hu/pdf/BUTE.pdf</a>)</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">llh2ecef</span><span class="p">(</span><span class="mf">47.4809437284</span><span class="p">,</span> <span class="mf">19.0565297521</span><span class="p">,</span> <span class="mf">180.811</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(4081882.3780616224, 1410011.1419668908, 4678199.39132865)
-</pre></div>
-</div>
 </div>
 </div>
 </section>
-<section id="valtozok-lathatosaga-es-hatokorok-scope">
-<h2>Változók láthatósága és hatókörök (scope)<a class="headerlink" href="#valtozok-lathatosaga-es-hatokorok-scope" title="Permalink to this heading">#</a></h2>
+<section id="valtozok-lathatosaga-es-nevterek-scope">
+<h2>Változók láthatósága és névterek (scope)<a class="headerlink" href="#valtozok-lathatosaga-es-nevterek-scope" title="Permalink to this heading">#</a></h2>
+<p>Ahogy korábban beszéltünk róla, a függvények logikailag összetartozó kód sorokat fognak össze. A függvény használója számára nem érdekes az, hogy a program a feladatot hogyan oldja meg, ő csak a számításhoz szükséges paramétereket akarja átadni, és az eredményet megkapni. A függvényen belül azonban lehetőségünk van változók létrehozására, manipulálására. Azért, hogy ezek a változók a függvényen kívülről ne legyenek elérhetőek, a programozási nyelvek a változók számára <strong>láthatóságot</strong>, illetve <strong>hatókört</strong> definálnak. Ezzel elkerülhető, hogy változó névadási bonyodalmakba keveredjünk.</p>
+<p>Nézzük meg az alábbi kódot:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="mi">2</span>      <span class="c1"># main scope</span>
-<span class="k">def</span> <span class="nf">fn</span><span class="p">():</span>  <span class="c1"># main scope</span>
-   <span class="n">a</span> <span class="o">=</span> <span class="mi">1</span>    <span class="c1"># scope of fn</span>
-   <span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="c1"># scope of fn</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>   <span class="c1"># main scope</span>
-<span class="n">fn</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;Anna&#39;</span>       <span class="c1"># globális névtér</span>
+<span class="k">def</span> <span class="nf">hello</span><span class="p">():</span>        <span class="c1"># globális névtér</span>
+   <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;Béla&#39;</span>    <span class="c1"># a függvény névtere</span>
+   <span class="nb">print</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>      <span class="c1"># a függvény névtere</span>
+<span class="n">hello</span><span class="p">()</span>             <span class="c1"># globális névtér</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>         <span class="c1"># globális névtér</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2
-1
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Béla
+Anna
 </pre></div>
 </div>
 </div>
 </div>
+<p>A fenti kódban a <code class="docutils literal notranslate"><span class="pre">name</span></code> változó a függvényen kívűl kerül definiálásra, majd egy másik <code class="docutils literal notranslate"><span class="pre">name</span></code> változó a függvényen belül. Két esetben írjuk ki az <code class="docutils literal notranslate"><span class="pre">a</span></code>-k értékét. Egyszer a függvényen kívül az utolsó sorban, máskor a függvényen belül a <code class="docutils literal notranslate"><span class="pre">hello()</span></code> függvény hívásakor. Vegyük észre, hogy az eredmény sorrendje: Béla, Anna. Ha a függvényen belüli <code class="docutils literal notranslate"><span class="pre">name</span> <span class="pre">=</span> <span class="pre">'Béla'</span></code> sort nézve a <code class="docutils literal notranslate"><span class="pre">name</span></code> változó a külső <code class="docutils literal notranslate"><span class="pre">name</span></code> változóra hívtkozna, akkor az utolsó sorban lévő <code class="docutils literal notranslate"><span class="pre">print</span></code>nek az 1-t kellene kiírnia, hiszen a függvényen belül az megváltozott. De nem ez történik, mivel a két <code class="docutils literal notranslate"><span class="pre">name</span></code> változót bár ugyanazok a karakterek reprezentálják, de azok mégis különböző változók. Különbözőségüket az adja, hogy más-más helyen vannak definiálva. A függvényen kívűl létrehozott változók, az ún. <strong>globális névtérben</strong> kerülnek létrehozásra. A függvény törzsében létrehozott változók csak a függvény névterében elérhetőek, ahogy azt az alábbi kód is szemlélteti:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">hello</span><span class="p">():</span>
-  <span class="n">name_in_hello</span> <span class="o">=</span> <span class="s1">&#39;Anna&#39;</span>
-  <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Hello &#39;</span> <span class="o">+</span> <span class="n">name_in_hello</span> <span class="o">+</span> <span class="s2">&quot;!&quot;</span><span class="p">)</span>
+  <span class="n">name_hello</span> <span class="o">=</span> <span class="s1">&#39;Anna&#39;</span>
+  <span class="nb">print</span><span class="p">(</span><span class="n">name_hello</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="n">name_in_hello</span><span class="p">)</span> <span class="c1"># &lt;-- Error: NameError: name &#39;name_in_hello&#39; is not defined</span>
+<span class="n">hello</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">name_hello</span><span class="p">)</span> <span class="c1"># &lt;-- NameError: name &#39;name_in_hello&#39; is not defined</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Anna
+</pre></div>
+</div>
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">34</span><span class="p">],</span> <span class="n">line</span> <span class="mi">5</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span>   <span class="n">name_in_hello</span> <span class="o">=</span> <span class="s1">&#39;Anna&#39;</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span>   <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Hello &#39;</span> <span class="o">+</span> <span class="n">name_in_hello</span> <span class="o">+</span> <span class="s2">&quot;!&quot;</span><span class="p">)</span>
-<span class="ne">----&gt; </span><span class="mi">5</span> <span class="nb">print</span><span class="p">(</span><span class="n">name_in_hello</span><span class="p">)</span> <span class="c1"># &lt;-- Error: NameError: name &#39;name_in_hello&#39; is not defined</span>
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">8</span><span class="p">],</span> <span class="n">line</span> <span class="mi">6</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span>   <span class="nb">print</span><span class="p">(</span><span class="n">name_hello</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="n">hello</span><span class="p">()</span>
+<span class="ne">----&gt; </span><span class="mi">6</span> <span class="nb">print</span><span class="p">(</span><span class="n">name_hello</span><span class="p">)</span> <span class="c1"># &lt;-- NameError: name &#39;name_in_hello&#39; is not defined</span>
 
-<span class="ne">NameError</span>: name &#39;name_in_hello&#39; is not defined
+<span class="ne">NameError</span>: name &#39;name_hello&#39; is not defined
 </pre></div>
 </div>
 </div>
 </div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;Anna&#39;</span>                    <span class="c1"># &lt;-- globális névtér</span>
-<span class="k">def</span> <span class="nf">hello</span><span class="p">():</span>
-  <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Hello &#39;</span> <span class="o">+</span> <span class="n">name</span> <span class="o">+</span> <span class="s2">&quot;!&quot;</span><span class="p">)</span>   <span class="c1"># &lt;-- függvény névtér keződik innen</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;name:&#39;</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
-<span class="n">hello</span><span class="p">()</span> 
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>name: Anna
-Hello Anna!
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;Anna&#39;</span>                    <span class="c1"># &lt;-- globális névtér</span>
-<span class="k">def</span> <span class="nf">hello</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>                 <span class="c1"># &lt;-- függvény névtér keződik innen</span>
-  <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Hello &#39;</span> <span class="o">+</span> <span class="n">name</span> <span class="o">+</span> <span class="s2">&quot;!&quot;</span><span class="p">)</span> 
-
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;name:&#39;</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
-<span class="n">hello</span><span class="p">(</span><span class="s1">&#39;Béla&#39;</span><span class="p">)</span>  
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>name: Anna
-Hello Béla!
-</pre></div>
-</div>
-</div>
-</div>
-<p>Ezek után találjuk ki mit ír ki a következő kód.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;Anna&#39;</span>                      <span class="c1"># </span>
-<span class="k">def</span> <span class="nf">hello</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>                   <span class="c1"># name == Anna</span>
-  <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;Béla&#39;</span>                    <span class="c1"># name = Béla</span>
-  <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Hello &#39;</span> <span class="o">+</span> <span class="n">name</span> <span class="o">+</span> <span class="s2">&quot;!&quot;</span><span class="p">)</span>     <span class="c1"># name == Béla</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;name:&#39;</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>               <span class="c1"># Ez még mindig Anna ...</span>
-<span class="n">hello</span><span class="p">(</span><span class="s1">&#39;Cecilia&#39;</span><span class="p">)</span>                   <span class="c1"># ... de már Bélát írunk ki.</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;name:&#39;</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>name: Anna
-Hello Béla!
-name: Anna
-</pre></div>
-</div>
-</div>
-</div>
+<p>Itt a <code class="docutils literal notranslate"><span class="pre">name_hello</span></code> változó csak a függvény törzsében, azaz névterében került létrehozásra, azon kívűl nem elérhető, így a kód hibával leállt. Azonban a következő kód lefut:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;Anna&#39;</span>
+<span class="k">def</span> <span class="nf">hello</span><span class="p">():</span>
+  <span class="nb">print</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
 
-<span class="k">def</span> <span class="nf">hello1</span><span class="p">():</span>
-  <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;name: &#39;</span> <span class="o">+</span> <span class="n">name</span><span class="p">)</span> <span class="c1"># globális névtér name-je</span>
-
-<span class="k">def</span> <span class="nf">hello2</span><span class="p">():</span>
-  <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;Béla&#39;</span>
-  <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;name: &#39;</span> <span class="o">+</span> <span class="n">name</span><span class="p">)</span> <span class="c1"># függvény névtér name-je</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;name:&#39;</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span> <span class="c1"># globális névtér name-je</span>
-<span class="n">hello1</span><span class="p">()</span>
-<span class="n">hello2</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;name:&#39;</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span> <span class="c1"># globális névtér name-je</span>
+<span class="n">hello</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>name: Anna
-name: Anna
-name: Béla
-name: Anna
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Anna
+Anna
 </pre></div>
 </div>
+</div>
+</div>
+<p>A kód lefut, mivel a <code class="docutils literal notranslate"><span class="pre">name</span></code> változó a függvényen kívül került létrehozásra, a globális névtérben. A globális névtérben létrehozott változók elérhetőek a függvények belsejében.</p>
+<p>Tehát a változók és névterekre vonatkozó szabályok a következőek:</p>
+<ul class="simple">
+<li><p>A globális névtérben létrehozott változók mindenhol, még függvények belsejében is elérhetőek, ha azok a függvény definiálása előtt kerültek létrehozásra.</p></li>
+<li><p>A függvények belsejében lévő változók csak az adott függvényen belül érhetőek el.</p></li>
+</ul>
+<p>Végezetül, bár triviális, a függvény paramétere a függvény névteréhez tartozik. Nézzünk egy példát:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;Anna&#39;</span>                    
+<span class="k">def</span> <span class="nf">hello</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>                 
+  <span class="nb">print</span><span class="p">(</span><span class="n">name</span><span class="p">)</span> 
+
+<span class="n">hello</span><span class="p">(</span><span class="s1">&#39;Béla&#39;</span><span class="p">)</span>  
+<span class="nb">print</span><span class="p">(</span><span class="n">name</span><span class="p">)</span> 
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Béla
+Anna
+</pre></div>
+</div>
+</div>
+</div>
+<div class="important admonition">
+<p class="admonition-title">Feladat</p>
+<p>Mit ír ki a következő kód és miért?</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;Anna&#39;</span>                      
+<span class="k">def</span> <span class="nf">hello</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>                   
+  <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;Béla&#39;</span>                    
+  <span class="nb">print</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>     
+
+<span class="nb">print</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+<span class="n">hello</span><span class="p">(</span><span class="s1">&#39;Cecília&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="important admonition">
+<p class="admonition-title">Feladat</p>
+<p>Mit ír ki a következő kód és miért?</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;Anna&#39;</span>
+
+<span class="k">def</span> <span class="nf">hello1</span><span class="p">():</span>
+  <span class="nb">print</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">hello2</span><span class="p">():</span>
+  <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;Béla&#39;</span>
+  <span class="nb">print</span><span class="p">(</span><span class="n">name</span><span class="p">)</span> 
+
+<span class="nb">print</span><span class="p">(</span><span class="n">name</span><span class="p">)</span> 
+<span class="n">hello1</span><span class="p">()</span>
+<span class="n">hello2</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+</pre></div>
 </div>
 </div>
 <section id="hivasi-verem">
@@ -1246,7 +1312,7 @@ name: Anna
 </section>
 <section id="rekurzios-fuggvenyek">
 <h3>Rekurziós függvények<a class="headerlink" href="#rekurzios-fuggvenyek" title="Permalink to this heading">#</a></h3>
-<p>Klasszikus rekurziós példa a Fibonaci sorozat:</p>
+<p>A rekurziós függvények olyan függvények, amelyek önmagkuat hívják. Klasszikus rekurziós példa a Fibonaci sorozat:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">recur_fibo</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
@@ -1276,6 +1342,10 @@ name: Anna
 </pre></div>
 </div>
 </div>
+</div>
+<div class="important admonition">
+<p class="admonition-title">Feladat</p>
+<p>Hozzunk példát más rekurziós függvényre!</p>
 </div>
 </section>
 </section>
@@ -1332,7 +1402,7 @@ name: Anna
 </div>
 </div>
 </div>
-<p>A f</p>
+<p>Nézzünk példát egy másik könyvtár használatára:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">time</span>
@@ -1566,13 +1636,6 @@ strftime(...)
 </div>
 </div>
 </div>
-<div class="important admonition">
-<p class="admonition-title">Feladat (Összegzés programozási tétele)</p>
-<ul class="simple">
-<li><p>Adjuk össze a számokat 1-től 10-ig.</p></li>
-<li><p>Szorozzuk össze a számokat 1-től 10-ig.</p></li>
-</ul>
-</div>
 <p>Írjunk egy függvényt, amely kiírja 1-9-ig a számokat egy mátrixba rendezve.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1618,6 +1681,14 @@ strftime(...)
 </pre></div>
 </div>
 </div>
+</div>
+<div class="important admonition">
+<p class="admonition-title">Feladat (Összegzés programozási tétele)</p>
+<p>Írjunk programot az aláábi problémák megoldására:</p>
+<ul class="simple">
+<li><p>Adjuk össze a számokat 1-től 10-ig.</p></li>
+<li><p>Szorozzuk össze a számokat 1-től 10-ig.</p></li>
+</ul>
 </div>
 </section>
 <section id="a-while-vezerlesi-szerkezet">
@@ -3097,8 +3168,9 @@ It is true, so they are married!
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#egyszeru-tipusok">Egyszerű típusok</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#muveletek-egyszeru-tipusokkal">Műveletek egyszerű típusokkal</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tipus-konverziok">Típus konverziók</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-kod-szintaktikaja-es-szemantikaja">A kód szintaktikája és szemantikája</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fuggvenyek">Függvények</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#valtozok-lathatosaga-es-hatokorok-scope">Változók láthatósága és hatókörök (scope)</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#valtozok-lathatosaga-es-nevterek-scope">Változók láthatósága és névterek (scope)</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hivasi-verem">Hívási verem</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rekurzios-fuggvenyek">Rekurziós függvények</a></li>
 </ul>
