@@ -1034,6 +1034,22 @@ message értéke: &lt;class &#39;str&#39;&gt;
 </ul>
 </div>
 <p>Vegyük észre, hogy a fenti kód részletben a függvény törzsének definiciója be van húzva spaceszel vagy tabbal (ezeket közös néven <em>whitespace</em> karaktereknek hívjuk). Ezeket a whitespaceket hívjuk rossz magyarsággal indentálásnak. Pythonban a sor eleji whitespace karakterek fontos jelentőséggel bírnak, hogy megkülönböztessünk függvény törzs, illetve más vezérlési szerkezetek belső részét. Mindig figyelj oda, hogy a sor eleji whitespacek megfelelőek legyene, máskülönben hibát fogsz kapni.</p>
+<div class="warning admonition">
+<p class="admonition-title">Figyelem</p>
+<p>Példaként nézzünk meg néhány identálási hibát:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">hello</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;Anna&#39;</span>
+   <span class="nb">print</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>       <span class="c1"># hiba: egy szóköz hiányzik </span>
+ <span class="n">hello</span><span class="p">(</span><span class="s1">&#39;Anna&#39;</span><span class="p">)</span>       <span class="c1"># hiba: egy szóköz felesleges</span>
+
+<span class="c1"># Helyes identálással:</span>
+<span class="k">def</span> <span class="nf">hello</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;Anna&#39;</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>       
+<span class="n">hello</span><span class="p">(</span><span class="s1">&#39;Anna&#39;</span><span class="p">)</span>       
+</pre></div>
+</div>
+</div>
 <p>Az így definiált függvényt más cellákban is meg tudjuk hívni.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1635,6 +1651,19 @@ Feltétel típusa:  &lt;class &#39;bool&#39;&gt;
 </div>
 </div>
 </div>
+<div class="important admonition">
+<p class="admonition-title">Feladat</p>
+<p>Mit csinál az alábbi kód? Mi a probléma a kóddal? Teszteljük!</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">v</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">if</span> <span class="n">v</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+   <span class="n">abs_v</span> <span class="o">=</span> <span class="o">-</span><span class="n">v</span>
+<span class="k">elif</span> <span class="n">v</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+   <span class="n">abs_v</span> <span class="o">=</span> <span class="n">v</span>
+    
+<span class="nb">print</span><span class="p">(</span><span class="n">abs_v</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
 <p>Az <code class="docutils literal notranslate"><span class="pre">if</span></code> szerkezetet egyszerű esetekben (amikor egy sorba lehetne írni a blokkot) kifejthetjük egy sorban is:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1673,7 +1702,7 @@ Feltétel típusa:  &lt;class &#39;bool&#39;&gt;
 </div>
 </div>
 </div>
-<p>Végezetül, az <code class="docutils literal notranslate"><span class="pre">if</span></code> blokkja nem definiál hatókört a változónak. Az alábbi kódban az if blokkban létrehozott változó elérhető a globális névtérben is:</p>
+<p>Végezetül, az <code class="docutils literal notranslate"><span class="pre">if</span></code> blokkja nem definiál hatókört a változónak. Az alábbi kódban az <code class="docutils literal notranslate"><span class="pre">if</span></code> blokkban létrehozott változó elérhető a globális névtérben is:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="kc">True</span><span class="p">:</span>
@@ -1691,6 +1720,7 @@ Feltétel típusa:  &lt;class &#39;bool&#39;&gt;
 </section>
 <section id="a-for-vezerlesi-szerkezet">
 <h3>A <code class="docutils literal notranslate"><span class="pre">for</span></code> vezérlési szerkezet<a class="headerlink" href="#a-for-vezerlesi-szerkezet" title="Permalink to this heading">#</a></h3>
+<p>A <code class="docutils literal notranslate"><span class="pre">for</span></code> ciklus a blokkjában található kódot hajta végre amíg a ciklus változó egy tartományon végig megy. A ciklus változója a tartományon végighaladva felveszi a tartomány egyes elemeinek az értékét. Nézzük meg a szintaxist:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">):</span>
@@ -1712,7 +1742,31 @@ Feltétel típusa:  &lt;class &#39;bool&#39;&gt;
 </div>
 </div>
 </div>
-<p>Nézzük meg mit jelent a <code class="docutils literal notranslate"><span class="pre">range</span></code> kulcsszó:</p>
+<div class="important admonition">
+<p class="admonition-title">Feladat</p>
+<p>Azonosítstuk a <code class="docutils literal notranslate"><span class="pre">for</span></code> ciklus elemeit:</p>
+<ul class="simple">
+<li><p>ciklus változót,</p></li>
+<li><p>ciklus törzsét,</p></li>
+<li><p>és hogy hogy definiáljuk a tartományt.</p></li>
+</ul>
+</div>
+<p>A <code class="docutils literal notranslate"><span class="pre">range</span></code> függvény egy <code class="docutils literal notranslate"><span class="pre">range</span></code> típust ad vissza, ami egy tartományt definiál:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>range(1, 10)
+&lt;class &#39;range&#39;&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<p>Írjuk ki ennek a tartománynak az elemeit. A szemléletesség miatt, itt a <code class="docutils literal notranslate"><span class="pre">range</span></code> típust át kell konvertálnunk listává. A listákat majd később fogjuk tárgyalni:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">)))</span>
@@ -1725,7 +1779,74 @@ Feltétel típusa:  &lt;class &#39;bool&#39;&gt;
 </div>
 </div>
 </div>
-<p>Írjunk egy függvényt, amely kiírja 1-9-ig a számokat egy mátrixba rendezve.</p>
+<p>A <code class="docutils literal notranslate"><span class="pre">for</span></code> ciklus ciklus változója ezen lista elemeit fogja bejárni. Vegyük észre, hogy a a <code class="docutils literal notranslate"><span class="pre">range</span></code> első paramétere a tartomány kezdő értéke, a második paramétere pedig a tartomány határa, amibe a határ értéke nem szerepel. Matematkai kifejezésekkel a <code class="docutils literal notranslate"><span class="pre">range(a,</span> <span class="pre">b)</span></code> a <code class="docutils literal notranslate"><span class="pre">[a,b)</span></code> tartományt adja meg.</p>
+<p>Ha csak egy számot adunk meg a <code class="docutils literal notranslate"><span class="pre">range</span></code> függvényen belül, akkor a tartomány kezdő értéke a 0, és a tartomány utolsó értéke (nem beleértve azt) a megadott szám:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Lehetősgünk van minden n-edik elem kírására, a range függvény harmadik paraméterén keresztül. A következő példában 1-től 10-ig definiálunk egy tartományt 2 lépésközzel.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">2</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1, 3, 5, 7, 9]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Ezek után írjunk for ciklus ami összeadja a számokat 1-től 10-ig:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">s</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">11</span><span class="p">):</span>
+    <span class="n">s</span> <span class="o">+=</span> <span class="n">k</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>55
+</pre></div>
+</div>
+</div>
+</div>
+<div class="hint admonition">
+<p class="admonition-title">Tipp (Összegzés programozási tétele)</p>
+<p>Programozáskor gyakran egyes problémák nagyon hasonlóak. Az algoritmikus képességek fejlesztése érdekében érdemes néhány jól definiált algoritmust megtanulni, melyeket ezután kis átalakítással más problémákra tudunk alkalmazni. Ezen általános algoritmusokat hívjuk programozási tételeknek, a folyamatot, melynek során egy tételt alkalmazzunk az adott problémára program transzformációnak nevezzük.</p>
+<p>A számok összeadására írt programunkat az összeadás programozási tételének nevezzük:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Bemenet: A tartomány kezdő és vég értéke: a, b</span>
+<span class="c1"># Kimenet: A számok összege a bemenet alapján: s</span>
+
+<span class="n">s</span> <span class="o">=</span> <span class="mi">0</span>                     <span class="c1"># Az összegzés változója</span>
+<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>     <span class="c1"># from, to a tartomány kezdő és záró eleme  </span>
+    <span class="n">s</span> <span class="o">+=</span> <span class="n">k</span>                <span class="c1"># Az összegzés változójához hozzáadjuk az épp aktuális elemet</span>
+                          <span class="c1"># A ciklus végén az s változó tartalmazza a számok összegét a és b között</span>
+</pre></div>
+</div>
+</div>
+<div class="important admonition">
+<p class="admonition-title">Feladat</p>
+<p>Az összegzés programozási tételét használva, írjunk programot az alábbi problémák megoldására:</p>
+<ul class="simple">
+<li><p>Adjuk össze a páros számokat 50-ig!</p></li>
+<li><p>Írjunk egy ciklust amely kiszámítja a 8 faktoriálisát!</p></li>
+<li><p>Írjunk függvényt amely a sin függvény Taylor közelítését adja meg 3-ik fokszámig!</p></li>
+<li><p>Füzzük egy karakterlánccá a számokat 0-tól 10-ig! (eredmény: <code class="docutils literal notranslate"><span class="pre">&quot;1,</span> <span class="pre">2,</span> <span class="pre">3,</span> <span class="pre">4,</span> <span class="pre">5,</span> <span class="pre">6,</span> <span class="pre">7,</span> <span class="pre">8,</span> <span class="pre">9,</span> <span class="pre">10&quot;</span></code>)</p></li>
+</ul>
+</div>
+<p>A ciklusok egymásba ágyazhatóak. Például, írjunk egy függvényt, amely kiírja 1-9-ig a számokat egy mátrixba rendezve.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">matrix_str</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
@@ -1733,8 +1854,8 @@ Feltétel típusa:  &lt;class &#39;bool&#39;&gt;
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">):</span>
   <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">):</span>
     <span class="n">n</span> <span class="o">+=</span> <span class="mi">1</span>
-    <span class="n">matrix_str</span> <span class="o">+=</span> <span class="nb">str</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39; &#39;</span>
-  <span class="n">matrix_str</span> <span class="o">+=</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span>
+    <span class="n">matrix_str</span> <span class="o">+=</span> <span class="nb">str</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39; &#39;</span> <span class="c1"># adjuk meg az i, j, n és matrix_str értékeit az egyes iterációkban ezen sor után</span>
+  <span class="n">matrix_str</span> <span class="o">+=</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span>           <span class="c1"># &#39;\n&#39; a sortörés jele</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">matrix_str</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -1747,37 +1868,33 @@ Feltétel típusa:  &lt;class &#39;bool&#39;&gt;
 </div>
 </div>
 </div>
-<p>Mi a szépség hibája a fenti kódnak? Hogyan javítsuk ki?</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">matrix_str</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+<div class="important admonition">
+<p class="admonition-title">Feladat</p>
+<p>Elemezzük a fenti kódot:</p>
+<ul class="simple">
+<li><p>Mik a <code class="docutils literal notranslate"><span class="pre">for</span></code> ciklusok blokkjainak (törzseinek) a határai?</p></li>
+<li><p>Kövessük végig hogyan alakulnak az <code class="docutils literal notranslate"><span class="pre">i</span></code>, <code class="docutils literal notranslate"><span class="pre">j</span></code>, <code class="docutils literal notranslate"><span class="pre">n</span></code> és <code class="docutils literal notranslate"><span class="pre">matrix_str</span></code> változó értékeit az egyes iterációkban!</p></li>
+</ul>
+</div>
+<div class="hint admonition">
+<p class="admonition-title">Tipp (Összegzés programozási tétele)</p>
+<p>A fenti feladat megoldásunk helyességét ellenőrízhejtük ha kiírjuk az egyes változók értékeit a cikluson belül:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">matrix_str</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
 <span class="n">n</span> <span class="o">=</span> <span class="mi">0</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">):</span>
   <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">):</span>
     <span class="n">n</span> <span class="o">+=</span> <span class="mi">1</span>
-    <span class="n">matrix_str</span> <span class="o">+=</span> <span class="nb">str</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">:</span>
-      <span class="n">matrix_str</span> <span class="o">+=</span> <span class="s1">&#39; &#39;</span>
+    <span class="n">matrix_str</span> <span class="o">+=</span> <span class="nb">str</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39; &#39;</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;i=&#39;</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="s1">&#39;j=&#39;</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="s1">&#39;n=&#39;</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">matrix_str</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
   <span class="n">matrix_str</span> <span class="o">+=</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">matrix_str</span><span class="p">)</span>
 </pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1 2 3
-4 5 6
-7 8 9
-</pre></div>
-</div>
 </div>
 </div>
 <div class="important admonition">
-<p class="admonition-title">Feladat (Összegzés programozási tétele)</p>
-<p>Írjunk programot az aláábi problémák megoldására:</p>
-<ul class="simple">
-<li><p>Adjuk össze a számokat 1-től 10-ig.</p></li>
-<li><p>Szorozzuk össze a számokat 1-től 10-ig.</p></li>
-</ul>
+<p class="admonition-title">Feladat</p>
+<p>Mi a szépséghibája a fenti mátrixos kódnak? Javítsuk ki!</p>
 </div>
 </section>
 <section id="a-while-vezerlesi-szerkezet">
