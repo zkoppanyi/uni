@@ -338,7 +338,7 @@ document.write(`
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fuggveny-konytarak-es-import">Függvény könytárak és <code class="docutils literal notranslate"><span class="pre">import</span></code></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vezerlesi-szerkezetek">Vezérlési szerkezetek</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#az-if-else-es-elif-vezerlesi-szerkezetek">Az <code class="docutils literal notranslate"><span class="pre">if</span></code> … <code class="docutils literal notranslate"><span class="pre">else</span></code> és <code class="docutils literal notranslate"><span class="pre">elif</span></code> vezérlési szerkezetek</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#az-elagazas-if-else-es-elif">Az elágazás: <code class="docutils literal notranslate"><span class="pre">if</span></code> … <code class="docutils literal notranslate"><span class="pre">else</span></code> és <code class="docutils literal notranslate"><span class="pre">elif</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-for-vezerlesi-szerkezet">A <code class="docutils literal notranslate"><span class="pre">for</span></code> vezérlési szerkezet</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-while-vezerlesi-szerkezet">A <code class="docutils literal notranslate"><span class="pre">while</span></code> vezérlési szerkezet</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-break-parancs">A <code class="docutils literal notranslate"><span class="pre">break</span></code> parancs</a></li>
@@ -1520,57 +1520,122 @@ strftime(...)
 </section>
 <section id="vezerlesi-szerkezetek">
 <h2>Vezérlési szerkezetek<a class="headerlink" href="#vezerlesi-szerkezetek" title="Permalink to this heading">#</a></h2>
-<section id="az-if-else-es-elif-vezerlesi-szerkezetek">
-<h3>Az <code class="docutils literal notranslate"><span class="pre">if</span></code> … <code class="docutils literal notranslate"><span class="pre">else</span></code> és <code class="docutils literal notranslate"><span class="pre">elif</span></code> vezérlési szerkezetek<a class="headerlink" href="#az-if-else-es-elif-vezerlesi-szerkezetek" title="Permalink to this heading">#</a></h3>
+<section id="az-elagazas-if-else-es-elif">
+<h3>Az elágazás: <code class="docutils literal notranslate"><span class="pre">if</span></code> … <code class="docutils literal notranslate"><span class="pre">else</span></code> és <code class="docutils literal notranslate"><span class="pre">elif</span></code><a class="headerlink" href="#az-elagazas-if-else-es-elif" title="Permalink to this heading">#</a></h3>
+<p>Az elágazás lehetővé teszi a kód sorról-sorra való végrehajtásának megtörését. Amennyiben az elágazás feltétele igaz, az elágazás blokkja végrehajtódik, különben az elágazás törzsében lévő kód nem kerül végrehajtásra. Íme egy példa:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="mi">1</span>
-<span class="k">if</span> <span class="n">a</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="p">:</span> <span class="c1"># !=, &gt; , &gt;=, &lt;, &lt;=,</span>
+<span class="k">if</span> <span class="n">a</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="p">:</span>
   <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;true&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;end&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>true
+end
 </pre></div>
 </div>
 </div>
 </div>
+<div class="important admonition">
+<p class="admonition-title">Feladat</p>
+<p>Elemezzük a fenti kódot és definiáljuk az elágazás szintaktikáját! Azonosítsuk a következőeket:</p>
+<ul class="simple">
+<li><p>az elagazás feltétele</p></li>
+<li><p>az elágazás blokkja</p></li>
+</ul>
+</div>
+<p>Az elágazás feltételének valamilyen logikai értékre, tehát <code class="docutils literal notranslate"><span class="pre">True</span></code> vagy <code class="docutils literal notranslate"><span class="pre">False</span></code>ra kell kiírtékelődnie. A fenti példában például láthatjuk, hogy az összehasonlítás igazat, vagy hamisat ad:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Feltétel értéke: &#39;</span><span class="p">,</span> <span class="n">a</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Feltétel típusa: &#39;</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="n">a</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Feltétel értéke:  True
+Feltétel típusa:  &lt;class &#39;bool&#39;&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<p>Megjegyezzük, hogy az automatikus típuskonverzió révén más típusok is szerepelhetnek a feltételben. Ekkor létezni kell egy a típusról logikai értékre történő alapértelmezett (automatikus) konverziónak. Így például számok esetén, a 0 érték <code class="docutils literal notranslate"><span class="pre">False</span></code>, míg a nem nulla érték <code class="docutils literal notranslate"><span class="pre">True</span></code> logikai értékké konvertálódik:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;0 -&gt; bool konverzió:&#39;</span><span class="p">,</span> <span class="nb">bool</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>
+<span class="k">if</span> <span class="ow">not</span> <span class="mi">0</span><span class="p">:</span>
+  <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;0: A feltétel: False&#39;</span><span class="p">)</span>
+    
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;100 -&gt; bool konverzió:&#39;</span><span class="p">,</span> <span class="nb">bool</span><span class="p">(</span><span class="mi">100</span><span class="p">))</span>
+<span class="k">if</span> <span class="mi">100</span><span class="p">:</span>
+  <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;100: A feltétel: True&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0 -&gt; bool konverzió: False
+0: A feltétel: False
+100 -&gt; bool konverzió: True
+100: A feltétel: True
+</pre></div>
+</div>
+</div>
+</div>
+<p>A fenti kódrészletben a <code class="docutils literal notranslate"><span class="pre">bool</span></code> függvény segítségével direkt típuskonverziót használtunk, hogy megmutassuk a típuskonverzió értékét. Ezután az <code class="docutils literal notranslate"><span class="pre">if</span></code> feltételekben a <code class="docutils literal notranslate"><span class="pre">bool</span></code> függvényt már nem használtuk, így automatikus típuskonverzió révén kerül a feltétel kiértékelésre.</p>
+<p>Az <code class="docutils literal notranslate"><span class="pre">else</span></code> ág lehetőséget ad arra, hogy olyan kód blokkot adjunk meg, amely abban az esetben kerül végrehajtásra, ha a feltétel nem teljesül:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="k">if</span> <span class="n">a</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="p">:</span> <span class="c1"># !=, &gt; , &gt;=, &lt;, &lt;=,</span>
-  <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;true&quot;</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">a</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="p">:</span>
+  <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;if blokk&quot;</span><span class="p">)</span>
 <span class="k">else</span><span class="p">:</span> 
-  <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;false&quot;</span><span class="p">)</span>
+  <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;else ág&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>false
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>else ág
 </pre></div>
 </div>
 </div>
 </div>
-<p>Az if feltétel részében kombinálható bármilyen logikai operáció:</p>
+<div class="important admonition">
+<p class="admonition-title">Feladat</p>
+<p>Ismételjük át a logikai műveletkeről tanultakat! Mit ír ki az alábbi kód?</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span>
+<span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="n">a</span> <span class="o">==</span> <span class="mi">2</span> <span class="ow">or</span> <span class="n">b</span> <span class="o">==</span> <span class="mi">2</span><span class="p">):</span>
+  <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;if blokk&#39;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+  <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;else blokk&#39;</span><span class="p">)</span>
+    
+</pre></div>
+</div>
+</div>
+<p>Lehetőségünk van több feltételt megadni az <code class="docutils literal notranslate"><span class="pre">elif</span></code> segítségével. A következő kód például megadja, hogy egy bizonyó órához, milyen étkezés tartozik:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="mi">1</span>
-<span class="n">b</span> <span class="o">=</span> <span class="mi">2</span>
-<span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="n">a</span><span class="o">==</span><span class="mi">2</span> <span class="ow">or</span> <span class="n">b</span><span class="o">==</span><span class="mi">2</span><span class="p">):</span>
-  <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;this is true!&#39;</span><span class="p">)</span>
-<span class="k">else</span><span class="p">:</span>
-  <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;this is false!&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hour</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="k">if</span> <span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">hour</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">:</span>
+  <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;reggeli&quot;</span><span class="p">)</span>
+<span class="k">elif</span> <span class="mi">10</span> <span class="o">&lt;=</span> <span class="n">hour</span> <span class="o">&lt;</span> <span class="mi">17</span><span class="p">:</span>
+  <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;ebéd&quot;</span><span class="p">)</span>
+<span class="k">elif</span> <span class="mi">17</span> <span class="o">&lt;=</span> <span class="n">hour</span> <span class="o">&lt;</span> <span class="mi">24</span><span class="p">:</span>
+  <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;vacsora&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span> 
+  <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;nem létező idő a napon belül!&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>this is false!
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ebéd
 </pre></div>
 </div>
 </div>
 </div>
-<p>Az if szerkezetet egyszerű esetekben kifejthetjük egy sorban:</p>
+<p>Az <code class="docutils literal notranslate"><span class="pre">if</span></code> szerkezetet egyszerű esetekben (amikor egy sorba lehetne írni a blokkot) kifejthetjük egy sorban is:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="mi">1</span>
@@ -1584,17 +1649,41 @@ strftime(...)
 </div>
 </div>
 </div>
-<p>… és egy másik példa:</p>
+<p>A fenti kódrészletben a <code class="docutils literal notranslate"><span class="pre">print(&quot;true&quot;)</span></code> akkor kerül végrehajtásra, ha az <code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">==</span> <span class="pre">1</span></code> feltétel igaz, máskülönben az <code class="docutils literal notranslate"><span class="pre">else</span></code> utáni <code class="docutils literal notranslate"><span class="pre">print(&quot;false&quot;)</span></code> kód kerül végrehajtásra.</p>
+<p>Az egysoros if kifejezést használhatjuk feltételes változó értékadásra, ahogy az alábbi példában is:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="mi">1</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="mi">0</span>
 <span class="n">b</span> <span class="o">=</span> <span class="mi">1</span> <span class="k">if</span> <span class="n">a</span> <span class="o">==</span> <span class="mi">1</span> <span class="k">else</span> <span class="mi">2</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2
+</pre></div>
+</div>
+</div>
+</div>
+<p>Vegyük észre, hogy a <code class="docutils literal notranslate"><span class="pre">b</span> <span class="pre">=</span> <span class="pre">1</span> <span class="pre">if</span> <span class="pre">a</span> <span class="pre">==</span> <span class="pre">1</span> <span class="pre">else</span> <span class="pre">2</span></code> kifejezésben, nem a <code class="docutils literal notranslate"><span class="pre">b</span> <span class="pre">=</span> <span class="pre">1</span></code> a kódrészlet, amely az igaz esetén kiértékelődik, hanem csupán az <code class="docutils literal notranslate"><span class="pre">1</span></code>. Ez azért lehetséges, mert az egysoros <code class="docutils literal notranslate"><span class="pre">if</span></code> előrébb van a műveleti sorrendben mint az értékadás. Hogy érthető legyen, a fenti kód zárójelezve:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">b</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="k">if</span> <span class="n">a</span> <span class="o">==</span> <span class="mi">1</span> <span class="k">else</span> <span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Végezetül, az <code class="docutils literal notranslate"><span class="pre">if</span></code> blokkja nem definiál hatókört a változónak. Az alábbi kódban az if blokkban létrehozott változó elérhető a globális névtérben is:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="kc">True</span><span class="p">:</span>
+    <span class="n">test</span> <span class="o">=</span> <span class="s2">&quot;Ez a változó az if blokkban lett létrehozva&quot;</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">test</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Ez a változó az if blokkban lett létrehozva
 </pre></div>
 </div>
 </div>
@@ -3177,7 +3266,7 @@ It is true, so they are married!
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fuggveny-konytarak-es-import">Függvény könytárak és <code class="docutils literal notranslate"><span class="pre">import</span></code></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vezerlesi-szerkezetek">Vezérlési szerkezetek</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#az-if-else-es-elif-vezerlesi-szerkezetek">Az <code class="docutils literal notranslate"><span class="pre">if</span></code> … <code class="docutils literal notranslate"><span class="pre">else</span></code> és <code class="docutils literal notranslate"><span class="pre">elif</span></code> vezérlési szerkezetek</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#az-elagazas-if-else-es-elif">Az elágazás: <code class="docutils literal notranslate"><span class="pre">if</span></code> … <code class="docutils literal notranslate"><span class="pre">else</span></code> és <code class="docutils literal notranslate"><span class="pre">elif</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-for-vezerlesi-szerkezet">A <code class="docutils literal notranslate"><span class="pre">for</span></code> vezérlési szerkezet</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-while-vezerlesi-szerkezet">A <code class="docutils literal notranslate"><span class="pre">while</span></code> vezérlési szerkezet</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-break-parancs">A <code class="docutils literal notranslate"><span class="pre">break</span></code> parancs</a></li>
