@@ -344,7 +344,7 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-break-parancs">A <code class="docutils literal notranslate"><span class="pre">break</span></code> parancs</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#oszetett-adattipusok">Öszetett adattípusok</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#adatszerkezetek">Adatszerkezetek</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lista-list">Lista (<code class="docutils literal notranslate"><span class="pre">list</span></code>)</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#lista-letrehozasa">Lista létrehozása</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#muveletek-listan">Műveletek listán</a></li>
@@ -1892,10 +1892,6 @@ Feltétel típusa:  &lt;class &#39;bool&#39;&gt;
 </pre></div>
 </div>
 </div>
-<div class="important admonition">
-<p class="admonition-title">Feladat</p>
-<p>Mi a szépséghibája a fenti mátrixos kódnak? Javítsuk ki!</p>
-</div>
 </section>
 <section id="a-while-vezerlesi-szerkezet">
 <h3>A <code class="docutils literal notranslate"><span class="pre">while</span></code> vezérlési szerkezet<a class="headerlink" href="#a-while-vezerlesi-szerkezet" title="Permalink to this heading">#</a></h3>
@@ -2026,13 +2022,21 @@ Feltétel típusa:  &lt;class &#39;bool&#39;&gt;
 </div>
 </section>
 </section>
-<section id="oszetett-adattipusok">
-<h2>Öszetett adattípusok<a class="headerlink" href="#oszetett-adattipusok" title="Permalink to this heading">#</a></h2>
+<section id="adatszerkezetek">
+<h2>Adatszerkezetek<a class="headerlink" href="#adatszerkezetek" title="Permalink to this heading">#</a></h2>
+<p>Az <strong>adatszerekezetek</strong> vagy <strong>adatstruktúrák</strong> adattípusok tárolását teszik lehetővé. Az adatszerkezet is egy típus, így egy adatszerkezet egy vagy több további adatszerkezetet is tárolhat. Az adatszerkezetek a következő alapműveleteket mindenképpen lehetővé teszik:</p>
+<ul class="simple">
+<li><p>az adatszerkezet elemeihez való <strong>hozzáférés</strong>,</p></li>
+<li><p>új adatot hozzáadása az adatszerkezethez (<strong>beszúrás</strong>),</p></li>
+<li><p>és onnan elemet vagy elemeket eltávolítása (<strong>törlés</strong>).</p></li>
+</ul>
+<p>További műveletek is természetesen lehetésgesek, például keresés vagy rendezés az adatszerkezetben. Az adatszerkezetek abban különböznek, hogy a különböző típusú műveleteket, milyen komplexitású algorimussal valósítják meg. Megfelelő adattípus választása egy adott probléma esetén a program tervezés egy fontos eleme. Az adatszerkezetek, a hozzáférést, beszúrás és törlést különböző <strong>komlpexitás</strong> mellett biztosítják. Komplexitáson itt a művelet végrehajtásához szükséges futási idő és memória igényt értünk első sorban.</p>
+<p>A Python nyelv számos alapértelmezett adatszerkezetet támogat; ezek közül a listát, szótárat és vektort ismertetjük.</p>
 <section id="lista-list">
 <h3>Lista (<code class="docutils literal notranslate"><span class="pre">list</span></code>)<a class="headerlink" href="#lista-list" title="Permalink to this heading">#</a></h3>
 <section id="lista-letrehozasa">
 <h4>Lista létrehozása<a class="headerlink" href="#lista-letrehozasa" title="Permalink to this heading">#</a></h4>
-<p>A lista adattípus a más nyelvekből megszokott tömb vagy array típusnak feleltethető meg…</p>
+<p>A lista különböző elemeket tartalmazó gyüjtemény. Nézzünk egy példát egy lista típusú változó létrehozására:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">my_list</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
@@ -2048,7 +2052,15 @@ Feltétel típusa:  &lt;class &#39;bool&#39;&gt;
 </div>
 </div>
 </div>
-<p>… bár más nyelvekhez képest, a lista bármilyen adatípust, bármilyen kombinációban tud tárolni:</p>
+<div class="important admonition">
+<p class="admonition-title">Feladat</p>
+<p>Vizsgáljuk meg a lista létrehozásának szintaxisát. Azonosítsuk a következőeket:</p>
+<ul class="simple">
+<li><p>Milyen karakterekkel jelőljük hogy egy listát hozzunk létre?</p></li>
+<li><p>Milyen módon soroljuk fel a lista elemeit?</p></li>
+</ul>
+</div>
+<p>A lista adatszerkezet a más nyelvekből megszokott tömb típusnak feleltethető meg, azzal a fontos különbséggel, hogy a lista bármilyen adatípust, bármilyen kombinációban tud tárolni:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">my_list</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;I&quot;</span><span class="p">,</span> <span class="s2">&quot;am&quot;</span><span class="p">,</span> <span class="mi">22</span><span class="p">,</span> <span class="s2">&quot;! That is &quot;</span><span class="p">,</span> <span class="kc">True</span><span class="p">]</span>
@@ -2062,7 +2074,7 @@ Feltétel típusa:  &lt;class &#39;bool&#39;&gt;
 </div>
 </div>
 </div>
-<p>… és mivel bármit tartalmazhat ezért egy másik listát is:</p>
+<p>Mivel a list bármit tartalmazhat ezért egy másik listát is:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">list_1</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;1&quot;</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;3&quot;</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
@@ -2077,7 +2089,7 @@ Feltétel típusa:  &lt;class &#39;bool&#39;&gt;
 </div>
 </div>
 </div>
-<p>Üres lista definiálása:</p>
+<p>Az üres lista egy olyan list, mely nem tartalmaz egyetlen elemet.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">empty_list</span> <span class="o">=</span> <span class="p">[]</span>
@@ -2094,7 +2106,7 @@ Feltétel típusa:  &lt;class &#39;bool&#39;&gt;
 </section>
 <section id="muveletek-listan">
 <h4>Műveletek listán<a class="headerlink" href="#muveletek-listan" title="Permalink to this heading">#</a></h4>
-<p>Lista hossza:</p>
+<p>A lista hossza a listát tartalmazó elemek száma, melyet a <code class="docutils literal notranslate"><span class="pre">len</span></code> függvény segítségével kaphatunk meg:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">list_2</span><span class="p">)</span>
@@ -2108,37 +2120,67 @@ Feltétel típusa:  &lt;class &#39;bool&#39;&gt;
 </div>
 </div>
 </div>
-<p>És az üres lista:</p>
+<p>Az üres lista hossza 0:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">empty_list</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">empty_list</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">empty_list</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[]
-0
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0
 </pre></div>
 </div>
 </div>
 </div>
-<p>Természetesen lehetőségünk van a lista egyik elemének lekérdezésére:</p>
+<p>A list egyik elemét <strong>indexeléssel</strong> érhetjük el:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fun_str</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Programming&quot;</span><span class="p">,</span> <span class="s2">&quot;is&quot;</span><span class="p">,</span> <span class="s2">&quot;fun&quot;</span><span class="p">,</span> <span class="s2">&quot;!&quot;</span><span class="p">]</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">fun_str</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>    <span class="c1"># lista első eleme, vegyük észre 0-tól indexelünk</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">fun_str</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>    <span class="c1"># lista második eleme</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">fun_str</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>   <span class="c1"># lista utolsó eleme</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">fun_str</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">])</span>   <span class="c1"># lista utolsó előtti eleme</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Programming
 is
-!
+</pre></div>
+</div>
+</div>
+</div>
+<div class="warning admonition">
+<p class="admonition-title">Figyelem</p>
+<p>Vegyük észre, hogy a Pythonban az indexszelés 0-tól kezdődik.</p>
+</div>
+<p>Lehetőség az utolsó elemtől visszafele történő indexelésre, amennyibe negatív indexszet adunk meg:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fun_str</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Programming&quot;</span><span class="p">,</span> <span class="s2">&quot;is&quot;</span><span class="p">,</span> <span class="s2">&quot;fun&quot;</span><span class="p">,</span> <span class="s2">&quot;!&quot;</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">fun_str</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>   <span class="c1"># lista utolsó eleme</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">fun_str</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">])</span>   <span class="c1"># lista utolsó előtti eleme</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>!
+fun
+</pre></div>
+</div>
+</div>
+</div>
+<p>A fenti kód ekvivalens a következővel:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fun_str</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Programming&quot;</span><span class="p">,</span> <span class="s2">&quot;is&quot;</span><span class="p">,</span> <span class="s2">&quot;fun&quot;</span><span class="p">,</span> <span class="s2">&quot;!&quot;</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">fun_str</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">fun_str</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">fun_str</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">fun_str</span><span class="p">)</span><span class="o">-</span><span class="mi">2</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>!
 fun
 </pre></div>
 </div>
@@ -2148,11 +2190,11 @@ fun
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fun_str</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Programming&quot;</span><span class="p">,</span> <span class="s2">&quot;is&quot;</span><span class="p">,</span> <span class="s2">&quot;fun&quot;</span><span class="p">,</span> <span class="s2">&quot;!&quot;</span><span class="p">]</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">fun_str</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">2</span><span class="p">])</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">fun_str</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">3</span><span class="p">])</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">fun_str</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">fun_str</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">4</span><span class="p">])</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">fun_str</span><span class="p">[</span><span class="mi">0</span><span class="p">:])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">fun_str</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">2</span><span class="p">])</span>   <span class="c1"># 0 és 2 indeszek közötti elemek (a 2-es indexű elem nem tartozik bele)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">fun_str</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">3</span><span class="p">])</span>   <span class="c1"># 1 és 3 indeszek közötti elemek (a 2-es indexű elem nem tartozik bele)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">fun_str</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span>    <span class="c1"># elemek az egyes indexű elemtől az utolsó elemig</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">fun_str</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>  <span class="c1"># elemek 0-tól az utolsó indeszig (az utolsó elem nem tartozik bele)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">fun_str</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>   <span class="c1"># ha nem adunk meg kezdő ideszeket, akkor az automatikusan 0. eredmény ugyanaz mint az előző sorban</span>
 </pre></div>
 </div>
 </div>
@@ -2160,15 +2202,40 @@ fun
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;Programming&#39;, &#39;is&#39;]
 [&#39;is&#39;, &#39;fun&#39;]
 [&#39;Programming&#39;, &#39;is&#39;, &#39;fun&#39;]
-[&#39;Programming&#39;, &#39;is&#39;, &#39;fun&#39;, &#39;!&#39;]
+[&#39;is&#39;, &#39;fun&#39;, &#39;!&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="warning admonition">
+<p class="admonition-title">Figyelem</p>
+<p>Figyeljünk rá, hogy az <code class="docutils literal notranslate"><span class="pre">a:b</span></code> tartományba a <code class="docutils literal notranslate"><span class="pre">b</span></code> indexű elem nem tartozik bele, így a matematikában megszokott jelölésmóddal a tartomány: <code class="docutils literal notranslate"><span class="pre">[a,</span> <span class="pre">b)</span></code>. Ez a konvenció azonos a <code class="docutils literal notranslate"><span class="pre">range</span></code> függvénynél ismertettel.</p>
+</div>
+<p>Lehetőség bizonyos lépésközzel végighaladni a tartományon:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fun_str</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Programming&quot;</span><span class="p">,</span> <span class="s2">&quot;Programming&quot;</span><span class="p">,</span> <span class="s2">&quot;is&quot;</span><span class="p">,</span> <span class="s2">&quot;is&quot;</span><span class="p">,</span> <span class="s2">&quot;is&quot;</span><span class="p">,</span> <span class="s2">&quot;always&quot;</span><span class="p">,</span> <span class="s2">&quot;not&quot;</span><span class="p">,</span> <span class="s2">&quot;fun&quot;</span><span class="p">,</span> <span class="s2">&quot;fun&quot;</span><span class="p">,</span> <span class="s2">&quot;!&quot;</span><span class="p">,</span> <span class="s2">&quot;!&quot;</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">fun_str</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span><span class="mi">2</span><span class="p">])</span>   <span class="c1"># minden második elem a 0 és az utolsó indeszek közötti (az utolsó elem nem tartozik bele)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">fun_str</span><span class="p">[</span><span class="mi">0</span><span class="p">::</span><span class="mi">2</span><span class="p">])</span>     <span class="c1"># minden második elem a 0 és az utolsó indeszek közötti (az utolsó elem beletartozik)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">fun_str</span><span class="p">[::</span><span class="mi">2</span><span class="p">])</span>      <span class="c1"># ha nem adunk meg kezdő ideszeket, akkor az automatikusan 0. eredmény ugyanaz mint az előző sorban</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">fun_str</span><span class="p">[</span><span class="mi">1</span><span class="p">::</span><span class="mi">3</span><span class="p">])</span>     <span class="c1"># minden harmadik elem a 0 és az utolsó indeszek között (az utolsó elem beletartozik)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;Programming&#39;, &#39;is&#39;, &#39;is&#39;, &#39;not&#39;, &#39;fun&#39;]
+[&#39;Programming&#39;, &#39;is&#39;, &#39;is&#39;, &#39;not&#39;, &#39;fun&#39;, &#39;!&#39;]
+[&#39;Programming&#39;, &#39;is&#39;, &#39;is&#39;, &#39;not&#39;, &#39;fun&#39;, &#39;!&#39;]
 [&#39;Programming&#39;, &#39;is&#39;, &#39;fun&#39;, &#39;!&#39;]
 </pre></div>
 </div>
 </div>
 </div>
+<p>Az indeszek a slicing kifejezésben lehetnek változók is:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">from_idx</span> <span class="o">=</span> <span class="mi">0</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fun_str</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Programming&quot;</span><span class="p">,</span> <span class="s2">&quot;is&quot;</span><span class="p">,</span> <span class="s2">&quot;fun&quot;</span><span class="p">,</span> <span class="s2">&quot;!&quot;</span><span class="p">]</span>
+<span class="n">from_idx</span> <span class="o">=</span> <span class="mi">0</span>
 <span class="n">to_idx</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">fun_str</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">fun_str</span><span class="p">[</span><span class="n">from_idx</span><span class="p">:</span><span class="n">to_idx</span><span class="p">])</span>
 </pre></div>
@@ -3389,7 +3456,7 @@ It is true, so they are married!
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-break-parancs">A <code class="docutils literal notranslate"><span class="pre">break</span></code> parancs</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#oszetett-adattipusok">Öszetett adattípusok</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#adatszerkezetek">Adatszerkezetek</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lista-list">Lista (<code class="docutils literal notranslate"><span class="pre">list</span></code>)</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#lista-letrehozasa">Lista létrehozása</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#muveletek-listan">Műveletek listán</a></li>
