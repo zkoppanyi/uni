@@ -153,6 +153,8 @@ const thebe_selector_output = ".output, .cell_output"
         </ul>
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="1_Introduction_to_Python.html">Bevezetés a Python nyelvbe</a></li>
+<li class="toctree-l1"><a class="reference internal" href="12_DataStructures.html">Adatszerkezetek</a></li>
+<li class="toctree-l1"><a class="reference internal" href="13_Algorithms.html">Algoritmusok</a></li>
 <li class="toctree-l1"><a class="reference internal" href="2_Introduction_to_NumPy.html">Bevezetés a <code class="docutils literal notranslate"><span class="pre">numpy</span></code> könyvtárba</a></li>
 <li class="toctree-l1"><a class="reference internal" href="3_Introduction_to_Matplotlib.html">Bevezetés a <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code> könyvtárba</a></li>
 <li class="toctree-l1"><a class="reference internal" href="4_Spatial_transformations.html">Transzformációk</a></li>
@@ -402,7 +404,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;shapely.coords.CoordinateSequence object at 0x7fd56f373310&gt;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;shapely.coords.CoordinateSequence object at 0x7f8f5615a2e0&gt;
 [(10.0, 20.0)]
 10.0 20.0
 [(10.0, 20.0)]
@@ -453,7 +455,7 @@ area =  0.0
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;shapely.coords.CoordinateSequence object at 0x7fd56f373370&gt;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;shapely.coords.CoordinateSequence object at 0x7f8f56159220&gt;
 [(5.0, 0.0), (5.0, 10.0)]
 [(5.0, 0.0), (5.0, 10.0)]
 </pre></div>
@@ -518,7 +520,7 @@ area =  0.0
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fd56f0d11f0&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f8f55eae670&gt;]
 </pre></div>
 </div>
 <img alt="_images/30418400b273df5e2c23b6fc84c39226280ccd3b1abbc810845104c77ba5e003.png" src="_images/30418400b273df5e2c23b6fc84c39226280ccd3b1abbc810845104c77ba5e003.png" />
@@ -585,177 +587,28 @@ area =  52.5
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting geopandas
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  Downloading geopandas-0.13.2-py3-none-any.whl (1.1 MB)
-?25l
-     |▎                               | 10 kB 28.9 MB/s eta 0:00:01
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     |▋                               | 20 kB 383 kB/s eta 0:00:03
-     |█                               | 30 kB 571 kB/s eta 0:00:02
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     |█▏                              | 40 kB 222 kB/s eta 0:00:05
-     |█▌                              | 51 kB 239 kB/s eta 0:00:05
-     |█▉                              | 61 kB 287 kB/s eta 0:00:04
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     |██                              | 71 kB 298 kB/s eta 0:00:04
-     |██▍                             | 81 kB 314 kB/s eta 0:00:04
-     |██▊                             | 92 kB 353 kB/s eta 0:00:03
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     |███                             | 102 kB 290 kB/s eta 0:00:04
-     |███▎                            | 112 kB 290 kB/s eta 0:00:04
-     |███▋                            | 122 kB 290 kB/s eta 0:00:04
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     |████                            | 133 kB 290 kB/s eta 0:00:04
-     |████▏                           | 143 kB 290 kB/s eta 0:00:04
-     |████▌                           | 153 kB 290 kB/s eta 0:00:04
-     |████▉                           | 163 kB 290 kB/s eta 0:00:04
-     |█████                           | 174 kB 290 kB/s eta 0:00:04
-     |█████▍                          | 184 kB 290 kB/s eta 0:00:04
-     |█████▊                          | 194 kB 290 kB/s eta 0:00:04
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     |██████                          | 204 kB 290 kB/s eta 0:00:04
-     |██████▎                         | 215 kB 290 kB/s eta 0:00:04
-     |██████▋                         | 225 kB 290 kB/s eta 0:00:03
-     |██████▉                         | 235 kB 290 kB/s eta 0:00:03
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     |███████▏                        | 245 kB 290 kB/s eta 0:00:03
-     |███████▌                        | 256 kB 290 kB/s eta 0:00:03
-     |███████▉                        | 266 kB 290 kB/s eta 0:00:03
-     |████████                        | 276 kB 290 kB/s eta 0:00:03
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     |████████▍                       | 286 kB 290 kB/s eta 0:00:03
-     |████████▊                       | 296 kB 290 kB/s eta 0:00:03
-     |█████████                       | 307 kB 290 kB/s eta 0:00:03
-     |█████████▎                      | 317 kB 290 kB/s eta 0:00:03
-     |█████████▋                      | 327 kB 290 kB/s eta 0:00:03
-     |█████████▉                      | 337 kB 290 kB/s eta 0:00:03
-     |██████████▏                     | 348 kB 290 kB/s eta 0:00:03
-     |██████████▌                     | 358 kB 290 kB/s eta 0:00:03
-     |██████████▊                     | 368 kB 290 kB/s eta 0:00:03
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     |███████████                     | 378 kB 290 kB/s eta 0:00:03
-     |███████████▍                    | 389 kB 290 kB/s eta 0:00:03
-     |███████████▊                    | 399 kB 290 kB/s eta 0:00:03
-     |████████████                    | 409 kB 290 kB/s eta 0:00:03
-     |████████████▎                   | 419 kB 290 kB/s eta 0:00:03
-     |████████████▋                   | 430 kB 290 kB/s eta 0:00:03
-     |████████████▉                   | 440 kB 290 kB/s eta 0:00:03
-     |█████████████▏                  | 450 kB 290 kB/s eta 0:00:03
-     |█████████████▌                  | 460 kB 290 kB/s eta 0:00:03
-     |█████████████▊                  | 471 kB 290 kB/s eta 0:00:03
-     |██████████████                  | 481 kB 290 kB/s eta 0:00:03
-     |██████████████▍                 | 491 kB 290 kB/s eta 0:00:03
-     |██████████████▋                 | 501 kB 290 kB/s eta 0:00:03
-     |███████████████                 | 512 kB 290 kB/s eta 0:00:03
-     |███████████████▎                | 522 kB 290 kB/s eta 0:00:02
-     |███████████████▋                | 532 kB 290 kB/s eta 0:00:02
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     |███████████████▉                | 542 kB 290 kB/s eta 0:00:02
-     |████████████████▏               | 552 kB 290 kB/s eta 0:00:02
-     |████████████████▌               | 563 kB 290 kB/s eta 0:00:02
-     |████████████████▊               | 573 kB 290 kB/s eta 0:00:02
-     |█████████████████               | 583 kB 290 kB/s eta 0:00:02
-     |█████████████████▍              | 593 kB 290 kB/s eta 0:00:02
-     |█████████████████▋              | 604 kB 290 kB/s eta 0:00:02
-     |██████████████████              | 614 kB 290 kB/s eta 0:00:02
-     |██████████████████▎             | 624 kB 290 kB/s eta 0:00:02
-     |██████████████████▌             | 634 kB 290 kB/s eta 0:00:02
-     |██████████████████▉             | 645 kB 290 kB/s eta 0:00:02
-     |███████████████████▏            | 655 kB 290 kB/s eta 0:00:02
-     |███████████████████▌            | 665 kB 290 kB/s eta 0:00:02
-     |███████████████████▊            | 675 kB 290 kB/s eta 0:00:02
-     |████████████████████            | 686 kB 290 kB/s eta 0:00:02
-     |████████████████████▍           | 696 kB 290 kB/s eta 0:00:02
-     |████████████████████▋           | 706 kB 290 kB/s eta 0:00:02
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     |█████████████████████           | 716 kB 290 kB/s eta 0:00:02
-     |█████████████████████▎          | 727 kB 290 kB/s eta 0:00:02
-     |█████████████████████▌          | 737 kB 290 kB/s eta 0:00:02
-     |█████████████████████▉          | 747 kB 290 kB/s eta 0:00:02
-     |██████████████████████▏         | 757 kB 290 kB/s eta 0:00:02
-     |██████████████████████▍         | 768 kB 290 kB/s eta 0:00:02
-     |██████████████████████▊         | 778 kB 290 kB/s eta 0:00:02
-     |███████████████████████         | 788 kB 290 kB/s eta 0:00:02
-     |███████████████████████▍        | 798 kB 290 kB/s eta 0:00:02
-     |███████████████████████▋        | 808 kB 290 kB/s eta 0:00:01
-     |████████████████████████        | 819 kB 290 kB/s eta 0:00:01
-     |████████████████████████▎       | 829 kB 290 kB/s eta 0:00:01
-     |████████████████████████▌       | 839 kB 290 kB/s eta 0:00:01
-     |████████████████████████▉       | 849 kB 290 kB/s eta 0:00:01
-     |█████████████████████████▏      | 860 kB 290 kB/s eta 0:00:01
-     |█████████████████████████▍      | 870 kB 290 kB/s eta 0:00:01
-     |█████████████████████████▊      | 880 kB 290 kB/s eta 0:00:01
-     |██████████████████████████      | 890 kB 290 kB/s eta 0:00:01
-     |██████████████████████████▎     | 901 kB 290 kB/s eta 0:00:01
-     |██████████████████████████▋     | 911 kB 290 kB/s eta 0:00:01
-     |███████████████████████████     | 921 kB 290 kB/s eta 0:00:01
-     |███████████████████████████▎    | 931 kB 290 kB/s eta 0:00:01
-     |███████████████████████████▌    | 942 kB 290 kB/s eta 0:00:01
-     |███████████████████████████▉    | 952 kB 290 kB/s eta 0:00:01
-     |████████████████████████████▏   | 962 kB 290 kB/s eta 0:00:01
-     |████████████████████████████▍   | 972 kB 290 kB/s eta 0:00:01
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     |████████████████████████████▊   | 983 kB 290 kB/s eta 0:00:01
-     |█████████████████████████████   | 993 kB 290 kB/s eta 0:00:01
-     |█████████████████████████████▎  | 1.0 MB 290 kB/s eta 0:00:01
-     |█████████████████████████████▋  | 1.0 MB 290 kB/s eta 0:00:01
-     |██████████████████████████████  | 1.0 MB 290 kB/s eta 0:00:01
-     |██████████████████████████████▏ | 1.0 MB 290 kB/s eta 0:00:01
-     |██████████████████████████████▌ | 1.0 MB 290 kB/s eta 0:00:01
-     |██████████████████████████████▉ | 1.1 MB 290 kB/s eta 0:00:01
-     |███████████████████████████████▏| 1.1 MB 290 kB/s eta 0:00:01
-     |███████████████████████████████▍| 1.1 MB 290 kB/s eta 0:00:01
-     |███████████████████████████████▊| 1.1 MB 290 kB/s eta 0:00:01
-     |████████████████████████████████| 1.1 MB 290 kB/s 
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>?25hRequirement already satisfied, skipping upgrade: shapely&gt;=1.7.1 in /home/zoltan/env/uni/lib/python3.8/site-packages (from geopandas) (1.8.5.post1)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already up-to-date: geopandas in /home/zoltan/env/uni/lib/python3.8/site-packages (0.13.2)
 Requirement already satisfied, skipping upgrade: packaging in /home/zoltan/env/uni/lib/python3.8/site-packages (from geopandas) (23.1)
-Requirement already satisfied, skipping upgrade: fiona&gt;=1.8.19 in /home/zoltan/env/uni/lib/python3.8/site-packages (from geopandas) (1.9.4.post1)
 Requirement already satisfied, skipping upgrade: pandas&gt;=1.1.0 in /home/zoltan/env/uni/lib/python3.8/site-packages (from geopandas) (2.0.2)
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied, skipping upgrade: pyproj&gt;=3.0.1 in /home/zoltan/env/uni/lib/python3.8/site-packages (from geopandas) (3.5.0)
-Requirement already satisfied, skipping upgrade: click~=8.0 in /home/zoltan/env/uni/lib/python3.8/site-packages (from fiona&gt;=1.8.19-&gt;geopandas) (8.1.3)
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied, skipping upgrade: cligj&gt;=0.5 in /home/zoltan/env/uni/lib/python3.8/site-packages (from fiona&gt;=1.8.19-&gt;geopandas) (0.7.2)
-Requirement already satisfied, skipping upgrade: certifi in /home/zoltan/env/uni/lib/python3.8/site-packages (from fiona&gt;=1.8.19-&gt;geopandas) (2023.5.7)
-Requirement already satisfied, skipping upgrade: six in /home/zoltan/env/uni/lib/python3.8/site-packages (from fiona&gt;=1.8.19-&gt;geopandas) (1.16.0)
-Requirement already satisfied, skipping upgrade: click-plugins&gt;=1.0 in /home/zoltan/env/uni/lib/python3.8/site-packages (from fiona&gt;=1.8.19-&gt;geopandas) (1.1.1)
-Requirement already satisfied, skipping upgrade: importlib-metadata; python_version &lt; &quot;3.10&quot; in /home/zoltan/env/uni/lib/python3.8/site-packages (from fiona&gt;=1.8.19-&gt;geopandas) (6.6.0)
-Requirement already satisfied, skipping upgrade: attrs&gt;=19.2.0 in /home/zoltan/env/uni/lib/python3.8/site-packages (from fiona&gt;=1.8.19-&gt;geopandas) (23.1.0)
+Requirement already satisfied, skipping upgrade: shapely&gt;=1.7.1 in /home/zoltan/env/uni/lib/python3.8/site-packages (from geopandas) (1.8.5.post1)
+Requirement already satisfied, skipping upgrade: fiona&gt;=1.8.19 in /home/zoltan/env/uni/lib/python3.8/site-packages (from geopandas) (1.9.4.post1)
 Requirement already satisfied, skipping upgrade: numpy&gt;=1.20.3; python_version &lt; &quot;3.10&quot; in /home/zoltan/env/uni/lib/python3.8/site-packages (from pandas&gt;=1.1.0-&gt;geopandas) (1.24.3)
-Requirement already satisfied, skipping upgrade: pytz&gt;=2020.1 in /home/zoltan/env/uni/lib/python3.8/site-packages (from pandas&gt;=1.1.0-&gt;geopandas) (2023.3)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied, skipping upgrade: tzdata&gt;=2022.1 in /home/zoltan/env/uni/lib/python3.8/site-packages (from pandas&gt;=1.1.0-&gt;geopandas) (2023.3)
 Requirement already satisfied, skipping upgrade: python-dateutil&gt;=2.8.2 in /home/zoltan/env/uni/lib/python3.8/site-packages (from pandas&gt;=1.1.0-&gt;geopandas) (2.8.2)
-Requirement already satisfied, skipping upgrade: tzdata&gt;=2022.1 in /home/zoltan/env/uni/lib/python3.8/site-packages (from pandas&gt;=1.1.0-&gt;geopandas) (2023.3)
+Requirement already satisfied, skipping upgrade: pytz&gt;=2020.1 in /home/zoltan/env/uni/lib/python3.8/site-packages (from pandas&gt;=1.1.0-&gt;geopandas) (2023.3)
+Requirement already satisfied, skipping upgrade: certifi in /home/zoltan/env/uni/lib/python3.8/site-packages (from pyproj&gt;=3.0.1-&gt;geopandas) (2023.5.7)
+Requirement already satisfied, skipping upgrade: click~=8.0 in /home/zoltan/env/uni/lib/python3.8/site-packages (from fiona&gt;=1.8.19-&gt;geopandas) (8.1.3)
+Requirement already satisfied, skipping upgrade: click-plugins&gt;=1.0 in /home/zoltan/env/uni/lib/python3.8/site-packages (from fiona&gt;=1.8.19-&gt;geopandas) (1.1.1)
+Requirement already satisfied, skipping upgrade: attrs&gt;=19.2.0 in /home/zoltan/env/uni/lib/python3.8/site-packages (from fiona&gt;=1.8.19-&gt;geopandas) (23.1.0)
+Requirement already satisfied, skipping upgrade: six in /home/zoltan/env/uni/lib/python3.8/site-packages (from fiona&gt;=1.8.19-&gt;geopandas) (1.16.0)
+Requirement already satisfied, skipping upgrade: importlib-metadata; python_version &lt; &quot;3.10&quot; in /home/zoltan/env/uni/lib/python3.8/site-packages (from fiona&gt;=1.8.19-&gt;geopandas) (6.6.0)
+Requirement already satisfied, skipping upgrade: cligj&gt;=0.5 in /home/zoltan/env/uni/lib/python3.8/site-packages (from fiona&gt;=1.8.19-&gt;geopandas) (0.7.2)
 Requirement already satisfied, skipping upgrade: zipp&gt;=0.5 in /home/zoltan/env/uni/lib/python3.8/site-packages (from importlib-metadata; python_version &lt; &quot;3.10&quot;-&gt;fiona&gt;=1.8.19-&gt;geopandas) (3.15.0)
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Installing collected packages: geopandas
-  Attempting uninstall: geopandas
-    Found existing installation: geopandas 0.13.0
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    Uninstalling geopandas-0.13.0:
-      Successfully uninstalled geopandas-0.13.0
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Successfully installed geopandas-0.13.2
 </pre></div>
 </div>
 </div>
@@ -1327,7 +1180,7 @@ Name: density, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(0.22448369776415222, 0.6694940457089475, 0.7880436094066408, 1)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(0.08942507459207172, 0.8342409608199804, 0.9401346494362696, 1)
 </pre></div>
 </div>
 </div>
@@ -1344,7 +1197,7 @@ Name: density, dtype: float64
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: &gt;
 </pre></div>
 </div>
-<img alt="_images/d5aa502642836858d0b809908ab545da70e5d40952560f3484bbc8463ae75d1b.png" src="_images/d5aa502642836858d0b809908ab545da70e5d40952560f3484bbc8463ae75d1b.png" />
+<img alt="_images/28c9216444972f77b3dc65a783558f556184f126607403220e425982caa2e22e.png" src="_images/28c9216444972f77b3dc65a783558f556184f126607403220e425982caa2e22e.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1356,7 +1209,7 @@ Name: density, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/9d2402212b93db6bcc4d8101d12d04bbdb68f5edf6e97df62ea93d0ffcf9c59c.png" src="_images/9d2402212b93db6bcc4d8101d12d04bbdb68f5edf6e97df62ea93d0ffcf9c59c.png" />
+<img alt="_images/189834aa302bdd1cd263a1f62d4e03069e9e049c6f40640cd26500ec84c47f75.png" src="_images/189834aa302bdd1cd263a1f62d4e03069e9e049c6f40640cd26500ec84c47f75.png" />
 </div>
 </div>
 <p>Feliratozzuk az országok a neveikkel:</p>
@@ -1378,7 +1231,7 @@ Name: density, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/8ad8b09f3b7ed5e4962836ac3df3858c794b79e20a4aff2bcfe785d6167f11dc.png" src="_images/8ad8b09f3b7ed5e4962836ac3df3858c794b79e20a4aff2bcfe785d6167f11dc.png" />
+<img alt="_images/be06691a04918bc361f74eeb82d62daaf75b2b6728f5b913f0ec6cc42a394990.png" src="_images/be06691a04918bc361f74eeb82d62daaf75b2b6728f5b913f0ec6cc42a394990.png" />
 </div>
 </div>
 <p>Jelenítsük meg az országokat népességük alapján 5 egyenlő számosságú osztályba sorolva.</p>
@@ -1482,7 +1335,7 @@ Categories (5, interval[float64, right]): [(-0.001, 67827.0] &lt; (67827.0, 1067
       <td>151</td>
       <td>MULTIPOLYGON (((-61.68667 17.02444, -61.73806 ...</td>
       <td>150.980000</td>
-      <td>(0.30056562279001187, 0.6605483292211517, 0.32...</td>
+      <td>(0.7099722948276669, 0.39278757944375886, 0.38...</td>
       <td>(-61.77846144624214, 17.06541450000003)</td>
     </tr>
     <tr>
@@ -1501,7 +1354,7 @@ Categories (5, interval[float64, right]): [(-0.001, 67827.0] &lt; (67827.0, 1067
       <td>1103</td>
       <td>MULTIPOLYGON (((50.81249 25.64222, 50.79250 25...</td>
       <td>1103.178082</td>
-      <td>(0.10032217509573327, 0.855049395874094, 0.535...</td>
+      <td>(0.7740274803469365, 0.9044738628853652, 0.430...</td>
       <td>(50.55007111604336, 26.018053000000066)</td>
     </tr>
     <tr>
@@ -1520,7 +1373,7 @@ Categories (5, interval[float64, right]): [(-0.001, 67827.0] &lt; (67827.0, 1067
       <td>643</td>
       <td>POLYGON ((-59.53306 13.05055, -59.54333 13.067...</td>
       <td>643.024229</td>
-      <td>(0.7784333195192187, 0.12384125558672965, 0.62...</td>
+      <td>(0.8818833475316206, 0.8955535829671034, 0.296...</td>
       <td>(-59.57258683669045, 13.197222)</td>
     </tr>
     <tr>
@@ -1539,7 +1392,7 @@ Categories (5, interval[float64, right]): [(-0.001, 67827.0] &lt; (67827.0, 1067
       <td>25</td>
       <td>MULTIPOLYGON (((-73.03723 21.13944, -73.12361 ...</td>
       <td>25.007348</td>
-      <td>(0.8596587778266449, 0.39017394449263676, 0.67...</td>
+      <td>(0.7401249113806377, 0.7715509282104301, 0.689...</td>
       <td>(-73.33565591585821, 21.11791400000004)</td>
     </tr>
     <tr>
@@ -1558,7 +1411,7 @@ Categories (5, interval[float64, right]): [(-0.001, 67827.0] &lt; (67827.0, 1067
       <td>12</td>
       <td>MULTIPOLYGON (((-87.80334 17.29417, -87.80917 ...</td>
       <td>12.306105</td>
-      <td>(0.639834266319282, 0.5571363397711365, 0.0619...</td>
+      <td>(0.35882335324181114, 0.23444444375447704, 0.0...</td>
       <td>(-88.7216096567985, 17.213470500000057)</td>
     </tr>
   </tbody>
@@ -1607,22 +1460,22 @@ Categories (5, interval[float64, right]): [(-0.001, 67827.0] &lt; (67827.0, 1067
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: mapclassify in /home/zoltan/env/uni/lib/python3.8/site-packages (2.5.0)
-Requirement already satisfied: scikit-learn in /home/zoltan/env/uni/lib/python3.8/site-packages (from mapclassify) (1.2.2)
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: pandas&gt;=1.0 in /home/zoltan/env/uni/lib/python3.8/site-packages (from mapclassify) (2.0.2)
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: numpy&gt;=1.3 in /home/zoltan/env/uni/lib/python3.8/site-packages (from mapclassify) (1.24.3)
-Requirement already satisfied: scipy&gt;=1.0 in /home/zoltan/env/uni/lib/python3.8/site-packages (from mapclassify) (1.10.1)
+Requirement already satisfied: numpy&gt;=1.3 in /home/zoltan/env/uni/lib/python3.8/site-packages (from mapclassify) (1.24.3)
+Requirement already satisfied: pandas&gt;=1.0 in /home/zoltan/env/uni/lib/python3.8/site-packages (from mapclassify) (2.0.2)
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: networkx in /home/zoltan/env/uni/lib/python3.8/site-packages (from mapclassify) (3.1)
-Requirement already satisfied: joblib&gt;=1.1.1 in /home/zoltan/env/uni/lib/python3.8/site-packages (from scikit-learn-&gt;mapclassify) (1.2.0)
-Requirement already satisfied: threadpoolctl&gt;=2.0.0 in /home/zoltan/env/uni/lib/python3.8/site-packages (from scikit-learn-&gt;mapclassify) (3.1.0)
-Requirement already satisfied: pytz&gt;=2020.1 in /home/zoltan/env/uni/lib/python3.8/site-packages (from pandas&gt;=1.0-&gt;mapclassify) (2023.3)
-Requirement already satisfied: python-dateutil&gt;=2.8.2 in /home/zoltan/env/uni/lib/python3.8/site-packages (from pandas&gt;=1.0-&gt;mapclassify) (2.8.2)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: scikit-learn in /home/zoltan/env/uni/lib/python3.8/site-packages (from mapclassify) (1.2.2)
+Requirement already satisfied: scipy&gt;=1.0 in /home/zoltan/env/uni/lib/python3.8/site-packages (from mapclassify) (1.10.1)
 Requirement already satisfied: tzdata&gt;=2022.1 in /home/zoltan/env/uni/lib/python3.8/site-packages (from pandas&gt;=1.0-&gt;mapclassify) (2023.3)
+Requirement already satisfied: pytz&gt;=2020.1 in /home/zoltan/env/uni/lib/python3.8/site-packages (from pandas&gt;=1.0-&gt;mapclassify) (2023.3)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: python-dateutil&gt;=2.8.2 in /home/zoltan/env/uni/lib/python3.8/site-packages (from pandas&gt;=1.0-&gt;mapclassify) (2.8.2)
+Requirement already satisfied: threadpoolctl&gt;=2.0.0 in /home/zoltan/env/uni/lib/python3.8/site-packages (from scikit-learn-&gt;mapclassify) (3.1.0)
+Requirement already satisfied: joblib&gt;=1.1.1 in /home/zoltan/env/uni/lib/python3.8/site-packages (from scikit-learn-&gt;mapclassify) (1.2.0)
 Requirement already satisfied: six&gt;=1.5 in /home/zoltan/env/uni/lib/python3.8/site-packages (from python-dateutil&gt;=2.8.2-&gt;pandas&gt;=1.0-&gt;mapclassify) (1.16.0)
 </pre></div>
 </div>
@@ -1857,7 +1710,7 @@ Name: NAME, dtype: object
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/c710c1f4c4e9cf29db868285ba83b4b93b5d4e5819c56ee7122323f20b94acc4.png" src="_images/c710c1f4c4e9cf29db868285ba83b4b93b5d4e5819c56ee7122323f20b94acc4.png" />
+<img alt="_images/f1e6dcf37359a682fa359841c27de9edc93cce7d2bd2bb39f145b43dbb4dfd75.png" src="_images/f1e6dcf37359a682fa359841c27de9edc93cce7d2bd2bb39f145b43dbb4dfd75.png" />
 </div>
 </div>
 </section>

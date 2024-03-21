@@ -1,0 +1,1817 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Adatszerkezetek &#8212; Geoinformatikai programozás jegyzet</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '12_DataStructures';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Algoritmusok" href="13_Algorithms.html" />
+    <link rel="prev" title="Bevezetés a Python nyelvbe" href="1_Introduction_to_Python.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    <p class="title logo__title">Geoinformatikai programozás jegyzet</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Előszó
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="1_Introduction_to_Python.html">Bevezetés a Python nyelvbe</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Adatszerkezetek</a></li>
+<li class="toctree-l1"><a class="reference internal" href="13_Algorithms.html">Algoritmusok</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_Introduction_to_NumPy.html">Bevezetés a <code class="docutils literal notranslate"><span class="pre">numpy</span></code> könyvtárba</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3_Introduction_to_Matplotlib.html">Bevezetés a <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code> könyvtárba</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4_Spatial_transformations.html">Transzformációk</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5_Interpolation_and_Regression.html">Interpolációs és regressziós feladatok <code class="docutils literal notranslate"><span class="pre">scipy</span></code> segítségével</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6_Coordinate_System_Transformations.html">Geodéziai koordináta rendszer transzformációk</a></li>
+<li class="toctree-l1"><a class="reference internal" href="7_Geospatial_Visualization.html">Térinformatikai vizualizáció <code class="docutils literal notranslate"><span class="pre">Geopandas</span></code> segítségével</a></li>
+<li class="toctree-l1"><a class="reference internal" href="X_TicTacToe.html">A <em>Tic tac toe</em> program</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2F12_DataStructures.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button"
+   title="Open an issue"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+
+</a>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/12_DataStructures.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Adatszerkezetek</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lista-list">Lista (<code class="docutils literal notranslate"><span class="pre">list</span></code>)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lista-letrehozasa">Lista létrehozása</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#muveletek-listan">Műveletek listán</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lista-logikai-kifejezesben">Lista logikai kifejezésben</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#szotar-dict">Szótár (<code class="docutils literal notranslate"><span class="pre">dict</span></code>)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#szotar-letrehozasa">Szótár létrehozása</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#muveletek-szotaron">Műveletek szótáron</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#szotar-logikai-kifejezesben">Szótár logikai kifejezésben</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#listak-es-szotarak-egymasba-agyazva">Listák és szótárak egymásba ágyazva</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vektor-tuple">Vektor (<code class="docutils literal notranslate"><span class="pre">tuple</span></code>)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tuple-letrehozasa"><code class="docutils literal notranslate"><span class="pre">tuple</span></code> létrehozása</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#muveletek-tuplen">Műveletek <code class="docutils literal notranslate"><span class="pre">tuple</span></code>n</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mutable-es-immutable-tipusok"><em>Mutable</em> és <em>immutable</em> típusok</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sekely-es-melymasolas">Sekély és mélymásolás</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mutable-tipusok-fuggvenyekben"><em>Mutable</em> típusok függvényekben</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#az-is-kulcsszo">Az <code class="docutils literal notranslate"><span class="pre">is</span></code> kulcsszó</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="adatszerkezetek">
+<h1>Adatszerkezetek<a class="headerlink" href="#adatszerkezetek" title="Permalink to this heading">#</a></h1>
+<p>Az <strong>adatszerekezetek</strong> vagy <strong>adatstruktúrák</strong> adattípusok tárolását teszik lehetővé. Az adatszerkezet is egy típus, így egy adatszerkezet egy vagy több további adatszerkezetet is tárolhat. Az adatszerkezetek a következő alapműveleteket mindenképpen lehetővé teszik:</p>
+<ul class="simple">
+<li><p>az adatszerkezet elemeihez való <strong>hozzáférés</strong>,</p></li>
+<li><p>új adatot hozzáadása az adatszerkezethez (<strong>beszúrás</strong>),</p></li>
+<li><p>és onnan elemet vagy elemeket eltávolítása (<strong>törlés</strong>).</p></li>
+</ul>
+<p>További műveletek is természetesen lehetésgesek, például keresés vagy rendezés az adatszerkezetben. Az adatszerkezetek abban különböznek, hogy a különböző típusú műveleteket, milyen komplexitású algorimussal valósítják meg. Megfelelő adattípus választása egy adott probléma esetén a program tervezés egy fontos eleme. Az adatszerkezetek, a hozzáférést, beszúrás és törlést különböző <strong>komlpexitás</strong> mellett biztosítják. Komplexitáson itt a művelet végrehajtásához szükséges futási idő és memória igényt értünk első sorban.</p>
+<p>A Python nyelv számos alapértelmezett adatszerkezetet támogat; ezek közül a listát, szótárat és vektort ismertetjük.</p>
+<section id="lista-list">
+<h2>Lista (<code class="docutils literal notranslate"><span class="pre">list</span></code>)<a class="headerlink" href="#lista-list" title="Permalink to this heading">#</a></h2>
+<p>A lista különböző elemeket tartalmazó gyüjtemény. Melynek elemeit az elemhez tartozó indexszel érhetjük el. A lista különböző indexeknél különböző típusokkal térhet vissza: a lista nem csak egy adott adattípusot tartalmazhat.</p>
+<div class="note admonition">
+<p class="admonition-title">Kiegészítő anyag</p>
+<p>A lista egy egész számú indexszhez megadja az indexszen tárolt értéket. Matematikailg ez magadható a következő leképezéssel:</p>
+<p><span class="math notranslate nohighlight">\(\mathbb{Z} \rightarrow \mathbb{D}\)</span>,</p>
+<p>ahol <span class="math notranslate nohighlight">\(\mathbb{D}\)</span> az összes adattípus halmaza.</p>
+</div>
+<section id="lista-letrehozasa">
+<h3>Lista létrehozása<a class="headerlink" href="#lista-letrehozasa" title="Permalink to this heading">#</a></h3>
+<p>Nézzünk egy példát egy lista típusú változó létrehozására:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">my_list</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">my_list</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">my_list</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1, 2, 3, 4, 5]
+&lt;class &#39;list&#39;&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="important admonition">
+<p class="admonition-title">Feladat</p>
+<p>Vizsgáljuk meg a lista létrehozásának szintaxisát. Azonosítsuk a következőeket:</p>
+<ul class="simple">
+<li><p>Milyen karakterekkel jelőljük hogy egy listát hozzunk létre?</p></li>
+<li><p>Milyen módon soroljuk fel a lista elemeit?</p></li>
+<li><p>Mi a lista típus neve a Pythonban (<code class="docutils literal notranslate"><span class="pre">type</span></code> eredménye)?</p></li>
+</ul>
+</div>
+<p>A lista adatszerkezet a más nyelvekből megszokott tömb típusnak feleltethető meg, azzal a fontos különbséggel, hogy a lista bármilyen adatípust, bármilyen kombinációban tud tárolni:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">my_list</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;I&quot;</span><span class="p">,</span> <span class="s2">&quot;am&quot;</span><span class="p">,</span> <span class="mi">22</span><span class="p">,</span> <span class="s2">&quot;! That is &quot;</span><span class="p">,</span> <span class="kc">True</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">my_list</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;I&#39;, &#39;am&#39;, 22, &#39;! That is &#39;, True]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Mivel a list bármit tartalmazhat ezért egy másik listát is:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">list_1</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;1&quot;</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;3&quot;</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
+<span class="n">list_2</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;2nd list&quot;</span><span class="p">,</span> <span class="s2">&quot;contains 1st&quot;</span><span class="p">,</span> <span class="n">list_1</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">list_2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;2nd list&#39;, &#39;contains 1st&#39;, [&#39;1&#39;, 2, &#39;3&#39;, 4]]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Az üres lista egy olyan list, mely nem tartalmaz egyetlen elemet:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">empty_list</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">empty_list</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="muveletek-listan">
+<h3>Műveletek listán<a class="headerlink" href="#muveletek-listan" title="Permalink to this heading">#</a></h3>
+<p>A lista hossza a listát tartalmazó elemek száma, melyet a <code class="docutils literal notranslate"><span class="pre">len</span></code> függvény segítségével kaphatunk meg:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">list_2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3
+</pre></div>
+</div>
+</div>
+</div>
+<p>Az üres lista hossza 0:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">empty_list</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">empty_list</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0
+</pre></div>
+</div>
+</div>
+</div>
+<p>A list egyik elemét <strong>indexeléssel</strong> érhetjük el:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fun_str</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Programming&quot;</span><span class="p">,</span> <span class="s2">&quot;is&quot;</span><span class="p">,</span> <span class="s2">&quot;fun&quot;</span><span class="p">,</span> <span class="s2">&quot;!&quot;</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">fun_str</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>    <span class="c1"># lista első eleme, vegyük észre 0-tól indexelünk</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">fun_str</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>    <span class="c1"># lista második eleme</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Programming
+is
+</pre></div>
+</div>
+</div>
+</div>
+<div class="warning admonition">
+<p class="admonition-title">Figyelem</p>
+<p>Vegyük észre, hogy a Pythonban az indexszelés 0-tól kezdődik.</p>
+</div>
+<p>Lehetőség az utolsó elemtől visszafele történő indexelésre, amennyibe negatív indexszet adunk meg:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fun_str</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Programming&quot;</span><span class="p">,</span> <span class="s2">&quot;is&quot;</span><span class="p">,</span> <span class="s2">&quot;fun&quot;</span><span class="p">,</span> <span class="s2">&quot;!&quot;</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">fun_str</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>   <span class="c1"># lista utolsó eleme</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">fun_str</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">])</span>   <span class="c1"># lista utolsó előtti eleme</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>!
+fun
+</pre></div>
+</div>
+</div>
+</div>
+<p>A fenti kód kifejezhető a <code class="docutils literal notranslate"><span class="pre">len</span></code> függvény segítségével következő módon:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fun_str</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Programming&quot;</span><span class="p">,</span> <span class="s2">&quot;is&quot;</span><span class="p">,</span> <span class="s2">&quot;fun&quot;</span><span class="p">,</span> <span class="s2">&quot;!&quot;</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">fun_str</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">fun_str</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">fun_str</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">fun_str</span><span class="p">)</span><span class="o">-</span><span class="mi">2</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>!
+fun
+</pre></div>
+</div>
+</div>
+</div>
+<p>A fenti kifejezés teljesen ekvivalens a negatív indexszeléssel, ezért a negatív indexszelés egyszerűsíti a kódot. Az ilyen nyelvi megoldásokat az angol irodalom “<strong>syntax sugar</strong>”-nek, vagy magyarul szinatkszis cukornak nevezni.</p>
+<p>Matlabhoz hasonlóan használhatunk tartományt is a lista egyik részhalmazának lekérdezéséhez; ezt <strong>slicing</strong>-nak vagy <strong>szeletelésnek</strong> hívjuk. A tartományt a <code class="docutils literal notranslate"><span class="pre">:</span></code> operátor segítéségvel definiálhatjuk:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fun_str</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Programming&quot;</span><span class="p">,</span> <span class="s2">&quot;is&quot;</span><span class="p">,</span> <span class="s2">&quot;fun&quot;</span><span class="p">,</span> <span class="s2">&quot;!&quot;</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">fun_str</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">2</span><span class="p">])</span>   <span class="c1"># 0 és 2 indeszek közötti elemek (a 2-es indexű elem nem tartozik bele)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">fun_str</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">3</span><span class="p">])</span>   <span class="c1"># 1 és 3 indeszek közötti elemek (a 2-es indexű elem nem tartozik bele)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">fun_str</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span>    <span class="c1"># elemek az egyes indexű elemtől az utolsó elemig</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">fun_str</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>  <span class="c1"># elemek 0-tól az utolsó indeszig (az utolsó elem nem tartozik bele)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">fun_str</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>   <span class="c1"># ha nem adunk meg kezdő ideszeket, akkor az automatikusan 0. eredmény ugyanaz mint az előző sorban`</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;Programming&#39;, &#39;is&#39;]
+[&#39;is&#39;, &#39;fun&#39;]
+[&#39;is&#39;, &#39;fun&#39;, &#39;!&#39;]
+[&#39;Programming&#39;, &#39;is&#39;, &#39;fun&#39;]
+[&#39;Programming&#39;, &#39;is&#39;, &#39;fun&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="warning admonition">
+<p class="admonition-title">Figyelem</p>
+<p>Figyeljünk rá, hogy az <code class="docutils literal notranslate"><span class="pre">a:b</span></code> tartományba a <code class="docutils literal notranslate"><span class="pre">b</span></code> indexű elem nem tartozik bele, így a matematikában megszokott jelölésmóddal a tartomány: <code class="docutils literal notranslate"><span class="pre">[a,</span> <span class="pre">b)</span></code>. Ez a konvenció azonos a <code class="docutils literal notranslate"><span class="pre">range</span></code> függvénynél ismertettel.</p>
+</div>
+<p>Lehetőség bizonyos lépésközzel végighaladni a tartományon:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fun_str</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Programming&quot;</span><span class="p">,</span> <span class="s2">&quot;Programming&quot;</span><span class="p">,</span> <span class="s2">&quot;is&quot;</span><span class="p">,</span> <span class="s2">&quot;is&quot;</span><span class="p">,</span> <span class="s2">&quot;always&quot;</span><span class="p">,</span> <span class="s2">&quot;not&quot;</span><span class="p">,</span> <span class="s2">&quot;fun&quot;</span><span class="p">,</span> <span class="s2">&quot;!&quot;</span><span class="p">,</span> <span class="s2">&quot;!&quot;</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">fun_str</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span><span class="mi">2</span><span class="p">])</span>   <span class="c1"># minden második elem a 0 és az utolsó indeszek közötti (az utolsó elem nem tartozik bele)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">fun_str</span><span class="p">[</span><span class="mi">0</span><span class="p">::</span><span class="mi">2</span><span class="p">])</span>     <span class="c1"># minden második elem a 0 és az utolsó indeszek közötti (az utolsó elem beletartozik)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">fun_str</span><span class="p">[::</span><span class="mi">2</span><span class="p">])</span>      <span class="c1"># ha nem adunk meg kezdő ideszeket, akkor az automatikusan 0. eredmény ugyanaz mint az előző sorban</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">fun_str</span><span class="p">[::</span><span class="mi">3</span><span class="p">])</span>      <span class="c1"># minden harmadik elem a 0 és az utolsó indeszek között (az utolsó elem beletartozik)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;Programming&#39;, &#39;is&#39;, &#39;always&#39;, &#39;fun&#39;]
+[&#39;Programming&#39;, &#39;is&#39;, &#39;always&#39;, &#39;fun&#39;, &#39;!&#39;]
+[&#39;Programming&#39;, &#39;is&#39;, &#39;always&#39;, &#39;fun&#39;, &#39;!&#39;]
+[&#39;Programming&#39;, &#39;is&#39;, &#39;fun&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Az indeszek a slicing kifejezésben lehetnek változók is:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fun_str</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Programming&quot;</span><span class="p">,</span> <span class="s2">&quot;is&quot;</span><span class="p">,</span> <span class="s2">&quot;fun&quot;</span><span class="p">,</span> <span class="s2">&quot;!&quot;</span><span class="p">]</span>
+<span class="n">from_idx</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">to_idx</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">fun_str</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">fun_str</span><span class="p">[</span><span class="n">from_idx</span><span class="p">:</span><span class="n">to_idx</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;Programming&#39;, &#39;is&#39;, &#39;fun&#39;, &#39;!&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">append</span></code> paranccsal új elemet tudunk hozzáfűzni a listához:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fruits</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;apple&quot;</span><span class="p">,</span> <span class="s2">&quot;banana&quot;</span><span class="p">,</span> <span class="s2">&quot;cherry&quot;</span><span class="p">]</span>
+<span class="n">fruits</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;orange&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">fruits</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;apple&#39;, &#39;banana&#39;, &#39;cherry&#39;, &#39;orange&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="warning admonition">
+<p class="admonition-title">Figyelem</p>
+<p>Vegyük észre, hogy az <code class="docutils literal notranslate"><span class="pre">append</span></code> függvény a listát helyben (magát a lista tartalmát) változtatja meg. Magának az <code class="docutils literal notranslate"><span class="pre">append</span></code> függvénynek nincs visszatérési értéke, ezért az alábbi kód <code class="docutils literal notranslate"><span class="pre">None</span></code>-t for kiírni:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">fruits</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;apple&quot;</span><span class="p">,</span> <span class="s2">&quot;banana&quot;</span><span class="p">,</span> <span class="s2">&quot;cherry&quot;</span><span class="p">]</span>
+<span class="n">fruits</span> <span class="o">=</span> <span class="n">fruits</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;orange&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">fruits</span><span class="p">)</span> <span class="c1"># Eredmény: None</span>
+</pre></div>
+</div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">extend</span></code> paranccsal két listát tudunk összefűzni:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fruits</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;apple&quot;</span><span class="p">,</span> <span class="s2">&quot;banana&quot;</span><span class="p">,</span> <span class="s2">&quot;cherry&quot;</span><span class="p">]</span>
+<span class="n">fruits</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span><span class="s2">&quot;orange&quot;</span><span class="p">,</span> <span class="s2">&quot;lime&quot;</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">fruits</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;apple&#39;, &#39;banana&#39;, &#39;cherry&#39;, &#39;orange&#39;, &#39;lime&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Ahogy korábban láttuk, az összeadás műveletét általánosíthatjuk, és nem csak számok között értelmezhetjük. Példát a szövegek esetén láttunk egy példát, ahol az összeadás két szöveg összefűzését (konkatenációját) jelentette. Hasonlóan, itt is, két lista között is értelmezhetjük az összeadást; ekkor azok összefűzését jelenti. Ez egy egyszerűsítés (syntax sugar) az <code class="docutils literal notranslate"><span class="pre">extend</span></code> függvény használata helyett:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fruits</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;apple&quot;</span><span class="p">,</span> <span class="s2">&quot;banana&quot;</span><span class="p">,</span> <span class="s2">&quot;cherry&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="p">[</span><span class="s2">&quot;orange&quot;</span><span class="p">,</span> <span class="s2">&quot;lime&quot;</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">fruits</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;apple&#39;, &#39;banana&#39;, &#39;cherry&#39;, &#39;orange&#39;, &#39;lime&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<p>További az összeadással össefűzött elemek egy új listába kerülnek, és az eredeti listák nem változnak meg:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fruits</span> <span class="o">=</span> <span class="s2">&quot;apple&quot;</span><span class="p">,</span> <span class="s2">&quot;banana&quot;</span><span class="p">,</span> <span class="s2">&quot;cherry&quot;</span>
+<span class="n">veggies</span> <span class="o">=</span> <span class="s2">&quot;carrot&quot;</span><span class="p">,</span> <span class="s2">&quot;broccoli&quot;</span><span class="p">,</span> 
+
+<span class="n">healthy</span> <span class="o">=</span> <span class="n">fruits</span> <span class="o">+</span> <span class="n">veggies</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">fruits</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">veggies</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">healthy</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(&#39;apple&#39;, &#39;banana&#39;, &#39;cherry&#39;)
+(&#39;carrot&#39;, &#39;broccoli&#39;)
+(&#39;apple&#39;, &#39;banana&#39;, &#39;cherry&#39;, &#39;carrot&#39;, &#39;broccoli&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="important admonition">
+<p class="admonition-title">Feladat</p>
+<p>Mit ír ki a következő program?</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">fruits</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;apple&quot;</span><span class="p">,</span> <span class="s2">&quot;banana&quot;</span><span class="p">,</span> <span class="s2">&quot;cherry&quot;</span><span class="p">]</span>
+<span class="n">veggies</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;carrot&quot;</span><span class="p">,</span> <span class="s2">&quot;broccoli&quot;</span><span class="p">]</span>
+
+<span class="n">healthy</span> <span class="o">=</span> <span class="n">fruits</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">veggies</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">fruits</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">veggies</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">healthy</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>Vigyázzunk arra, hogy ne keverjük az <code class="docutils literal notranslate"><span class="pre">append</span></code> és <code class="docutils literal notranslate"><span class="pre">extend</span></code> parancsokat:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fruits</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;apple&quot;</span><span class="p">,</span> <span class="s2">&quot;banana&quot;</span><span class="p">,</span> <span class="s2">&quot;cherry&quot;</span><span class="p">]</span>
+<span class="n">fruits</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="s2">&quot;orange&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">fruits</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;apple&#39;, &#39;banana&#39;, &#39;cherry&#39;, &#39;o&#39;, &#39;r&#39;, &#39;a&#39;, &#39;n&#39;, &#39;g&#39;, &#39;e&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="important admonition">
+<p class="admonition-title">Feladat</p>
+<p>Próbáljuk megmagyarázni mi történik a fenti kódban! Gondoljunk vissza az automatikus típuskonverzióra, illetve hogy a hogyan konvertálódna egy szöveg listává!</p>
+</div>
+<p>Egy példa arra amikor valószínűsíthetően az <code class="docutils literal notranslate"><span class="pre">append</span></code> függvény van használva extend helyett:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fruits</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;apple&quot;</span><span class="p">,</span> <span class="s2">&quot;banana&quot;</span><span class="p">,</span> <span class="s2">&quot;cherry&quot;</span><span class="p">]</span>
+<span class="n">fruits</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="s2">&quot;orange&quot;</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">fruits</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;apple&#39;, &#39;banana&#39;, &#39;cherry&#39;, [&#39;orange&#39;]]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="lista-logikai-kifejezesben">
+<h3>Lista logikai kifejezésben<a class="headerlink" href="#lista-logikai-kifejezesben" title="Permalink to this heading">#</a></h3>
+<p>Nem üres list <code class="docutils literal notranslate"><span class="pre">True</span></code> értékként értelmezett:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">example_list</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">]</span>
+<span class="k">if</span> <span class="n">example_list</span><span class="p">:</span>
+   <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;True&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+  <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;False&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+<p>… és ennek fordítottja; üres lista hamisként értelmezett:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">example_list</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">if</span> <span class="n">example_list</span><span class="p">:</span>
+   <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;True&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+  <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;False&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>False
+</pre></div>
+</div>
+</div>
+</div>
+<div class="important admonition">
+<p class="admonition-title">Feladat</p>
+<p>Mi az eredménye az alábbi kódnak?</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">example_list</span> <span class="o">=</span> <span class="p">[</span><span class="kc">False</span><span class="p">]</span>
+<span class="k">if</span> <span class="n">example_list</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;True&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;False&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</section>
+</section>
+<section id="szotar-dict">
+<h2>Szótár (<code class="docutils literal notranslate"><span class="pre">dict</span></code>)<a class="headerlink" href="#szotar-dict" title="Permalink to this heading">#</a></h2>
+<p>A <strong>szótár</strong>, vagy más néven asszociatív tömb, különböző elemeket tartalmazó gyüjtemény, melynek elemeit az elemhez tartozó kulccsal érhetjük el. A szótár így <strong>kulcs-érték</strong> párokat tartalmaz. A szótár különböző kulcsoknál különböző típusokot adhat: az érték adattípusai kulcsonként változhatnak. Megkötés viszont, hogy a kulcsoknak megfelelő adattípusúaknak kell lennie: mi egyelőre azzal a szabállyal élünk, hogy egyszerű típusnak kell lennie.</p>
+<section id="szotar-letrehozasa">
+<h3>Szótár létrehozása<a class="headerlink" href="#szotar-letrehozasa" title="Permalink to this heading">#</a></h3>
+<p>Egy példa szótár létrehozására, ahol a kulcs szöveg:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">car</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="s2">&quot;brand&quot;</span><span class="p">:</span> <span class="s2">&quot;Ford&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;model&quot;</span><span class="p">:</span> <span class="s2">&quot;Mustang&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;year&quot;</span><span class="p">:</span> <span class="mi">1964</span><span class="p">,</span>
+<span class="p">}</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">car</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">car</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;brand&#39;: &#39;Ford&#39;, &#39;model&#39;: &#39;Mustang&#39;, &#39;year&#39;: 1964}
+&lt;class &#39;dict&#39;&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<p>A szótár tehát hasonlóképpen működik mint a hagyományos szótárak. Például egy angol-magyar szótár esetén, egy adott angol szóhoz megkapható a magyar megfelelője.</p>
+<div class="important admonition">
+<p class="admonition-title">Feladat</p>
+<p>Vizsgáljuk meg a szótár létrehozásának szintaxisát. Azonosítsuk a következőeket:</p>
+<ul class="simple">
+<li><p>Milyen karakterekkel jelőljük hogy egy listát hozzunk létre?</p></li>
+<li><p>Milyen módon adjuk meg a kulcsot?</p></li>
+<li><p>Milyen módon adjuk meg a kulcshoz tartozó értéket?</p></li>
+<li><p>Mi a szótár típus neve a Pythonban (<code class="docutils literal notranslate"><span class="pre">type</span></code> eredménye)?</p></li>
+</ul>
+</div>
+<p>Többszörös kulcs esetén az utolsó előfordulás lesz használva:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">car</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="s2">&quot;brand&quot;</span><span class="p">:</span> <span class="s2">&quot;Ford&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;model&quot;</span><span class="p">:</span> <span class="s2">&quot;Mustang&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;year&quot;</span><span class="p">:</span> <span class="mi">1964</span><span class="p">,</span>
+  <span class="s2">&quot;year&quot;</span><span class="p">:</span> <span class="mi">2020</span>
+<span class="p">}</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">car</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;brand&#39;: &#39;Ford&#39;, &#39;model&#39;: &#39;Mustang&#39;, &#39;year&#39;: 2020}
+</pre></div>
+</div>
+</div>
+</div>
+<p>Nem csak szöveg, hanem más típus is szerepelhet kulcsként:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">numbers</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="mi">0</span><span class="p">:</span> <span class="s2">&quot;nulla&quot;</span><span class="p">,</span>
+  <span class="mi">1</span><span class="p">:</span> <span class="s2">&quot;egy&quot;</span><span class="p">,</span>
+  <span class="mi">2</span><span class="p">:</span> <span class="s2">&quot;kettő&quot;</span><span class="p">,</span>
+<span class="p">}</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">numbers</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{0: &#39;nulla&#39;, 1: &#39;egy&#39;, 2: &#39;kettő&#39;}
+</pre></div>
+</div>
+</div>
+</div>
+<p>A kulcsoknak nem kell azonos típusúaknak lennie (de úgynevezett hashable típusúnak kell lennie, mellyel most nem foglalkozunk, és elfogadjuk, hogy egyszerű típusnak kell lennie):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">numbers</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="mi">0</span><span class="p">:</span> <span class="s2">&quot;nulla&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;one&quot;</span><span class="p">:</span> <span class="s2">&quot;egy&quot;</span><span class="p">,</span>
+  <span class="mi">2</span><span class="p">:</span> <span class="s2">&quot;kettő&quot;</span><span class="p">,</span>
+<span class="p">}</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">numbers</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{0: &#39;nulla&#39;, &#39;one&#39;: &#39;egy&#39;, 2: &#39;kettő&#39;}
+</pre></div>
+</div>
+</div>
+</div>
+<p>Végül nézzük meg az üres szótárat, melynek nincs egyetlen kulcs-érték párja sem:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">empty_dict</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">empty_dict</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{}
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="muveletek-szotaron">
+<h3>Műveletek szótáron<a class="headerlink" href="#muveletek-szotaron" title="Permalink to this heading">#</a></h3>
+<p>Elemhez való hozzáférés a kulcson keresztül lehetséges a <code class="docutils literal notranslate"><span class="pre">[</span></code> és <code class="docutils literal notranslate"><span class="pre">]</span></code> használatával hasonlóan a lista szintaxisához:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">car</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="s2">&quot;brand&quot;</span><span class="p">:</span> <span class="s2">&quot;Ford&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;model&quot;</span><span class="p">:</span> <span class="s2">&quot;Mustang&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;year&quot;</span><span class="p">:</span> <span class="mi">1964</span><span class="p">,</span>
+<span class="p">}</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">car</span><span class="p">[</span><span class="s1">&#39;brand&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Ford
+</pre></div>
+</div>
+</div>
+</div>
+<p>Az elem hozzáférése után az értéket is módosíthatjuk:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">car</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="s2">&quot;brand&quot;</span><span class="p">:</span> <span class="s2">&quot;Ford&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;model&quot;</span><span class="p">:</span> <span class="s2">&quot;Mustang&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;year&quot;</span><span class="p">:</span> <span class="mi">1964</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="n">car</span><span class="p">[</span><span class="s2">&quot;model&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;Focus&quot;</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">car</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;brand&#39;: &#39;Ford&#39;, &#39;model&#39;: &#39;Focus&#39;, &#39;year&#39;: 1964}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="note admonition">
+<p class="admonition-title">Kiegészítő anyag</p>
+<p>A list esetén a matemtaikai leképzést a következő alakban adtuk meg korábban:</p>
+<p><span class="math notranslate nohighlight">\(\mathbb{Z} \rightarrow \mathbb{D}\)</span>.</p>
+<p>A szótár esetén az index szerepét, mely csak egész számot vehet fel, a szöveg veheti át, így a szótár a következő leképezéssel megadható:</p>
+<p><span class="math notranslate nohighlight">\(\mathbb{S} \rightarrow \mathbb{D}\)</span>,</p>
+<p>ahol <span class="math notranslate nohighlight">\(\mathbb{S}\)</span> a szövegek halmaza. Valójában bármilyen típus szerepelhet kulcsként, így pontosabb az alábbi kifejezés:</p>
+<p><span class="math notranslate nohighlight">\(\mathbb{H} \rightarrow \mathbb{D}\)</span>,</p>
+<p>ahol <span class="math notranslate nohighlight">\(\mathbb{H} \subset \mathbb{D}\)</span> úgynevezett <em>hashable</em> adattípusok halmaza. Tehát a szótárra a lista általánosításaként is tekinthetünk. Bizonyítandó, az alábbi kódban egész számokat használunk kulcsként, majd egy elemére hivatkozunk. Vegyük észre, hogy az elem elérése szintaktikailag ugyanúgy nézz ki mint a lista esetén:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">car</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="mi">0</span><span class="p">:</span> <span class="s2">&quot;Ford&quot;</span><span class="p">,</span>
+  <span class="mi">1</span><span class="p">:</span> <span class="s2">&quot;Mustang&quot;</span><span class="p">,</span>
+  <span class="mi">2</span><span class="p">:</span> <span class="mi">1964</span><span class="p">,</span>
+<span class="p">}</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">car</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<p>Új elemet a szótárhoz, vagyis új kulcs-érték párt, az új kulcsra való hivatkozással tudjuk megtenni:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">car</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="s2">&quot;brand&quot;</span><span class="p">:</span> <span class="s2">&quot;Ford&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;model&quot;</span><span class="p">:</span> <span class="s2">&quot;Mustang&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;year&quot;</span><span class="p">:</span> <span class="mi">1964</span><span class="p">,</span>
+<span class="p">}</span>
+<span class="n">car</span><span class="p">[</span><span class="s1">&#39;owner&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;Anna&quot;</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">car</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;brand&#39;: &#39;Ford&#39;, &#39;model&#39;: &#39;Mustang&#39;, &#39;year&#39;: 1964, &#39;owner&#39;: &#39;Anna&#39;}
+</pre></div>
+</div>
+</div>
+</div>
+<p>Ez azt jelenti, hogy új szótárat szintaktikailag üres szótárból is feltölthetünk. Például az alábbi kód ugyanazt a szótárt hozza létre, mint feljebb:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">car</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="n">car</span><span class="p">[</span><span class="s2">&quot;brand&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;Ford&quot;</span>
+<span class="n">car</span><span class="p">[</span><span class="s2">&quot;model&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;Mustang&quot;</span>
+<span class="n">car</span><span class="p">[</span><span class="s2">&quot;year&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;1964&quot;</span>
+<span class="n">car</span><span class="p">[</span><span class="s2">&quot;owner&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;Anna&quot;</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">car</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;brand&#39;: &#39;Ford&#39;, &#39;model&#39;: &#39;Mustang&#39;, &#39;year&#39;: &#39;1964&#39;, &#39;owner&#39;: &#39;Anna&#39;}
+</pre></div>
+</div>
+</div>
+</div>
+<p>A szótár típuson lévő <code class="docutils literal notranslate"><span class="pre">pop</span></code> függvény segítségével törölhető egy kulcs-érték pár:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">car</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="s2">&quot;brand&quot;</span><span class="p">:</span> <span class="s2">&quot;Ford&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;model&quot;</span><span class="p">:</span> <span class="s2">&quot;Mustang&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;year&quot;</span><span class="p">:</span> <span class="mi">1964</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="n">car</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;year&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">car</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;brand&#39;: &#39;Ford&#39;, &#39;model&#39;: &#39;Mustang&#39;}
+</pre></div>
+</div>
+</div>
+</div>
+<p>A fenti példában a <code class="docutils literal notranslate"><span class="pre">year</span></code> kulcsot töröltük.</p>
+<div class="warning admonition">
+<p class="admonition-title">Figyelem</p>
+<p>Ha nem létező elemet próbálunk törölni hibát kapunk, például:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">car</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="s2">&quot;brand&quot;</span><span class="p">:</span> <span class="s2">&quot;Ford&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;model&quot;</span><span class="p">:</span> <span class="s2">&quot;Mustang&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;year&quot;</span><span class="p">:</span> <span class="mi">1964</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="n">car</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;owner&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="szotar-logikai-kifejezesben">
+<h3>Szótár logikai kifejezésben<a class="headerlink" href="#szotar-logikai-kifejezesben" title="Permalink to this heading">#</a></h3>
+<p>Nem üres szótár True értéként értelmezett:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">example_list</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;a&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">}</span>
+<span class="k">if</span> <span class="n">example_list</span><span class="p">:</span>
+   <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;True&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+  <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;False&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+<p>Üres szótár pedig hamis:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">example_list</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="k">if</span> <span class="n">example_list</span><span class="p">:</span>
+   <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;True&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+  <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;False&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>False
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="listak-es-szotarak-egymasba-agyazva">
+<h2>Listák és szótárak egymásba ágyazva<a class="headerlink" href="#listak-es-szotarak-egymasba-agyazva" title="Permalink to this heading">#</a></h2>
+<p>Mivel a szótár egy típus szerepelhet mint a lista egy eleme. Nézzük meg az alábbi példát, ahol egy listába tettünk két szótárat. A lista elemére hivatkozva a megfelelő szótárt kapjuk vissza:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cars</span> <span class="o">=</span> <span class="p">[{</span>
+  <span class="s2">&quot;brand&quot;</span><span class="p">:</span> <span class="s2">&quot;Ford&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;model&quot;</span><span class="p">:</span> <span class="s2">&quot;Mustang&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;year&quot;</span><span class="p">:</span> <span class="mi">1964</span><span class="p">,</span>
+<span class="p">},</span> <span class="p">{</span>
+  <span class="s2">&quot;brand&quot;</span><span class="p">:</span> <span class="s2">&quot;Ford&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;model&quot;</span><span class="p">:</span> <span class="s2">&quot;Focus&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;year&quot;</span><span class="p">:</span> <span class="mi">2018</span><span class="p">,</span>
+<span class="p">}]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">cars</span><span class="p">)</span>    <span class="c1"># a list kiírása</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">cars</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="c1"># a lista első szótárának kiírása</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">cars</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="c1"># a lista második szótárának kiírása</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[{&#39;brand&#39;: &#39;Ford&#39;, &#39;model&#39;: &#39;Mustang&#39;, &#39;year&#39;: 1964}, {&#39;brand&#39;: &#39;Ford&#39;, &#39;model&#39;: &#39;Focus&#39;, &#39;year&#39;: 2018}]
+{&#39;brand&#39;: &#39;Ford&#39;, &#39;model&#39;: &#39;Mustang&#39;, &#39;year&#39;: 1964}
+{&#39;brand&#39;: &#39;Ford&#39;, &#39;model&#39;: &#39;Focus&#39;, &#39;year&#39;: 2018}
+</pre></div>
+</div>
+</div>
+</div>
+<p>Kérdés, hogy hogyan tudunk a listában lévő szótár egyik kulcsára hivatkozni. Először lekérdezhejtük a szótárat, és beletehetjük azt egy változóba. Ezt a változót használhatjuk ezután, hogy a szótár egyik kulcsára hivatkozzunk:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cars</span> <span class="o">=</span> <span class="p">[{</span>
+  <span class="s2">&quot;brand&quot;</span><span class="p">:</span> <span class="s2">&quot;Ford&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;model&quot;</span><span class="p">:</span> <span class="s2">&quot;Mustang&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;year&quot;</span><span class="p">:</span> <span class="mi">1964</span><span class="p">,</span>
+<span class="p">},</span> <span class="p">{</span>
+  <span class="s2">&quot;brand&quot;</span><span class="p">:</span> <span class="s2">&quot;Ford&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;model&quot;</span><span class="p">:</span> <span class="s2">&quot;Focus&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;year&quot;</span><span class="p">:</span> <span class="mi">2018</span><span class="p">,</span>
+<span class="p">}]</span>
+
+<span class="n">mustang</span> <span class="o">=</span> <span class="n">cars</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">mustang</span><span class="p">[</span><span class="s2">&quot;year&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1964
+</pre></div>
+</div>
+</div>
+</div>
+<p>A kód azonban egyszerűsíthető: a <code class="docutils literal notranslate"><span class="pre">mustang</span></code> változó elhagyható az alábbi módon:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cars</span> <span class="o">=</span> <span class="p">[{</span>
+  <span class="s2">&quot;brand&quot;</span><span class="p">:</span> <span class="s2">&quot;Ford&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;model&quot;</span><span class="p">:</span> <span class="s2">&quot;Mustang&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;year&quot;</span><span class="p">:</span> <span class="mi">1964</span><span class="p">,</span>
+<span class="p">},</span> <span class="p">{</span>
+  <span class="s2">&quot;brand&quot;</span><span class="p">:</span> <span class="s2">&quot;Ford&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;model&quot;</span><span class="p">:</span> <span class="s2">&quot;Focus&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;year&quot;</span><span class="p">:</span> <span class="mi">2018</span><span class="p">,</span>
+<span class="p">}]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">cars</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;year&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1964
+</pre></div>
+</div>
+</div>
+</div>
+<p>A fenti kód utolsó sorának <code class="docutils literal notranslate"><span class="pre">cars[0][&quot;year&quot;]</span></code> kifejezésében a következő történik:</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">cars[0]</span></code> visszaadja a lista első szótárát,</p></li>
+<li><p>ezután ezen a szótáron a <code class="docutils literal notranslate"><span class="pre">year</span></code> kulcsot lekérdezzük,</p></li>
+<li><p>és az eredmény kiírásra kerül.</p></li>
+</ol>
+<p>Úgy is elképzelhetjük, hogy a <code class="docutils literal notranslate"><span class="pre">cars[0]</span></code> eredménye egy ideiglenes változóba kerül, melyre a <code class="docutils literal notranslate"><span class="pre">[&quot;year&quot;]</span></code> hivatkozik.</p>
+<p>Mivel a lista is egy típus, ezért lehet érték egy szótárban, például:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">car</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="s2">&quot;brand&quot;</span><span class="p">:</span> <span class="s2">&quot;Ford&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;model&quot;</span><span class="p">:</span> <span class="s2">&quot;Mustang&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;year&quot;</span><span class="p">:</span> <span class="mi">1964</span><span class="p">,</span>
+  <span class="s2">&quot;exam&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1992</span><span class="p">,</span> <span class="mi">1998</span><span class="p">,</span> <span class="mi">2005</span><span class="p">,</span> <span class="mi">2009</span><span class="p">]</span>
+<span class="p">}</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">car</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;brand&#39;: &#39;Ford&#39;, &#39;model&#39;: &#39;Mustang&#39;, &#39;year&#39;: 1964, &#39;exam&#39;: [1992, 1998, 2005, 2009]}
+</pre></div>
+</div>
+</div>
+</div>
+<p>Hasonlóan a fentiekhez, a car szótár exam kulcsához tartozó lista második elemének a lekérdezése megfogalmazható a következőképpen:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">car</span><span class="p">[</span><span class="s2">&quot;exam&quot;</span><span class="p">][</span><span class="mi">1</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1998
+</pre></div>
+</div>
+</div>
+</div>
+<div class="important admonition">
+<p class="admonition-title">Feladat</p>
+<p>Az alábbi kódrészletben a <code class="docutils literal notranslate"><span class="pre">students</span></code> lista három szótárat tartalmaz. A szótárak a tanulók neveit a <code class="docutils literal notranslate"><span class="pre">name</span></code> kulcsban, valamint a zh-n elért eredményeiket a <code class="docutils literal notranslate"><span class="pre">tests</span></code> kulcsban tárolja. A <code class="docutils literal notranslate"><span class="pre">tests</span></code> kulcshoz tartozó lista a zh-k érdemjegyei a zh-k sorrendjében. Adjunk kódot ami választ ad a következő kérdésekre:</p>
+<ul class="simple">
+<li><p>Mi a <code class="docutils literal notranslate"><span class="pre">students</span></code> lista első szótárában található diák neve?</p></li>
+<li><p>Mi a <code class="docutils literal notranslate"><span class="pre">students</span></code> lista utolsó szótárában található diák neve?</p></li>
+<li><p>Mi Béla második zh-jának az eredménye?</p></li>
+<li><p>Mi Anna utolsó zh-jának az eredménye?</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">students</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Anna&quot;</span><span class="p">,</span> <span class="s2">&quot;tests&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]},</span>
+    <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Béla&quot;</span><span class="p">,</span> <span class="s2">&quot;tests&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">]},</span>
+    <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Cecíllia&quot;</span><span class="p">,</span> <span class="s2">&quot;tests&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">]}</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="vektor-tuple">
+<h2>Vektor (<code class="docutils literal notranslate"><span class="pre">tuple</span></code>)<a class="headerlink" href="#vektor-tuple" title="Permalink to this heading">#</a></h2>
+<p>A <code class="docutils literal notranslate"><span class="pre">tuple</span></code> véges elemű rendezett elemek listája. Nagyon hasonló a listához, a legfontosabb különbség, hogy a <code class="docutils literal notranslate"><span class="pre">tuple</span></code> elemei nem változtathatóak meg. Így ez az adatszerkezet valamilyen elemek statikus gyüjteménye. Akkor használatos, amikor előre ismert hány és milyen elemet akarunk tárolni; ilyen eset például amikor egy függvénynek több visszatérési értéke van.</p>
+<section id="tuple-letrehozasa">
+<h3><code class="docutils literal notranslate"><span class="pre">tuple</span></code> létrehozása<a class="headerlink" href="#tuple-letrehozasa" title="Permalink to this heading">#</a></h3>
+<p>Példa egy tuple létrehozására:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fruits</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;apple&quot;</span><span class="p">,</span> <span class="s2">&quot;banana&quot;</span><span class="p">,</span> <span class="s2">&quot;cherry&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">fruits</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;tuple&#39;&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="important admonition">
+<p class="admonition-title">Feladat</p>
+<p>Vizsgáljuk meg a <code class="docutils literal notranslate"><span class="pre">tuple</span></code> létrehozásának szintaxisát. Azonosítsuk a következőeket:</p>
+<ul class="simple">
+<li><p>Milyen karakterekkel jelőljük hogy egy <code class="docutils literal notranslate"><span class="pre">tuple</span></code>t hozzunk létre?</p></li>
+<li><p>Milyen módon soroljuk fel a tuple elemeit?</p></li>
+</ul>
+</div>
+<p>A tuple a listához hasonlóan bármilyen más típust tárolhat, így listát, vagy szótárat is:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">numbers</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;two&quot;</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;three&quot;</span><span class="p">,</span> <span class="s2">&quot;four&quot;</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">numbers</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(1, &#39;two&#39;, [&#39;three&#39;, &#39;four&#39;])
+</pre></div>
+</div>
+</div>
+</div>
+<p>Korábban tárgyaltuk a többszörös értékadást, mely így nézett ki:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fruit1</span><span class="p">,</span> <span class="n">fruit2</span><span class="p">,</span> <span class="n">fruit3</span> <span class="o">=</span> <span class="s2">&quot;apple&quot;</span><span class="p">,</span> <span class="s2">&quot;banana&quot;</span><span class="p">,</span> <span class="s2">&quot;cherry&quot;</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">fruit1</span><span class="p">,</span> <span class="n">fruit2</span><span class="p">,</span> <span class="n">fruit3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>apple banana cherry
+</pre></div>
+</div>
+</div>
+</div>
+<p>Ha az <code class="docutils literal notranslate"><span class="pre">&quot;apple&quot;,</span> <span class="pre">&quot;banana&quot;,</span> <span class="pre">&quot;cherry&quot;</span></code> oldalt egy változóba irányítjuk, akkor annak típusa <code class="docutils literal notranslate"><span class="pre">tuple</span></code> lesz:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fruits</span> <span class="o">=</span> <span class="s2">&quot;apple&quot;</span><span class="p">,</span> <span class="s2">&quot;banana&quot;</span><span class="p">,</span> <span class="s2">&quot;cherry&quot;</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">fruits</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">fruits</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(&#39;apple&#39;, &#39;banana&#39;, &#39;cherry&#39;)
+&lt;class &#39;tuple&#39;&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<p>Hasonlóan, korábban láttunk példát arra, hogy egy függvénye több visszatérési értékkel rendelkezik, például:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">circle_params</span><span class="p">(</span><span class="n">r</span><span class="p">):</span>
+  <span class="n">K</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">r</span><span class="o">*</span><span class="mf">3.14145</span>
+  <span class="n">T</span> <span class="o">=</span> <span class="n">r</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="mf">3.14145</span>
+  <span class="k">return</span> <span class="n">K</span><span class="p">,</span> <span class="n">T</span>
+
+<span class="n">K</span><span class="p">,</span> <span class="n">T</span> <span class="o">=</span> <span class="n">circle_params</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Ezekután nem meglepő, hogy a visszatérsi típus, ha nincs tagonként kifejtve, akkor <code class="docutils literal notranslate"><span class="pre">tuple</span></code>t kapunk:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">circle_params</span><span class="p">(</span><span class="n">r</span><span class="p">):</span>
+  <span class="n">K</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">r</span><span class="o">*</span><span class="mf">3.14145</span>
+  <span class="n">T</span> <span class="o">=</span> <span class="n">r</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="mf">3.14145</span>
+  <span class="k">return</span> <span class="n">K</span><span class="p">,</span> <span class="n">T</span>
+
+<span class="n">result</span> <span class="o">=</span> <span class="n">circle_params</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">result</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(62.82899999999999, 314.145)
+&lt;class &#39;tuple&#39;&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="warning admonition">
+<p class="admonition-title">Figyelem</p>
+<p>Ha a függvénynek több visszatérési értéke van, akkor a függvény hívásakor, vagy nem adunk meg visszatérési értéket, vagy egyet adunk meg, ami tuple típusú lesz, vagy mindegyiket meg kell adni. Nincs lehetőség csak részben megadni bal oldali változót, ezért az alábbi kód utolsó sorában hibát fogunk kapni.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">circle_params</span><span class="p">(</span><span class="n">r</span><span class="p">):</span>
+  <span class="n">K</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">r</span><span class="o">*</span><span class="mf">3.14145</span>
+  <span class="n">T</span> <span class="o">=</span> <span class="n">r</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="mf">3.14145</span>
+  <span class="n">d</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">r</span>
+  <span class="k">return</span> <span class="n">K</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">d</span>
+
+<span class="n">circle_params</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> <span class="c1"># ok</span>
+<span class="n">K</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">d</span> <span class="o">=</span> <span class="n">circle_params</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> <span class="c1"># ok</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">circle_params</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> <span class="c1"># ok</span>
+<span class="n">K</span><span class="p">,</span> <span class="n">result</span> <span class="o">=</span> <span class="n">circle_params</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> <span class="c1"># hiba: ValueError: too many values to unpack (expected 2)</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="muveletek-tuplen">
+<h3>Műveletek <code class="docutils literal notranslate"><span class="pre">tuple</span></code>n<a class="headerlink" href="#muveletek-tuplen" title="Permalink to this heading">#</a></h3>
+<p>A <code class="docutils literal notranslate"><span class="pre">tuple</span></code> hosszát a szokásos módon tudjuk lekérdezni:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fruits</span> <span class="o">=</span> <span class="s2">&quot;apple&quot;</span><span class="p">,</span> <span class="s2">&quot;banana&quot;</span><span class="p">,</span> <span class="s2">&quot;cherry&quot;</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">fruits</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">fruits</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(&#39;apple&#39;, &#39;banana&#39;, &#39;cherry&#39;)
+3
+</pre></div>
+</div>
+</div>
+</div>
+<p>A tuple egy elemét a listához megszokott módon tudjuk elérni:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fruits</span> <span class="o">=</span> <span class="s2">&quot;apple&quot;</span><span class="p">,</span> <span class="s2">&quot;banana&quot;</span><span class="p">,</span> <span class="s2">&quot;cherry&quot;</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">fruits</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">fruits</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>apple
+cherry
+</pre></div>
+</div>
+</div>
+</div>
+<div class="warning admonition">
+<p class="admonition-title">Figyelem</p>
+<p>Ahogy korábban említettük a list elemei nem megváltoztathatóak, így egy elemének hivatkozása az értékadás bal oldalán nem szerepelhet. Például az alábbi kód futtatása esetén hibát kapunk:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">fruits</span> <span class="o">=</span> <span class="s2">&quot;apple&quot;</span><span class="p">,</span> <span class="s2">&quot;banana&quot;</span><span class="p">,</span> <span class="s2">&quot;cherry&quot;</span>
+<span class="n">fruits</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;apricot&quot;</span> <span class="c1"># hiba: TypeError: &#39;tuple&#39; object does not support item assignment</span>
+</pre></div>
+</div>
+</div>
+<p>Lehetőség van slicing típusú elérésre is ugynolyan módon, ahogy a lista esetén már láttuk:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fun_str</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;Programming&quot;</span><span class="p">,</span> <span class="s2">&quot;is&quot;</span><span class="p">,</span> <span class="s2">&quot;fun&quot;</span><span class="p">,</span> <span class="s2">&quot;!&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Típus:&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="n">fun_str</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">fun_str</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">2</span><span class="p">])</span>   <span class="c1"># 0 és 2 indeszek közötti elemek (a 2-es indexű elem nem tartozik bele)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">fun_str</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">3</span><span class="p">])</span>   <span class="c1"># 1 és 3 indeszek közötti elemek (a 2-es indexű elem nem tartozik bele)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">fun_str</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span>    <span class="c1"># elemek az egyes indexű elemtől az utolsó elemig</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">fun_str</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>  <span class="c1"># elemek 0-tól az utolsó indeszig (az utolsó elem nem tartozik bele)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">fun_str</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>   <span class="c1"># ha nem adunk meg kezdő ideszeket, akkor az automatikusan 0. eredmény ugyanaz mint az előző sorban`</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Típus: &lt;class &#39;tuple&#39;&gt;
+(&#39;Programming&#39;, &#39;is&#39;)
+(&#39;is&#39;, &#39;fun&#39;)
+(&#39;is&#39;, &#39;fun&#39;, &#39;!&#39;)
+(&#39;Programming&#39;, &#39;is&#39;, &#39;fun&#39;)
+(&#39;Programming&#39;, &#39;is&#39;, &#39;fun&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">tuple</span></code>ket az összeadással tudjuk összefűzni, hasonlóan a listához:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fruits</span> <span class="o">=</span> <span class="s2">&quot;apple&quot;</span><span class="p">,</span> <span class="s2">&quot;banana&quot;</span><span class="p">,</span> <span class="s2">&quot;cherry&quot;</span>
+<span class="n">veggies</span> <span class="o">=</span> <span class="s2">&quot;apple&quot;</span><span class="p">,</span> <span class="s2">&quot;banana&quot;</span><span class="p">,</span> <span class="s2">&quot;cherry&quot;</span>
+
+<span class="n">healthy</span> <span class="o">=</span> <span class="n">fruits</span> <span class="o">+</span> <span class="n">veggies</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">healthy</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(&#39;apple&#39;, &#39;banana&#39;, &#39;cherry&#39;, &#39;apple&#39;, &#39;banana&#39;, &#39;cherry&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="warning admonition">
+<p class="admonition-title">Figyelem</p>
+<p>A list esetén használt <code class="docutils literal notranslate"><span class="pre">extend</span></code> vagy <code class="docutils literal notranslate"><span class="pre">append</span></code> nem elérhető, ezért a következő kód hibát fog adni. Ennek fő oka, hogy ezek a függvények a listát magát változtatják meg, és mint már említettük, a <code class="docutils literal notranslate"><span class="pre">tuple</span></code> megváltoztathatatlan.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">fruits</span> <span class="o">=</span> <span class="s2">&quot;apple&quot;</span><span class="p">,</span> <span class="s2">&quot;banana&quot;</span><span class="p">,</span> <span class="s2">&quot;cherry&quot;</span>
+<span class="n">veggies</span> <span class="o">=</span> <span class="s2">&quot;apple&quot;</span><span class="p">,</span> <span class="s2">&quot;banana&quot;</span><span class="p">,</span> <span class="s2">&quot;cherry&quot;</span>
+
+<span class="n">fruits</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">veggies</span><span class="p">)</span> <span class="c1"># hiba: AttributeError: &#39;tuple&#39; object has no attribute &#39;append&#39;</span>
+</pre></div>
+</div>
+</div>
+</section>
+</section>
+<section id="mutable-es-immutable-tipusok">
+<h2><em>Mutable</em> és <em>immutable</em> típusok<a class="headerlink" href="#mutable-es-immutable-tipusok" title="Permalink to this heading">#</a></h2>
+<p>Nézzük meg a következő példát:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fun</span> <span class="o">=</span> <span class="s1">&#39;Programming is fun!&#39;</span>
+<span class="n">not_fun</span> <span class="o">=</span> <span class="n">fun</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">fun</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">not_fun</span><span class="p">)</span>
+
+<span class="n">not_fun</span> <span class="o">=</span> <span class="s1">&#39;Programming is not fun&#39;</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">fun</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">not_fun</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Programming is fun!
+Programming is fun!
+Programming is fun!
+Programming is not fun
+</pre></div>
+</div>
+</div>
+</div>
+<p>Minden a megszokottak szerint történik: lértehozunk a <code class="docutils literal notranslate"><span class="pre">fun</span></code> változót, majd annak értékét odaadjuk a <code class="docutils literal notranslate"><span class="pre">not_fun</span></code> változónak. Ezután a <code class="docutils literal notranslate"><span class="pre">not_fun</span></code> változót felülírjuk. Ezután nézzük meg ugyanezt a kódot listákkal:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fun</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Programming&#39;</span><span class="p">,</span> <span class="s1">&#39;is&#39;</span><span class="p">,</span> <span class="s1">&#39;fun&#39;</span><span class="p">,</span> <span class="s1">&#39;!&#39;</span><span class="p">]</span>
+<span class="n">not_fun</span> <span class="o">=</span> <span class="n">fun</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">fun</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">not_fun</span><span class="p">)</span>
+
+<span class="n">not_fun</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;is not&#39;</span> <span class="c1"># változtatás</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">fun</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">not_fun</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;Programming&#39;, &#39;is&#39;, &#39;fun&#39;, &#39;!&#39;]
+[&#39;Programming&#39;, &#39;is&#39;, &#39;fun&#39;, &#39;!&#39;]
+[&#39;Programming&#39;, &#39;is not&#39;, &#39;fun&#39;, &#39;!&#39;]
+[&#39;Programming&#39;, &#39;is not&#39;, &#39;fun&#39;, &#39;!&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Meglepő módon azt tapasztaljuk, hogy a <code class="docutils literal notranslate"><span class="pre">not_fun</span></code> változón végzett változtatás, lásd <code class="docutils literal notranslate"><span class="pre">not_fun[1]</span> <span class="pre">=</span> <span class="pre">'is</span> <span class="pre">not'</span></code>, hatással van a <code class="docutils literal notranslate"><span class="pre">fun</span></code> változóra is.</p>
+<p>Mi történik? A megoldás, hogy a <code class="docutils literal notranslate"><span class="pre">fun</span></code> változó nem magát a listát, hanem a listára mutató referenciát tartalmazza. Mit jelent ez? A lista valamilyen memóriaterületen foglal helyet. Ennek a memóriaterületnek van valamilyen címe. Amikor egy lista definíció az értékadás jobb oldalán szerepel, a lista a memóriában létrejön, és ennek a memóriának a címe kerül az értékadás bal oldalán található változóban értékadásra. Ez a cím nem látható: a Python elrejti előlünk, és a listát úgy használjuk, mintha a változó maga lenne a lista. Azonban a <code class="docutils literal notranslate"><span class="pre">not_fun</span> <span class="pre">=</span> <span class="pre">fun</span></code> értékadáskor a <code class="docutils literal notranslate"><span class="pre">fun</span></code> változóban található referencia kerül a <code class="docutils literal notranslate"><span class="pre">not_fun</span></code> változóba, így a <code class="docutils literal notranslate"><span class="pre">fun</span></code> és <code class="docutils literal notranslate"><span class="pre">not_fun</span></code> változók tulajdonképpen ugyanarra a listára mutatnak. Ezért az egyiken történő változtatás hatással van a másikra is!</p>
+<p>Egyik következménye a fentieknek, hogy a <code class="docutils literal notranslate"><span class="pre">not_fun</span></code> változón végzett egyéb műveletek is hatással vannak a <code class="docutils literal notranslate"><span class="pre">fun</span></code> változóra, így például konkatencáiónál:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fun</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Programming&#39;</span><span class="p">,</span> <span class="s1">&#39;is&#39;</span><span class="p">,</span> <span class="s1">&#39;fun&#39;</span><span class="p">,</span> <span class="s1">&#39;!&#39;</span><span class="p">]</span>
+<span class="n">not_fun</span> <span class="o">=</span> <span class="n">fun</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">fun</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">not_fun</span><span class="p">)</span>
+
+<span class="n">not_fun</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;Not really...&#39;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">fun</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">not_fun</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;Programming&#39;, &#39;is&#39;, &#39;fun&#39;, &#39;!&#39;]
+[&#39;Programming&#39;, &#39;is&#39;, &#39;fun&#39;, &#39;!&#39;]
+[&#39;Programming&#39;, &#39;is&#39;, &#39;fun&#39;, &#39;!&#39;, &#39;Not really...&#39;]
+[&#39;Programming&#39;, &#39;is&#39;, &#39;fun&#39;, &#39;!&#39;, &#39;Not really...&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Pythonban minden változó referencia. De az első példában láthattuk, hogy a szöveg esetén nem volt a fenti példához hasonló problémánk. Ez hogy lehetséges? Ha belegondolunk, a szám típusok, vagy például a szöveg típus esetén nem tudjuk a változó mögött lévő objektumot (memória tartalmat) olyan módon megváltoztatni, mint azt a lista <code class="docutils literal notranslate"><span class="pre">append</span></code> vagy <code class="docutils literal notranslate"><span class="pre">extend</span></code> függvényeinek segítségével tettük. Minden olyan esetben, amikor úgy tűnik egy szám, vagy szöveg változásra került, igazából a változó feltűnik egy értékadás jobb oldalán, így új objektum jön létre a memóriában. Az ilyen adattípusokat, melyek értékei nem megváltoztathatóak <strong>megváltoztathatatlan</strong> (<em><strong>immutable</strong></em>) típusoknak nevezzük; ezzel szemben az olyan típusokat amelyek <strong>megváltozthatóak</strong> (<em><strong>mutable</strong></em>) típusnak hívjuk. Az eddig tanul típusok esetén az osztályozás a kövekező:</p>
+<ul class="simple">
+<li><p><em>Immutable</em> típusok: <code class="docutils literal notranslate"><span class="pre">int</span></code>, <code class="docutils literal notranslate"><span class="pre">float</span></code>, <code class="docutils literal notranslate"><span class="pre">boolean</span></code>, <code class="docutils literal notranslate"><span class="pre">string</span></code>, <code class="docutils literal notranslate"><span class="pre">tuple</span></code></p></li>
+<li><p><em>Mutable</em> típusok: <code class="docutils literal notranslate"><span class="pre">list</span></code>, <code class="docutils literal notranslate"><span class="pre">dict</span></code></p></li>
+</ul>
+<section id="sekely-es-melymasolas">
+<h3>Sekély és mélymásolás<a class="headerlink" href="#sekely-es-melymasolas" title="Permalink to this heading">#</a></h3>
+<p><em>mutable</em> típusok esetén tehát problémába ütközünk, amikor egy másolatot szeretnénk készíteni. Ebben a példában két változót szeretnénk, amely két különböző szöveget tárolna:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fun</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Programming&#39;</span><span class="p">,</span> <span class="s1">&#39;is&#39;</span><span class="p">,</span> <span class="s1">&#39;fun&#39;</span><span class="p">,</span> <span class="s1">&#39;!&#39;</span><span class="p">]</span>
+<span class="n">not_fun</span> <span class="o">=</span> <span class="n">fun</span>
+<span class="n">not_fun</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;is not&#39;</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">fun</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">not_fun</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;Programming&#39;, &#39;is not&#39;, &#39;fun&#39;, &#39;!&#39;]
+[&#39;Programming&#39;, &#39;is not&#39;, &#39;fun&#39;, &#39;!&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Tehát a <code class="docutils literal notranslate"><span class="pre">not_fun</span></code> listát nem tudjuk megváltoztatni anélkül, hogy a <code class="docutils literal notranslate"><span class="pre">fun</span></code> változó ne változzon. Ezt úgy mondjuk, hogy a <code class="docutils literal notranslate"><span class="pre">not_fun</span> <span class="pre">=</span> <span class="pre">fun</span></code> egy <strong>sekély másolás</strong>, mivel csak referenciát másol. Ha egy teljes másolatot akarunk készíteni egy <code class="docutils literal notranslate"><span class="pre">mutable</span></code> típus mögött lévő objektumról, akkor a <code class="docutils literal notranslate"><span class="pre">copy()</span></code> függvényt kell meghívnunk a változón. Ezt hívjuk <strong>mély másolásnak</strong>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fun</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Programming&#39;</span><span class="p">,</span> <span class="s1">&#39;is&#39;</span><span class="p">,</span> <span class="s1">&#39;fun&#39;</span><span class="p">,</span> <span class="s1">&#39;!&#39;</span><span class="p">]</span>
+<span class="n">not_fun</span> <span class="o">=</span> <span class="n">fun</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">not_fun</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;is not&#39;</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">fun</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">not_fun</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;Programming&#39;, &#39;is&#39;, &#39;fun&#39;, &#39;!&#39;]
+[&#39;Programming&#39;, &#39;is not&#39;, &#39;fun&#39;, &#39;!&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="important admonition">
+<p class="admonition-title">Feladat</p>
+<p>A fentiek szótárakra is igazak. Mutassuk meg a fenti <em>mutable</em> tulajdonságokat szótárral!</p>
+</div>
+</section>
+<section id="mutable-tipusok-fuggvenyekben">
+<h3><em>Mutable</em> típusok függvényekben<a class="headerlink" href="#mutable-tipusok-fuggvenyekben" title="Permalink to this heading">#</a></h3>
+<p>Nézzük meg az alábbi kódot, amely egy nagy számra cseréli a bemeneti változót:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">make_big</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="mi">100000</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="n">a</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">make_big</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100000
+0
+</pre></div>
+</div>
+</div>
+</div>
+<p>Semmi meglepő nem történt, mivel az <code class="docutils literal notranslate"><span class="pre">x</span></code> változó hatásköre csak a függvényen belül érvényesül, ezért a globális névtérben létrehozott <code class="docutils literal notranslate"><span class="pre">a</span></code> változót nem írja felül.</p>
+<p>Ezzel szemben nézzük meg az alábbi kódot:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">make_big</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">100000</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    
+<span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">make_big</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[100000]
+[100000]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Meglepő módon azt tapasztaljuk, hogy a globális változó értéke megváltozott.</p>
+<p>Mi történik? Mindkét esetben úgy képzelhetjük, hogy a <code class="docutils literal notranslate"><span class="pre">make_big</span></code> függvény <code class="docutils literal notranslate"><span class="pre">x</span></code> paramétere, egy, a függvény látókörébe tartozó változó, amelynek értéke a függvény hívásakor felveszi az <code class="docutils literal notranslate"><span class="pre">a</span></code> változó értékét, oly módon hogy az <code class="docutils literal notranslate"><span class="pre">a</span></code> mögötti referencia bemásolásra kerül az <code class="docutils literal notranslate"><span class="pre">x</span></code> változóba. Az első esetben a <code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">=</span> <span class="pre">100000</span></code> sornál az <code class="docutils literal notranslate"><span class="pre">x</span></code> változó felvesz egy új referenciát ami az új <code class="docutils literal notranslate"><span class="pre">10000</span></code> értékre mutat. Ez egy új referencia, ezért a globális <code class="docutils literal notranslate"><span class="pre">a</span></code> nem változik meg. Ezzel szemben a lista esetén az <code class="docutils literal notranslate"><span class="pre">a</span></code> és <code class="docutils literal notranslate"><span class="pre">x</span></code> változók ugyanarra a listára mutató referenciák, ezért az <code class="docutils literal notranslate"><span class="pre">x</span></code> lista elemein történő változások hatással vannnak a globális névtérben létrehozott listára is.</p>
+<p>Ez azt is jelenti, hogy nem csak az elemeken, hanem magán a listán végzett változtatás is hatással van a globális névtérben található <code class="docutils literal notranslate"><span class="pre">a</span></code> változóra:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">make_big</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="n">x</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">100000</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    
+<span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">make_big</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0, 100000]
+[0, 100000]
+</pre></div>
+</div>
+</div>
+</div>
+<p>A fentiek további következménye, hogyha az <code class="docutils literal notranslate"><span class="pre">x</span></code> változót, amely egy listára mutató referenciát táról, egy értékadással felülírjuk, azaz egy új listára mutató referenciát hozunk létre, akkor az már nem fog változást okozni a globális névtérben található <code class="docutils literal notranslate"><span class="pre">a</span></code> változóra:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">make_big</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="mi">100000</span><span class="p">]</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    
+<span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">make_big</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[100000]
+[0]
+</pre></div>
+</div>
+</div>
+</div>
+<p>A <code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">=</span> <span class="pre">[100000]</span></code> művelet ugyanaz, mint a <code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">=</span> <span class="pre">100000</span></code> sor az első példánkban.</p>
+</section>
+<section id="az-is-kulcsszo">
+<h3>Az <code class="docutils literal notranslate"><span class="pre">is</span></code> kulcsszó<a class="headerlink" href="#az-is-kulcsszo" title="Permalink to this heading">#</a></h3>
+<p>Az <code class="docutils literal notranslate"><span class="pre">is</span></code> kulcszóval ellenőrízhetjük, hogy két változó mögötti referenciák ugyanarra az objektumra mutat-e. Ez immutable típus esetén ugyan az mint a <code class="docutils literal notranslate"><span class="pre">==</span></code> összehasonlító operátor:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="p">(</span><span class="ow">not</span> <span class="kc">False</span> <span class="ow">or</span> <span class="kc">True</span><span class="p">)</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">:</span>
+  <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;True&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+<p><em>mutable</em> típusok esetén viszont különböző, nézzünk két példát. A két lista megegyezik az alábbi példában:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">shopping_list_jane</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;bread&#39;</span><span class="p">,</span> <span class="s1">&#39;milk&#39;</span><span class="p">]</span>
+<span class="n">shopping_list_joe</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;bread&#39;</span><span class="p">,</span> <span class="s1">&#39;milk&#39;</span><span class="p">]</span>
+
+<span class="k">if</span> <span class="n">shopping_list_jane</span> <span class="o">==</span> <span class="n">shopping_list_joe</span><span class="p">:</span>
+  <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;It is true, so they are married!&#39;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+  <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;It is false, so they are not married!&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>It is true, so they are married!
+</pre></div>
+</div>
+</div>
+</div>
+<p>Azonban a két változó mögötti referencia különbözik:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">shopping_list_jane</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;bread&#39;</span><span class="p">,</span> <span class="s1">&#39;milk&#39;</span><span class="p">]</span>
+<span class="n">shopping_list_joe</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;bread&#39;</span><span class="p">,</span> <span class="s1">&#39;milk&#39;</span><span class="p">]</span>
+
+<span class="k">if</span> <span class="n">shopping_list_jane</span> <span class="ow">is</span> <span class="n">shopping_list_joe</span><span class="p">:</span>
+  <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;It is true, so they are married!&#39;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+  <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;It is false, so they are not married!&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>It is false, so they are not married!
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="1_Introduction_to_Python.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Bevezetés a Python nyelvbe</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="13_Algorithms.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Algoritmusok</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lista-list">Lista (<code class="docutils literal notranslate"><span class="pre">list</span></code>)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lista-letrehozasa">Lista létrehozása</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#muveletek-listan">Műveletek listán</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lista-logikai-kifejezesben">Lista logikai kifejezésben</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#szotar-dict">Szótár (<code class="docutils literal notranslate"><span class="pre">dict</span></code>)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#szotar-letrehozasa">Szótár létrehozása</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#muveletek-szotaron">Műveletek szótáron</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#szotar-logikai-kifejezesben">Szótár logikai kifejezésben</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#listak-es-szotarak-egymasba-agyazva">Listák és szótárak egymásba ágyazva</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vektor-tuple">Vektor (<code class="docutils literal notranslate"><span class="pre">tuple</span></code>)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tuple-letrehozasa"><code class="docutils literal notranslate"><span class="pre">tuple</span></code> létrehozása</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#muveletek-tuplen">Műveletek <code class="docutils literal notranslate"><span class="pre">tuple</span></code>n</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mutable-es-immutable-tipusok"><em>Mutable</em> és <em>immutable</em> típusok</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sekely-es-melymasolas">Sekély és mélymásolás</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mutable-tipusok-fuggvenyekben"><em>Mutable</em> típusok függvényekben</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#az-is-kulcsszo">Az <code class="docutils literal notranslate"><span class="pre">is</span></code> kulcsszó</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Dr. Koppányi Zoltán
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
